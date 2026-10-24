@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mutants-that-matter"
+version = "0.1.0"
+description = "Validating mutation testing for silent guardrail decay in self-compacting LLM agents"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Anthony Seumal" }]
+dependencies = [
+    "openai>=1.40",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+mtm = "mtm.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["mtm*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

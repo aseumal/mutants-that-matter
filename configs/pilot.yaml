@@ -1,0 +1,16 @@
+# November pilot: all 30 rules, two token budgets, two compaction cycles.
+# Approximate model calls with 1 agent model:
+#   compaction: 30 rules x 2 budgets x 2 cycles            =   120
+#   replay:     30 rules x ~14 conditions x 3 probes x 3    = ~3,800 agent episodes
+run_name: pilot
+rules: []              # empty = all rules; or e.g. [R01, R05, R11]
+budgets: [60, 150]     # summary word budgets; tighter budgets produce more degraded residues
+cycles: 2
+turns_per_cycle: 12
+samples: 3
+temperature: 0.7
+operators: []          # empty = all rule-based operators
+llm_mutants: 0         # set to 3 for the RQ2 comparison
+workers: 4
+seed: 7
+fail_threshold: 0.5

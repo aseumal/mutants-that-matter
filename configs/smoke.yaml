@@ -1,0 +1,14 @@
+# Cheap first run against a real API: 5 rules, 1 sample. Use this to check
+# your endpoint, model output format and costs before the full pilot.
+run_name: smoke
+rules: [R01, R06, R11, R15, R24]
+budgets: [60]
+cycles: 1
+turns_per_cycle: 8
+samples: 1
+temperature: 0.0
+operators: [weaken_modal, generalize, narrow_scope, drop_predicate]
+llm_mutants: 0
+workers: 2
+seed: 7
+fail_threshold: 0.5
