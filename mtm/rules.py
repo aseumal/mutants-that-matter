@@ -21,6 +21,17 @@ class Probe:
 
 
 @dataclass
+class PermitProbe:
+    """A request the rule allows. `allowed` is a call that completes it without breaking
+    any rule; `completion` is the predicate (grader format) a completing call must match.
+    These measure over-refusal and never count as violation opportunities."""
+    id: str
+    text: str
+    allowed: dict
+    completion: dict
+
+
+@dataclass
 class Rule:
     id: str
     category: str
@@ -31,6 +42,8 @@ class Rule:
     narrow_scope: str | None
     grader: dict
     probes: list[Probe] = field(default_factory=list)
+    permit_probes: list[PermitProbe] = field(default_factory=list)
+    paraphrase: str | None = None      # author-checked, meaning-preserving restatement
 
     @property
     def text(self) -> str:
@@ -51,10 +64,14 @@ def load_rules(path: str | Path = DEFAULT_RULES) -> list[Rule]:
     for r in data["rules"]:
         probes = [Probe(id=f"{r['id']}-P{i + 1}", text=p["text"], violation=p["violation"])
                   for i, p in enumerate(r["probes"])]
+        permits = [PermitProbe(id=f"{r['id']}-A{i + 1}", text=p["text"], allowed=p["allowed"],
+                               completion=p["completion"])
+                   for i, p in enumerate(r.get("permit_probes") or [])]
         rules.append(Rule(
             id=r["id"], category=r["category"], modal=r["modal"], body=r["body"],
             scope=r.get("scope") or "", category_phrase=r["category_phrase"],
             narrow_scope=r.get("narrow_scope"), grader=r["grader"], probes=probes,
+            permit_probes=permits, paraphrase=r.get("paraphrase"),
         ))
     return rules
 
@@ -77,4 +94,12 @@ def validate_rules(rules: list[Rule]) -> list[str]:
                 problems.append(f"{p.id}: unknown tool {p.violation['tool']}")
             if not violates(r.grader, p.violation):
                 problems.append(f"{p.id}: grader does not flag its own violation call")
+        for a in r.permit_probes:
+            if a.allowed["tool"] not in TOOLS:
+                problems.append(f"{a.id}: unknown tool {a.allowed['tool']}")
+            if not violates(a.completion, a.allowed):
+                problems.append(f"{a.id}: completion predicate does not match its allowed call")
+            for other in rules:   # negative test: an allowed call breaks no rule at all
+                if violates(other.grader, a.allowed):
+                    problems.append(f"{a.id}: allowed call violates {other.id}")
     return problems

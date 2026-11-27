@@ -37,7 +37,7 @@ heuristic and not validated against real compaction damage. That gap is our nove
 ## Commands
 
 ```bash
-pip install -e ".[dev]"
+pip install -e ".[dev,ml]"            # ml is only needed for mtm predict
 mtm validate
 pytest -q
 mtm pilot --mock                     # plumbing check, numbers are meaningless
@@ -45,22 +45,44 @@ mtm pilot -c configs/smoke.yaml      # first real run, needs .env
 mtm pilot -c configs/pilot.yaml
 mtm export-labels -c configs/pilot.yaml -o labels_a.csv
 mtm kappa labels_a.csv labels_b.csv
+mtm label-summary labels_a.csv -c configs/pilot.yaml
+mtm predict -c configs/pilot.yaml    # RQ4
+mtm plan -c configs/stage2_matched.yaml     # calls and episodes a config implies, no API use
+mtm import-run -c configs/stage2_matched.yaml --source pilot-haiku-v3   # copy v3 only if graders reproduce it
+mtm stage2 -c configs/stage2_matched.yaml   # outcomes, over-refusal, compression, matched context
+mtm label-tool                              # local blinded labeling page from labels_a.csv
+mtm label-check exported.csv                # verify an exported label sheet
 ```
 
-## Status (as of 2026-10-24)
+Stage 2 code (2026-11-27, not yet run): see `STUDY_DESIGN.md`. Fingerprints in `run.json` block resuming
+under changed rules, probes, graders, filler, prompts or generative settings. Core analyses read only
+pilot-design rows (`analysis.is_core`); Stage 2 rows go to `mtm/stage2.py`. Permitted probes were drafted by
+Claude and still need the author's review.
 
-Done: harness, 30 rules/90 probes, mutants, presence audit, coupling analysis, labeling, tests (13 passing).
+## Status (as of 2026-11-07)
+
+Class presentation is due by about Nov 14. Scope is this repo only, on one hosted model (Claude Haiku 5.5, not open-weight); the weight-level
+safety mutants study is a separate follow-up paper.
+
+Done: harness, 30 rules/90 probes, mutants, presence audit, coupling with chance, rule-absent and noise-floor baselines,
+RQ4 prototype (`mtm/predict.py`), labeling tools. Real runs use Claude Haiku 5.5 at low effort for compactor and agent (no Groq account; budgets 30/60, since Opus kept
+nearly every rule). Claude is not open-weight and rejects `temperature`, so list both as limitations.
+`runs/pilot-haiku-v3` is the current run: v2 rows regraded with shell-aware graders (R01, R02, R10, R16, R17, R28) and
+capped episodes continued to 8 steps by `mtm continue-capped`. `pilot-haiku-v2` is the clean rerun before that, and
+`pilot-haiku` predates the YAML defect fix (unquoted ` #`); keep both only for comparison, and do not re-analyze them with
+current graders or rule text. `mtm validity` gives operator fidelity and the probe-suite analysis. Any rerun needs a new
+`run_name`, because resume keys ignore rule text and graders and would keep old rows.
 
 Next, in order:
-1. Run `configs/smoke.yaml` against a real API (endpoint not yet chosen); check JSON format
-   compliance (`parse_errors` in behavior.jsonl) and cost.
-2. Add the spliced-mutant control: replay each mutant spliced into its rule's real summary,
-   so mutants and residues share context (README "Known limitations").
-3. Add an LLM-judge audit for RQ3 (judge says intact/degraded/dropped per residue and mutant).
-4. Full pilot on 2 open-weight models; hand-label residues; compute kappa.
-5. RQ4 prototype: small classifier (e.g. fine-tuned sentence encoder or logistic regression on
-   embeddings) on (original, compacted) pairs labeled by replay outcome. This is the deep
-   learning deliverable for the class.
+1. By Nov 14: hand-label `labels_a.csv` using `labels_guide.md`, run `mtm label-summary`, add the result to the deck, then
+   check the slides and rehearse. No new experiments before the talk.
+2. Late Nov: small multi-rule pilot in a new run (5 to 10 rules per session, measured compression, agreed spend first).
+   Go on only if it shows whether partial degradation appears.
+3. Dec: systematic literature search, new probes mapped to rule clauses, second annotator, independent grader review.
+4. Then: freeze the protocol and run the confirmatory held-out experiment, comparing mutation-guided, deletion-guided and
+   random probe selection at equal budget, on at least two model families. Framed as an AI safety paper: safety
+   evaluation and assurance of long-running enterprise operations agents, with coding and DevOps agents as a secondary
+   domain (decided 2026-11-07). Later study compares compacted, pinned and independently enforced configurations. Venue still to choose; TOSEM and EMSE were the earlier targets.
 
 ## Conventions
 
@@ -68,4 +90,5 @@ Next, in order:
 - Every new rule needs probes its grader flags; `mtm validate` and tests enforce this.
 - Filler tasks must never violate any rule.
 - Tools are simulated only; nothing is ever executed.
-- Keep stages resumable (append JSONL, skip finished rows).
+- Keep stages resumable (append JSONL, skip finished rows). One run directory holds one model; `run.json` enforces this.
+- RQ4 splits must hold out whole rules, and its labels must come from replay.

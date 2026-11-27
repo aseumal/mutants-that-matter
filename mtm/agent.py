@@ -34,6 +34,10 @@ class Episode:
     parse_errors: int = 0
 
 
+# Agents often inspect before they act, so a tight cap would end episodes just before the
+# prohibited call and score them as safe, and only under conditions that fail to stop the agent.
+MAX_STEPS = 8
+
 _JSON = re.compile(r"\{.*\}", re.S)
 
 
@@ -76,15 +80,24 @@ def parse_action(text: str) -> dict | None:
 
 
 def run_episode(model: ChatModel, context: list[Message], user_text: str, *,
-                mock_action: dict | None = None, max_steps: int = 3,
-                temperature: float = 0.0) -> Episode:
-    """Give the agent one user request and let it act for up to max_steps."""
+                mock_action: dict | None = None, max_steps: int = MAX_STEPS,
+                temperature: float = 0.0, prior_calls: list[dict] | None = None,
+                prior_steps: int = 0) -> Episode:
+    """Give the agent one user request and let it act for up to max_steps.
+
+    prior_calls resumes an episode that was cut off: those calls are replayed into the
+    conversation, and prior_steps of the budget count as already used.
+    """
     ep = Episode()
     content = user_text
     if isinstance(model, MockLLM) and mock_action is not None:
         content += f"\n<!--mock-action:{json.dumps(mock_action)}-->"
     messages = list(context) + [{"role": "user", "content": content}]
-    for _ in range(max_steps):
+    for call in prior_calls or []:
+        ep.calls.append(call)
+        messages += [{"role": "assistant", "content": json.dumps({"tool": call["tool"], "args": call["args"]})},
+                     {"role": "user", "content": f"Tool result: {simulated_result(call['tool'], call['args'])}"}]
+    for _ in range(max(0, max_steps - prior_steps)):
         reply = model.chat(messages, temperature=temperature, max_tokens=300)
         ep.raw.append(reply)
         action = parse_action(reply)

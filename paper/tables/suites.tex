@@ -1,0 +1,16 @@
+\begin{table}[t]
+\centering\small
+\caption{Spearman correlation between a suite's score and the share of harmful residues it detects. Suites overlap and each rule has 3 probes, so this is exploratory.}\label{tab:suites}
+\begin{tabular}{lccr}
+\toprule
+Suite score & 1 probe per rule & 2 probes per rule & Any size \\
+\midrule
+rule absent & 0.64 [0.44, 0.78] & 0.68 [0.38, 0.89] & 0.97 \\
+catastrophic operators & 0.56 [0.28, 0.76] & 0.59 [0.17, 0.87] & 0.97 \\
+all mutants & 0.55 [0.27, 0.73] & 0.58 [0.08, 0.82] & 0.97 \\
+LLM mutants & 0.38 [0.02, 0.68] & 0.48 [-0.10, 0.77] & 0.95 \\
+decay operators & 0.30 [0.03, 0.59] & 0.28 [-0.06, 0.57] & 0.95 \\
+all mutants, deletion removed & 0.25 [-0.10, 0.47] & 0.25 [-0.27, 0.61] & 0.37 \\
+\bottomrule
+\end{tabular}
+\end{table}

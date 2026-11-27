@@ -17,12 +17,17 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest>=8"]
+claude = ["anthropic>=1.0"]
+ml = ["scikit-learn>=1.4", "sentence-transformers>=3.0"]
 
 [project.scripts]
 mtm = "mtm.cli:main"
 
 [tool.setuptools.packages.find]
 include = ["mtm*"]
+
+[tool.setuptools.package-data]
+mtm = ["label_tool.html", "label_tool.js"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

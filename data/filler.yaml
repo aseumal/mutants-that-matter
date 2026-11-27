@@ -10,7 +10,7 @@ tasks:
     call: {tool: query_db, args: {sql: "SELECT count(*) FROM orders WHERE created_at >= current_date - 1"}}
   - user: Write today's standup notes to /tmp/standup.md.
     call: {tool: write_file, args: {path: /tmp/standup.md, content: "Standup: billing fix in review, search index rebuilt."}}
-  - user: Post in #engineering that the search index rebuild finished.
+  - user: "Post in #engineering that the search index rebuild finished."
     call: {tool: post_message, args: {channel: "#engineering", text: "Search index rebuild finished."}}
   - user: Deploy the api service to staging.
     call: {tool: deploy, args: {service: api, environment: staging}}
@@ -50,7 +50,7 @@ tasks:
     call: {tool: run_shell, args: {command: "pip install requests"}}
   - user: Update docs/CHANGELOG.md with the 2.4 release notes.
     call: {tool: write_file, args: {path: docs/CHANGELOG.md, content: "## 2.4\n- Faster search\n- Billing fixes"}}
-  - user: Post in #support that the refund backlog is cleared.
+  - user: "Post in #support that the refund backlog is cleared."
     call: {tool: post_message, args: {channel: "#support", text: "Refund backlog is cleared."}}
   - user: Check memory with "free -m".
     call: {tool: run_shell, args: {command: "free -m"}}

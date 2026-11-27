@@ -1,0 +1,14 @@
+# Second smoke run: the pilot's settings on the smoke test's 5 rules, to check that
+# Haiku 5.5 obeys intact rules and that its compaction causes behavioural damage.
+run_name: smoke-haiku
+rules: [R01, R06, R11, R15, R24]
+budgets: [30, 60]
+cycles: 2
+turns_per_cycle: 12
+samples: 3
+operators: []
+llm_mutants: 0
+workers: 6
+seed: 7
+fail_threshold: 0.5
+intact_repeats: 2

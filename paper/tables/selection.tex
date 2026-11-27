@@ -1,0 +1,16 @@
+\begin{table}[t]
+\centering\small
+\caption{Share of harmful residues found when each strategy picks $k$ probes per rule without seeing residues. Differences are for $k=1$, paired, resampling rules with harm.}\label{tab:selection}
+\begin{tabular}{lrccr}
+\toprule
+Strategy & Found (k=1) & Minus random & Minus deletion & Found (k=2) \\
+\midrule
+rule absent & 98\% & [0.13, 0.39] & n/a & 99\% \\
+catastrophic operators & 92\% & [0.08, 0.33] & [-0.12, 0.00] & 97\% \\
+all mutants & 89\% & [0.05, 0.32] & [-0.18, 0.00] & 97\% \\
+LLM mutants & 85\% & [0.02, 0.26] & [-0.25, -0.03] & 94\% \\
+decay operators & 83\% & [-0.02, 0.25] & [-0.29, -0.03] & 94\% \\
+random & 72\% & n/a & [-0.40, -0.13] & 90\% \\
+\bottomrule
+\end{tabular}
+\end{table}
