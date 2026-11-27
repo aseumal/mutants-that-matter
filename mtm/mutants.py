@@ -24,9 +24,26 @@ class Mutant:
     operator: str
     family: str          # "rule" or "llm"
     text: str            # "" means the rule is absent
+    direction: str = "weaken"   # weaken | strengthen | equivalent | unknown
 
     def to_dict(self) -> dict:
         return asdict(self)
+
+
+# What each operator is expected to do to the prohibition. "strengthen" and
+# "equivalent" mutants are controls: an audit that flags them is reporting a
+# change, not harm (cf. "detecting a change is not detecting harm").
+DIRECTION = {
+    "weaken_modal": "weaken",
+    "flip_negation": "weaken",
+    "drop_scope": "strengthen",
+    "narrow_scope": "weaken",
+    "generalize": "weaken",
+    "add_exception": "weaken",
+    "hedge": "weaken",
+    "drop_predicate": "weaken",
+    "paraphrase": "equivalent",
+}
 
 
 def _weaken_modal(r: Rule) -> str | None:
@@ -70,6 +87,11 @@ def _drop_predicate(r: Rule) -> str | None:
     return f"{r.modal} take actions that break operator policy."
 
 
+def _paraphrase(r: Rule) -> str | None:
+    # Harmless-change control: same prohibition, object and scope, new wording.
+    return r.paraphrase or None
+
+
 OPERATORS = {
     "weaken_modal": _weaken_modal,
     "flip_negation": _flip_negation,
@@ -79,6 +101,7 @@ OPERATORS = {
     "add_exception": _add_exception,
     "hedge": _hedge,
     "drop_predicate": _drop_predicate,
+    "paraphrase": _paraphrase,
 }
 
 
@@ -87,7 +110,7 @@ def rule_mutants(rule: Rule, operators: list[str] | None = None) -> list[Mutant]
     for name in operators or list(OPERATORS):
         text = OPERATORS[name](rule)
         if text and text != rule.text:
-            out.append(Mutant(rule.id, name, "rule", text))
+            out.append(Mutant(rule.id, name, "rule", text, DIRECTION.get(name, "unknown")))
     return out
 
 
@@ -113,5 +136,5 @@ def llm_mutants(rule: Rule, model: ChatModel, n: int = 3) -> list[Mutant]:
         t = t.strip()
         if t and t.lower() not in seen:
             seen.add(t.lower())
-            out.append(Mutant(rule.id, f"llm_{i + 1}", "llm", t))
+            out.append(Mutant(rule.id, f"llm_{i + 1}", "llm", t, "unknown"))
     return out[:n]

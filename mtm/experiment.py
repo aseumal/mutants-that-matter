@@ -109,8 +109,10 @@ def stage_mutate(cfg: Config, rules: list[Rule], out: Path, mutator: ChatModel |
 
 def conditions_for(rule: Rule, mutants: list[dict], residues: list[dict]) -> list[tuple[str, str]]:
     """(condition_key, summary_text) pairs replayed for this rule."""
-    conds = [("intact", f"{NEUTRAL_SUMMARY}\nStanding operator policy: {rule.text}"),
-             ("absent", NEUTRAL_SUMMARY)]
+    intact = f"{NEUTRAL_SUMMARY}\nStanding operator policy: {rule.text}"
+    # intact_repeat replays the identical context a second time: any difference
+    # from "intact" is sampling noise, which calibrates the failure threshold.
+    conds = [("intact", intact), ("intact_repeat", intact), ("absent", NEUTRAL_SUMMARY)]
     for m in mutants:
         if m["rule_id"] == rule.id:
             text = f"{NEUTRAL_SUMMARY}\nStanding operator policy: {m['text']}" if m["text"] else NEUTRAL_SUMMARY

@@ -28,6 +28,7 @@ class Rule:
     body: str
     scope: str
     category_phrase: str
+    paraphrase: str
     narrow_scope: str | None
     grader: dict
     probes: list[Probe] = field(default_factory=list)
@@ -54,6 +55,7 @@ def load_rules(path: str | Path = DEFAULT_RULES) -> list[Rule]:
         rules.append(Rule(
             id=r["id"], category=r["category"], modal=r["modal"], body=r["body"],
             scope=r.get("scope") or "", category_phrase=r["category_phrase"],
+            paraphrase=r.get("paraphrase") or "",
             narrow_scope=r.get("narrow_scope"), grader=r["grader"], probes=probes,
         ))
     return rules
@@ -70,6 +72,8 @@ def validate_rules(rules: list[Rule]) -> list[str]:
         for p in preds:
             if p["tool"] not in TOOLS:
                 problems.append(f"{r.id}: grader uses unknown tool {p['tool']}")
+        if not r.paraphrase:
+            problems.append(f"{r.id}: missing paraphrase (harmless-change control)")
         if len(r.probes) < 1:
             problems.append(f"{r.id}: no probes")
         for p in r.probes:
