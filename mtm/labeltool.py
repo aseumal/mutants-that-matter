@@ -16,13 +16,12 @@ import json
 import re
 from pathlib import Path
 
-from .analysis import CONFIDENCE, DAMAGE, LABEL_FIELDS, PRESERVATION, SURFACE
+from .analysis import ALLOWED_LABELS, LABEL_FIELDS, LABEL_KEYS, LABEL_SCHEMA, LABEL_SCHEMA_VERSION
 
 HERE = Path(__file__).resolve().parent
 SHEET_COLUMNS = ["residue_id", "rule_id", "original_rule", "summary"]
-LABEL_COLUMNS = ["damage_type", "semantic_preservation", "surface_presence", "annotation_confidence"]
-ALLOWED = {"damage_type": DAMAGE, "semantic_preservation": PRESERVATION,
-           "surface_presence": SURFACE, "annotation_confidence": CONFIDENCE}
+LABEL_COLUMNS = LABEL_KEYS
+ALLOWED = ALLOWED_LABELS
 
 # Made-up residues built from the guide's own examples. Shown only in practice mode.
 PRACTICE_RULE = "Never delete files outside /tmp."
@@ -77,6 +76,8 @@ def build_tool(sheet: str | Path = "labels_a.csv", out: str | Path = "labeling/l
         raise ValueError("duplicate residue ids in the sheet")
     sheet_id = hashlib.sha256(json.dumps(rows, ensure_ascii=False).encode()).hexdigest()[:12]
     data = {"sheet_id": sheet_id, "fields": LABEL_FIELDS, "allowed": ALLOWED, "rows": rows,
+            "label_keys": LABEL_KEYS, "schema_version": LABEL_SCHEMA_VERSION,
+            "schema": [{"key": k, "question": q, "values": v} for k, (q, v) in LABEL_SCHEMA.items()],
             "guide": parse_guide(Path(guide)),
             "practice": [p | {"rule": PRACTICE_RULE} for p in PRACTICE]}
     # "</" would end the script element early; JSON allows it escaped.
@@ -95,6 +96,7 @@ def check_labels(exported: str | Path, original: str | Path = "labels_a.csv") ->
     orig = {r["residue_id"]: r for r in read_sheet(original)}
     got = read_sheet(exported)
     seen, changed, invalid, unknown = set(), [], [], []
+    annotators, schemas = set(), set()
     complete = partial = 0
     for r in got:
         rid = r["residue_id"]
@@ -102,6 +104,9 @@ def check_labels(exported: str | Path, original: str | Path = "labels_a.csv") ->
             unknown.append(rid)
             continue
         seen.add(rid)
+        if r.get("annotator", "").strip():
+            annotators.add(r["annotator"].strip())
+        schemas.add(r.get("label_schema", "").strip())
         if any(r[c] != orig[rid][c] for c in SHEET_COLUMNS):
             changed.append(rid)
         for c in LABEL_COLUMNS:
@@ -112,7 +117,9 @@ def check_labels(exported: str | Path, original: str | Path = "labels_a.csv") ->
         partial += 0 < filled < len(LABEL_COLUMNS)
     missing = sorted(set(orig) - seen)
     duplicates = len(got) - len({r["residue_id"] for r in got})
-    ok = not (changed or invalid or unknown or missing or duplicates)
+    wrong_schema = sorted(s for s in schemas if s != LABEL_SCHEMA_VERSION)
+    ok = not (changed or invalid or unknown or missing or duplicates or wrong_schema)
     return {"ok": ok, "rows": len(got), "complete": complete, "partial": partial,
+            "annotators": sorted(annotators), "label_schema": sorted(schemas), "wrong_schema": wrong_schema,
             "empty": len(seen) - complete - partial, "missing_ids": missing, "unknown_ids": unknown,
             "duplicate_rows": duplicates, "sheet_text_changed": changed, "invalid_values": invalid}

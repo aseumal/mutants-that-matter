@@ -281,7 +281,11 @@ def test_import_run_copies_only_reproducible_runs(tmp_path):
     stage_replay(cfg, rules, m, src)
     info = import_run(src, dst, rules, cfg)
     assert info["verdicts_reproduced"]
-    assert (dst / "behavior.jsonl").read_text() == (src / "behavior.jsonl").read_text()
+    imported = [json.loads(l) for l in (dst / "behavior.jsonl").read_text().splitlines()]
+    original = [json.loads(l) for l in (src / "behavior.jsonl").read_text().splitlines()]
+    assert all(r["origin"] == f"imported:{src.name}" for r in imported)       # historical rows are marked
+    assert [{k: v for k, v in r.items() if k != "origin"} for r in imported] == \
+           [{k: v for k, v in r.items() if k != "origin"} for r in original]
     assert "fingerprint" in json.loads((dst / "run.json").read_text())
     with pytest.raises(ImportRefused):                     # never into a run that has rows
         import_run(src, dst, rules, cfg)

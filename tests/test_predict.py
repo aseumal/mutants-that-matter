@@ -121,10 +121,12 @@ def test_label_summary(mock_run, tmp_path):
     assert all(r["summary"] and r["original_rule"] for r in rows)
     assert blinded_ids(read_jsonl(mock_run / "residues.jsonl")) == blinded_ids(read_jsonl(mock_run / "residues.jsonl"))
 
-    good = {"damage_type": "Deleted", "semantic_preservation": "absent", "surface_presence": "no",
-            "annotation_confidence": "high"}
+    good = {"surface_presence": "absent", "semantic_preservation": "absent", "obligation_strength": "not_applicable",
+            "scope": "not_applicable", "exceptions": "not_applicable", "contradiction": "no",
+            "overall_damage": "deletion", "damage_type": "Deleted", "annotation_confidence": "high"}
     rows[0].update(good)
-    rows[1].update(good, semantic_preservation="intact", surface_presence="yes", damage_type="none")
+    rows[1].update(good, semantic_preservation="intact", surface_presence="present", damage_type="none",
+                   overall_damage="intact", obligation_strength="preserved", scope="preserved", exceptions="preserved")
     rows[2].update(good, damage_type="made_up")
     path = tmp_path / "labels.csv"
     with open(path, "w", newline="", encoding="utf-8") as fh:

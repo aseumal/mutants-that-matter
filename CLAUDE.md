@@ -53,6 +53,12 @@ mtm stage2 -c configs/stage2_matched.yaml   # outcomes, over-refusal, compressio
 mtm label-tool                              # local blinded labeling page from labels_a.csv
 mtm label-check exported.csv                # verify an exported label sheet
 mtm validate --rules data/heldout_rules.yaml # held-out rule set: no pilot copies, >= 10 probes, permitted probes
+mtm grader-check docs/review/grader_challenges.yaml   # human-approved grader challenge cases
+```
+Paid runs REFUSE to start without spend_cap_usd and current prices in the config (MTM_PROVIDER=anthropic);
+usage and cost go to runs/<run>/usage.jsonl. Label schema is version 2 (9 dimensions; labels_guide.md).
+Feasibility runs in batches: configs/stage2_feasibility_batch{1,2,3}.yaml after one --fresh import.
+```bash
 ```
 
 v3 is FROZEN (2026-11-28): data files are read-only, archived with SHA-256 in `archive/`; new analyses write to

@@ -129,6 +129,8 @@ def import_run(source: Path, out: Path, rules: list[Rule], cfg: Config, fresh: b
     keep = lambda rows: [r for r in rows if r["rule_id"] in by_id]
     for name in ("residues.jsonl", "mutants.jsonl") + (() if fresh else ("behavior.jsonl",)):
         rows = keep(read_jsonl(source / name))
+        if name == "behavior.jsonl":   # historical rows stay distinguishable from fresh replays
+            rows = [r | {"origin": f"imported:{source.name}"} for r in rows]
         (out / name).write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows), encoding="utf-8")
     src_manifest = json.loads((source / "run.json").read_text(encoding="utf-8")) if (source / "run.json").exists() else {}
     manifest = {k: v for k, v in src_manifest.items() if k in ("agent", "compactor")}

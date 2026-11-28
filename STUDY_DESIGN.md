@@ -1,6 +1,6 @@
 # Mutants That Matter: Stage 2 study design and implementation
 
-Status on 2026-11-28: code implemented and tested (172 tests pass). **Nothing has been run against an API.** The v3 pilot is frozen and reproduces exactly under the new code.
+Status on 2026-11-28: code implemented and tested (174 tests pass). **Nothing has been run against an API.** The v3 pilot is frozen and reproduces exactly under the new code.
 
 ## 1. Question
 

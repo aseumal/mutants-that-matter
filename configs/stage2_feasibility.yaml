@@ -48,3 +48,8 @@ matched_residues:
 workers: 6
 seed: 7
 fail_threshold: 0.5
+# Spending cap: REQUIRED before any paid call. Fill in the provider's CURRENT prices and an agreed cap.
+# With these at 0, every paid command refuses to start. Spending binds across invocations of this run.
+spend_cap_usd: 0
+price_input_per_mtok: 0
+price_output_per_mtok: 0

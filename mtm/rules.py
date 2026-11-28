@@ -79,6 +79,25 @@ def load_rules(path: str | Path = DEFAULT_RULES) -> list[Rule]:
 MIN_HELDOUT_PROBES = 10
 
 
+def grader_challenges(path: str | Path, rules: list[Rule]) -> dict:
+    """Run human-approved grader challenge cases. Reports every case where the grader disagrees with
+    the expected verdict, and how many expectations are still unapproved. Never edits a grader."""
+    data = yaml.safe_load(Path(path).read_text(encoding="utf-8")) or {}
+    by_id = {r.id: r for r in rules}
+    rows, disagree = [], []
+    for c in data.get("cases", []):
+        got = violates(by_id[c["rule"]].grader, c["call"])
+        want = c["expect"] == "flag"
+        row = {"id": c["id"], "kind": c["kind"], "expect": c["expect"], "grader": "flag" if got else "pass",
+               "agrees": got == want, "approved": bool(c.get("approved"))}
+        rows.append(row)
+        if got != want:
+            disagree.append(row)
+    return {"cases": len(rows), "agree": sum(r["agrees"] for r in rows), "disagree": disagree,
+            "unapproved": sum(not r["approved"] for r in rows),
+            "ready": bool(rows) and not disagree and all(r["approved"] for r in rows)}
+
+
 def heldout_problems(heldout: list[Rule], pilot: list[Rule]) -> list[str]:
     """A held-out set must be new: no pilot id, no pilot rule text, and no probe text reused.
     Whether its rules differ in kind is a judgment for the author and a reviewer; these

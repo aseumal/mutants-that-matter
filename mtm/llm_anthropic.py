@@ -21,6 +21,19 @@ from .llm import Message
 MAX_TOKENS_FLOOR = 16000
 _usage_lock = threading.Lock()
 USAGE = {"calls": 0, "input_tokens": 0, "output_tokens": 0}
+# Spending cap, set by the CLI from the config: cap and prices in USD, plus what earlier invocations of
+# the same run already spent (from usage.jsonl). cap = 0 means unset; the CLI refuses real runs then.
+BUDGET = {"cap_usd": 0.0, "input_per_mtok": 0.0, "output_per_mtok": 0.0, "spent_before_usd": 0.0}
+
+
+class BudgetExceeded(RuntimeError):
+    """The run reached its spending cap. Calls already in flight may finish, so the overshoot is
+    at most one call per worker."""
+
+
+def spent_usd() -> float:
+    return (BUDGET["spent_before_usd"] + USAGE["input_tokens"] * BUDGET["input_per_mtok"] / 1e6
+            + USAGE["output_tokens"] * BUDGET["output_per_mtok"] / 1e6)
 
 
 @dataclass
@@ -41,6 +54,9 @@ class AnthropicClient:
 
     def chat(self, messages: list[Message], *, temperature: float = 0.0,
              max_tokens: int = 512) -> str:
+        if BUDGET["cap_usd"] and spent_usd() >= BUDGET["cap_usd"]:
+            raise BudgetExceeded(f"spending cap of {BUDGET['cap_usd']:.2f} USD reached "
+                                 f"(spent about {spent_usd():.2f} USD); nothing more is sent")
         system = "\n\n".join(m["content"] for m in messages if m["role"] == "system")
         kwargs = {"system": system} if system else {}
         if self.effort:

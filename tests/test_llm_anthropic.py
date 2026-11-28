@@ -62,3 +62,35 @@ def test_anthropic_key_cannot_reach_another_provider(monkeypatch, tmp_path):
         client_from_env("agent")
     monkeypatch.setenv("MTM_PROVIDER", "anthropic")
     assert isinstance(client_from_env("agent"), AnthropicClient)
+
+
+def test_spending_cap_stops_calls_before_sending(monkeypatch):
+    import mtm.llm_anthropic as la
+
+    monkeypatch.setattr(la, "USAGE", {"calls": 0, "input_tokens": 0, "output_tokens": 0})
+    monkeypatch.setattr(la, "BUDGET", {"cap_usd": 1.0, "input_per_mtok": 1.0, "output_per_mtok": 5.0,
+                                       "spent_before_usd": 0.0})
+    big = NS(content=[NS(type="text", text="ok")], stop_reason="end_turn",
+             usage=NS(input_tokens=600_000, output_tokens=100_000))   # 0.6 + 0.5 = 1.1 USD
+    client = _client(big, _reply(NS(type="text", text="never sent")))
+    assert client.chat([{"role": "user", "content": "U"}]) == "ok"
+    assert la.spent_usd() == pytest.approx(1.1)
+    with pytest.raises(la.BudgetExceeded):
+        client.chat([{"role": "user", "content": "U"}])
+    assert len(client._client.messages.calls) == 1             # the second request was never made
+
+
+def test_real_runs_are_refused_without_a_cap(tmp_path, monkeypatch, capsys):
+    from mtm.cli import main
+
+    monkeypatch.delenv("MTM_MOCK", raising=False)
+    monkeypatch.setenv("MTM_PROVIDER", "anthropic")
+    cfg = tmp_path / "c.yaml"
+    cfg.write_text("run_name: t\nrules: [R01]\nbudgets: [30]\ncycles: 1\n")
+    assert main(["compact", "-c", str(cfg), "--runs-dir", str(tmp_path / "runs")]) == 2
+    assert "spend_cap_usd" in capsys.readouterr().err
+    cfg.write_text(cfg.read_text() + "spend_cap_usd: 5\nprice_input_per_mtok: 1\nprice_output_per_mtok: 5\n")
+    (tmp_path / "runs" / "t").mkdir(parents=True, exist_ok=True)
+    (tmp_path / "runs" / "t" / "usage.jsonl").write_text('{"cost_usd": 5.0}\n')
+    assert main(["compact", "-c", str(cfg), "--runs-dir", str(tmp_path / "runs")]) == 2
+    assert "already spent" in capsys.readouterr().err

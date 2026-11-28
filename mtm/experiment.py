@@ -64,6 +64,9 @@ class Config:
                                     # of the residue's policy span: context dependence of mutant behavior
     matched_residues: list[str] = field(default_factory=list)  # "RULE|condition" ids: restrict new replay to
                                     # these residues (feasibility runs); empty = all
+    spend_cap_usd: float = 0.0      # required for real API runs: calls stop once the run reaches it
+    price_input_per_mtok: float = 0.0   # USD per million input tokens, from the provider's current price list
+    price_output_per_mtok: float = 0.0  # USD per million output tokens (thinking tokens bill as output)
     key_samples: int = 0            # samples for key conditions (intact, absent, residues and their
                                     # matched intact/absent/residue); 0 = same as samples
 
@@ -137,6 +140,8 @@ def fingerprint(cfg: Config, rules: list[Rule]) -> dict[str, str]:
         "prompts": _digest([AGENT_SYSTEM, COMPACTOR_SYSTEM, NEUTRAL_SUMMARY, tool_catalogue_text()]),
         "config": _digest({k: getattr(cfg, k) for k in GENERATIVE_SETTINGS}),
         "config_full": _digest({k: v for k, v in asdict(cfg).items() if k not in ("workers", "run_name")}),
+        # rules, probes and graders above are hashed over the whole rules file (pass all rules), so a
+        # batch that selects a subset of rules can resume the same run
         # recorded, not enforced: a bug fix elsewhere in the code should not block a resume
         "code": _digest([(code_dir / f"{m}.py").read_text(encoding="utf-8") for m in _CODE_FILES]),
     }
@@ -382,10 +387,11 @@ _RESIDUE_IN = re.compile(r"(residue:b\d+:c\d+(?::t\d+)?)")
 
 def in_focus(cfg: Config, rule_id: str, cond: str) -> bool:
     """With matched_residues set, new replay is limited to: intact, absent and repeats; the chosen
-    residues and every condition built from them; and neutral-frame mutants of matched_operators."""
+    residues and every condition built from them; the neutral-frame paraphrase; and neutral-frame
+    mutants of matched_operators."""
     if not cfg.matched_residues:
         return True
-    if cond in ("intact", "absent") or cond.startswith("intact:rep"):
+    if cond in ("intact", "absent", "paraphrase") or cond.startswith("intact:rep"):
         return True
     if cond.startswith("mutant:"):
         return not cfg.matched_operators or cond.split(":", 1)[1] in cfg.matched_operators
@@ -435,6 +441,7 @@ def stage_replay(cfg: Config, rules: list[Rule], agent: ChatModel, out: Path) ->
             "rule_id": rule.id, "condition": cond, "probe_id": probe.id, "sample": s,
             "violated": any_violation(rule.grader, ep.calls), "calls": ep.calls,
             "final": ep.final, "parse_errors": ep.parse_errors, "agent": agent.name,
+            "origin": f"replayed:{out.name}",   # imported historical rows say imported:<source>
         }
         if permit:
             row |= {"expected": "permit", "completed": any_violation(probe.completion, ep.calls)}

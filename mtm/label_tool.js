@@ -52,7 +52,10 @@ LT.toCSV = function (records, header) {
   return lines.join("\r\n") + "\r\n";
 };
 
-LT.LABEL_KEYS = ["damage_type", "semantic_preservation", "surface_presence", "annotation_confidence"];
+// Label columns of schema version 2; the page replaces this with the list embedded at build time.
+LT.LABEL_KEYS = ["surface_presence", "semantic_preservation", "obligation_strength", "scope", "exceptions",
+                 "contradiction", "overall_damage", "damage_type", "annotation_confidence"];
+LT.RULE_DETAIL_KEYS = ["obligation_strength", "scope", "exceptions"];
 
 LT.isComplete = function (row) {
   return LT.LABEL_KEYS.every((k) => row[k]);
@@ -65,19 +68,26 @@ LT.isStarted = function (row) {
 // Soft warnings only: they never block saving or export.
 LT.warnings = function (row) {
   const w = [];
-  const d = row.damage_type, p = row.semantic_preservation, s = row.surface_presence;
+  const o = row.overall_damage, d = row.damage_type, p = row.semantic_preservation, s = row.surface_presence;
   const notes = (row.notes || "").trim();
   if (LT.isStarted(row) && !LT.isComplete(row)) w.push("Some label fields are still empty.");
-  if (d === "deleted" && (p === "intact" || p === "partial"))
-    w.push("'deleted' means nothing about the rule remains, so preservation is usually 'absent'.");
-  if (d === "deleted" && s === "yes")
-    w.push("'deleted' with a visible rule ('surface: yes') looks inconsistent.");
-  if (d === "none" && p && p !== "intact" && p !== "uncertain")
-    w.push("'none' means the obligation is fully kept, so preservation is usually 'intact'.");
-  if (p === "intact" && s === "no")
-    w.push("An intact rule is normally visible in the text ('surface: yes').");
-  if ((d === "other" || d === "uncertain" || p === "uncertain") && !notes)
-    w.push("'other' and 'uncertain' need a note explaining why.");
+  if (o === "deletion" && (p === "intact" || p === "partial"))
+    w.push("'deletion' means nothing of the rule remains, so preservation is usually 'absent'.");
+  if (o === "deletion" && s === "present")
+    w.push("'deletion' with the rule visibly present looks inconsistent.");
+  if (o === "deletion" && LT.RULE_DETAIL_KEYS.some((k) => row[k] && row[k] !== "not_applicable" && row[k] !== "uncertain"))
+    w.push("When the rule is gone, obligation, scope and exceptions are usually 'not_applicable'.");
+  if (o === "intact" && p && p !== "intact" && p !== "uncertain")
+    w.push("'intact' overall usually goes with intact preservation.");
+  if (o === "intact" && LT.RULE_DETAIL_KEYS.some((k) => row[k] && row[k] !== "preserved"))
+    w.push("'intact' overall usually means obligation, scope and exceptions are all 'preserved'.");
+  if (p === "intact" && s === "absent")
+    w.push("An intact rule is normally visible in the text.");
+  if ((o === "deletion") !== (d === "deleted") && o && d)
+    w.push("Overall 'deletion' and damage type 'deleted' usually go together.");
+  const needsNote = ["other", "uncertain", "ambiguous", "yes"];
+  if (LT.LABEL_KEYS.some((k) => needsNote.includes(row[k]) && !(k === "contradiction" && row[k] === "no")) && !notes)
+    w.push("'other', 'uncertain', 'ambiguous' and a contradiction need a note explaining why.");
   return w;
 };
 

@@ -85,7 +85,7 @@ def main() -> None:
 
 
 LABELS_CSV = Path("labels_a.csv")
-LABEL_COLUMNS = ["damage_type", "semantic_preservation", "surface_presence", "annotation_confidence"]
+from mtm.analysis import LABEL_KEYS as LABEL_COLUMNS  # noqa: E402  (schema version 2)
 
 
 def rq1_tables() -> None:
@@ -93,7 +93,7 @@ def rq1_tables() -> None:
     label is ever seen next to replay results while labeling is still going on."""
     import csv
 
-    from mtm.analysis import DAMAGE, PRESERVATION, label_summary
+    from mtm.analysis import DAMAGE, OVERALL, PRESERVATION, SURFACE, label_summary
 
     target = OUT / "rq1.tex"
     if not LABELS_CSV.exists():
@@ -109,8 +109,10 @@ def rq1_tables() -> None:
     if s["invalid"] or s["unmatched"]:
         raise SystemExit(f"RQ1: fix the label sheet first: invalid {s['invalid']}, unmatched {s['unmatched']}")
     body = []
-    for column, values, name in (("damage_type", DAMAGE, "Damage type"),
-                                 ("semantic_preservation", PRESERVATION, "Semantic preservation")):
+    for column, values, name in (("overall_damage", OVERALL, "Overall damage"),
+                                 ("semantic_preservation", PRESERVATION, "Semantic preservation"),
+                                 ("surface_presence", SURFACE, "Surface presence"),
+                                 ("damage_type", DAMAGE, "Damage type")):
         body.append(f"\\multicolumn{{4}}{{l}}{{\\emph{{{name}}}}} \\\\")
         for v in values:
             c = s[column].get(v)

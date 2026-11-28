@@ -69,6 +69,8 @@ td, th { border-bottom: 1px solid var(--line); padding: 6px; text-align: left; v
   <span class="progress" id="progress"></span>
   <button id="btnPractice">Practice</button>
   <button id="btnGuide">Guide</button>
+  <input id="annotator" placeholder="Annotator initials" aria-label="Annotator initials" size="14"
+    style="font:inherit;font-size:14px;padding:5px 8px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink)">
   <label class="filebtn">Import CSV<input type="file" id="fileImport" accept=".csv,text/csv" hidden></label>
   <button id="btnExport" class="primary">Export CSV</button>
 </header>
@@ -101,12 +103,7 @@ td, th { border-bottom: 1px solid var(--line); padding: 6px; text-align: left; v
   </section>
 
   <section class="card" id="formCard">
-    <fieldset><legend>Damage type: the main change</legend><div class="opts" id="f_damage_type"></div></fieldset>
-    <fieldset><legend>Semantic preservation: could a reader apply the rule from this summary alone?</legend>
-      <div class="opts" id="f_semantic_preservation"></div></fieldset>
-    <fieldset><legend>Surface presence: is a rule recognizable as this one visibly stated?</legend>
-      <div class="opts" id="f_surface_presence"></div></fieldset>
-    <fieldset><legend>Confidence</legend><div class="opts" id="f_annotation_confidence"></div></fieldset>
+    <div id="fields"></div>
     <div class="label">Notes: the words in the summary that support your choice</div>
     <textarea id="f_notes"></textarea>
     <div class="warn" id="warnings"></div>
@@ -130,11 +127,12 @@ __TOOL_JS__
 (function () {
   "use strict";
   const DATA = JSON.parse(document.getElementById("data").textContent);
+  LT.LABEL_KEYS = DATA.label_keys;
   const FIELDS = DATA.fields, ALLOWED = DATA.allowed, KEYS = LT.LABEL_KEYS;
   const STORE = "mtm-labels-" + DATA.sheet_id;
   const $ = (id) => document.getElementById(id);
-  let rows = DATA.rows.map((r) => Object.assign({ damage_type: "", semantic_preservation: "", surface_presence: "",
-                                                   annotation_confidence: "", notes: "" }, r));
+  const blank = Object.fromEntries(KEYS.map((k) => [k, ""]).concat([["notes", ""]]));
+  let rows = DATA.rows.map((r) => Object.assign({}, blank, r));
   let index = 0, storageOk = true;
 
   function banner(text) { const b = $("banner"); b.textContent = text; b.classList.toggle("show", Boolean(text)); }
@@ -145,6 +143,7 @@ __TOOL_JS__
       if (saved && saved.labels) {
         rows.forEach((r) => { const s = saved.labels[r.residue_id]; if (s) KEYS.concat(["notes"]).forEach((k) => { r[k] = s[k] || ""; }); });
         index = Math.min(Math.max(0, saved.index || 0), rows.length - 1);
+        $("annotator").value = saved.annotator || "";
         $("saveStatus").textContent = "Restored autosave from " + saved.saved_at;
       }
     } catch (e) { storageOk = false; }
@@ -157,7 +156,7 @@ __TOOL_JS__
     rows.forEach((r) => { if (LT.isStarted(r)) { labels[r.residue_id] = {}; KEYS.concat(["notes"]).forEach((k) => { labels[r.residue_id][k] = r[k]; }); } });
     const stamp = new Date().toLocaleString();
     try {
-      localStorage.setItem(STORE, JSON.stringify({ labels, index, saved_at: stamp }));
+      localStorage.setItem(STORE, JSON.stringify({ labels, index, saved_at: stamp, annotator: $("annotator").value.trim() }));
       $("saveStatus").textContent = "Autosaved " + stamp;
     } catch (e) {
       storageOk = false;
@@ -178,7 +177,16 @@ __TOOL_JS__
     });
   }
 
-  KEYS.forEach((k) => radios("f_" + k, k, ALLOWED[k], (v) => { rows[index][k] = v; refresh(); save(); }));
+  DATA.schema.forEach((f) => {
+    const fs = document.createElement("fieldset");
+    const lg = document.createElement("legend");
+    lg.textContent = f.question + " (" + f.key.replace(/_/g, " ") + ")";
+    const box = document.createElement("div");
+    box.className = "opts"; box.id = "f_" + f.key;
+    fs.append(lg, box); $("fields").append(fs);
+    radios("f_" + f.key, f.key, f.values, (v) => { rows[index][f.key] = v; refresh(); save(); });
+  });
+  $("annotator").addEventListener("input", save);
   $("f_notes").addEventListener("input", (e) => { rows[index].notes = e.target.value; refresh(false); save(); });
 
   function render() {
@@ -230,9 +238,11 @@ __TOOL_JS__
   $("btnExport").onclick = () => {
     const bad = rows.flatMap((r) => LT.invalidValues(r, ALLOWED).map((x) => r.residue_id + "." + x));
     if (bad.length) { banner("Not exported: invalid values " + bad.join(", ")); return; }
-    const csv = LT.toCSV(rows, FIELDS);
+    const who = $("annotator").value.trim();
+    if (!who) { banner("Not exported: enter your annotator initials first, so the file can be told apart from a second annotator's."); return; }
+    const csv = LT.toCSV(rows.map((r) => Object.assign({}, r, { annotator: who, label_schema: DATA.schema_version })), FIELDS);
     const d = new Date(), p = (n) => String(n).padStart(2, "0");
-    const name = `labels_a_${d.getFullYear()}${p(d.getMonth() + 1)}${p(d.getDate())}-${p(d.getHours())}${p(d.getMinutes())}.csv`;
+    const name = `labels_${who.replace(/[^A-Za-z0-9]+/g, "")}_v${DATA.schema_version}_${d.getFullYear()}${p(d.getMonth() + 1)}${p(d.getDate())}-${p(d.getHours())}${p(d.getMinutes())}.csv`;
     const a = document.createElement("a");
     a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
     a.download = name; document.body.append(a); a.click(); a.remove();

@@ -275,14 +275,35 @@ def write_report(result: dict, run_dir: str | Path) -> Path:
 
 # ------------------------------------------------------------------ labeling
 
+# Label schema version 2 (2026-11-28): semantic damage judged on several independent dimensions, from
+# the text alone. One source of truth for the sheet, the labeling page, the checks and the analyses.
+LABEL_SCHEMA_VERSION = "2"
+SURFACE = ["present", "partial", "absent"]
 PRESERVATION = ["intact", "partial", "absent", "uncertain"]
+OBLIGATION = ["preserved", "weakened", "strengthened", "not_applicable", "uncertain"]
+SCOPE = ["preserved", "narrowed", "broadened", "not_applicable", "uncertain"]
+EXCEPTIONS = ["preserved", "added", "removed", "altered", "not_applicable", "uncertain"]
+CONTRADICTION = ["no", "yes", "uncertain"]
+OVERALL = ["intact", "deletion", "partial_degradation", "ambiguous"]
 DAMAGE = ["none", "deleted", "weakened_modal", "predicate_lost", "scope_narrowed", "scope_broadened",
           "exception_added", "category_only", "inverted", "other", "uncertain"]
-SURFACE = ["yes", "no"]
 CONFIDENCE = ["high", "medium", "low"]
-LABEL_FIELDS = ["residue_id", "rule_id", "original_rule", "summary", "damage_type", "semantic_preservation",
-                "surface_presence", "annotation_confidence", "notes"]
-AGREEMENT_COLUMNS = ["damage_type", "semantic_preservation", "surface_presence"]
+LABEL_SCHEMA = {   # column: (question shown to the annotator, allowed values)
+    "surface_presence": ("Is a rule recognizable as this one visibly stated, right or wrong?", SURFACE),
+    "semantic_preservation": ("Could a reader apply the original rule correctly from this summary alone?", PRESERVATION),
+    "obligation_strength": ("How binding is what remains, compared with the original?", OBLIGATION),
+    "scope": ("Does what remains cover the same cases?", SCOPE),
+    "exceptions": ("Are conditions and exceptions the same?", EXCEPTIONS),
+    "contradiction": ("Does anything in the summary contradict the rule?", CONTRADICTION),
+    "overall_damage": ("Overall, what happened to the rule?", OVERALL),
+    "damage_type": ("Main change, in the mutation operators' terms", DAMAGE),
+    "annotation_confidence": ("How sure are you of this row?", CONFIDENCE),
+}
+LABEL_KEYS = list(LABEL_SCHEMA)
+ALLOWED_LABELS = {k: v for k, (_, v) in LABEL_SCHEMA.items()}
+SHEET_COLUMNS = ["residue_id", "rule_id", "original_rule", "summary"]
+LABEL_FIELDS = SHEET_COLUMNS + LABEL_KEYS + ["notes", "annotator", "label_schema"]
+AGREEMENT_COLUMNS = [k for k in LABEL_KEYS if k != "annotation_confidence"]
 _BLIND_SEED = 20261107
 
 
@@ -307,8 +328,8 @@ def export_labels(run_dir: str | Path, rules_by_id: dict, out_csv: str | Path) -
         for r in rows:
             w.writerow({"residue_id": ids[(r["rule_id"], r["condition"])], "rule_id": r["rule_id"],
                         "original_rule": rules_by_id[r["rule_id"]].text, "summary": r["summary"],
-                        "damage_type": "", "semantic_preservation": "", "surface_presence": "",
-                        "annotation_confidence": "", "notes": ""})
+                        **{k: "" for k in LABEL_KEYS}, "notes": "", "annotator": "",
+                        "label_schema": LABEL_SCHEMA_VERSION})
     return Path(out_csv)
 
 
@@ -337,8 +358,7 @@ def label_summary(labels_csv: str | Path, run_dir: str | Path, tau: float = 0.5)
     Descriptive only: a single annotator supports no reliability claim."""
     residues = {(r["rule_id"], r["condition"]): r for r in analyze(run_dir, tau)["residues"]}
     by_id = {rid: key for key, rid in blinded_ids(read_jsonl(Path(run_dir) / "residues.jsonl")).items()}
-    allowed = {"damage_type": DAMAGE, "semantic_preservation": PRESERVATION,
-               "surface_presence": SURFACE, "annotation_confidence": CONFIDENCE}
+    allowed = ALLOWED_LABELS
     tables: dict[str, dict] = {c: defaultdict(lambda: {"residues": 0, "harmful": 0, "presence_pass": 0})
                                for c in allowed}
     invalid: list[str] = []
@@ -364,7 +384,7 @@ def label_summary(labels_csv: str | Path, run_dir: str | Path, tau: float = 0.5)
                 cell["harmful"] += int(res["harmful"])
                 cell["presence_pass"] += int(res["presence_pass"])
             preserved = row["semantic_preservation"].strip().lower()
-            looks_present = row["surface_presence"].strip().lower() == "yes"
+            looks_present = row["surface_presence"].strip().lower() in ("present", "partial")
             if res["harmful"] and (looks_present or preserved in ("intact", "partial")):
                 deceptive.append(row["residue_id"])     # the text looks fine, yet the agent fails
             if not res["harmful"] and preserved == "absent":

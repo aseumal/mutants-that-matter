@@ -17,6 +17,7 @@
     mtm import-run -c configs/stage2_matched.yaml --source pilot-haiku-v3  start a run from a finished one
     mtm label-tool [labels_a.csv] [-o labeling/label_tool.html]  local labeling page (no network, blinded)
     mtm label-check exported.csv [--original labels_a.csv]       verify an exported label sheet
+    mtm grader-check docs/review/grader_challenges.yaml          run approved grader challenge cases
 
 Add --mock to run with the deterministic mock model (no API key needed).
 """
@@ -58,13 +59,47 @@ def _validate(rules_file: str | None = None) -> int:
     return 0
 
 
+def _budget_problem(cfg: Config, out: Path) -> str | None:
+    """Real API runs need a spending cap and prices; the cap then binds across invocations of the run."""
+    if os.environ.get("MTM_PROVIDER") != "anthropic":
+        return "real runs need MTM_PROVIDER=anthropic: the spending cap is enforced from measured usage only there"
+    if cfg.spend_cap_usd <= 0 or cfg.price_input_per_mtok <= 0 or cfg.price_output_per_mtok <= 0:
+        return ("set spend_cap_usd, price_input_per_mtok and price_output_per_mtok in the config "
+                "(current prices from the provider) before any paid run")
+    from . import llm_anthropic as la
+    from .experiment import read_jsonl
+    before = sum(r.get("cost_usd", 0.0) for r in read_jsonl(out / "usage.jsonl"))
+    la.BUDGET.update(cap_usd=cfg.spend_cap_usd, input_per_mtok=cfg.price_input_per_mtok,
+                     output_per_mtok=cfg.price_output_per_mtok, spent_before_usd=before)
+    if before >= cfg.spend_cap_usd:
+        return f"this run has already spent {before:.2f} USD of its {cfg.spend_cap_usd:.2f} USD cap"
+    return None
+
+
+def _record_usage(args, out: Path) -> None:
+    """Append measured usage and its cost to <run>/usage.jsonl, also when a run stops early."""
+    if "mtm.llm_anthropic" not in sys.modules:
+        return
+    la = sys.modules["mtm.llm_anthropic"]
+    usage = dict(la.USAGE)
+    print(f"[usage] {usage}")
+    if not usage.get("calls"):
+        return
+    import datetime as _dt
+    from .experiment import append_jsonl
+    cost = (usage["input_tokens"] * la.BUDGET["input_per_mtok"] + usage["output_tokens"] * la.BUDGET["output_per_mtok"]) / 1e6
+    append_jsonl(out / "usage.jsonl", {"command": args.command, "config": args.config,
+                                       "at": _dt.datetime.now().isoformat(timespec="seconds"), **usage,
+                                       "cost_usd": round(cost, 4), "cap_usd": la.BUDGET["cap_usd"]})
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(prog="mtm", description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("command", choices=["validate", "compact", "mutate", "replay", "analyze",
                                         "pilot", "export-labels", "kappa", "label-summary", "predict", "validity",
                                         "continue-capped", "plan", "stage2", "import-run",
-                                        "label-tool", "label-check"])
+                                        "label-tool", "label-check", "grader-check"])
     ap.add_argument("files", nargs="*", help="label files for kappa or label-summary")
     ap.add_argument("-c", "--config", default="configs/pilot.yaml")
     ap.add_argument("-o", "--output", default=None)
@@ -88,6 +123,14 @@ def main(argv: list[str] | None = None) -> int:
         path = build_tool(sheet, args.output or "labeling/label_tool.html")
         print(f"[label-tool] wrote {path}. Open it in a browser; it works offline and autosaves locally.")
         return 0
+    if args.command == "grader-check":
+        from .rules import grader_challenges
+
+        if len(args.files) != 1:
+            ap.error("grader-check needs one challenge file")
+        result = grader_challenges(args.files[0], load_rules(args.rules or DEFAULT_RULES))
+        print(json.dumps(result, indent=2))
+        return 0 if result["ready"] else 1
     if args.command == "label-check":
         from .labeltool import check_labels
 
@@ -117,7 +160,13 @@ def main(argv: list[str] | None = None) -> int:
         print("Each episode makes 1 to max_steps agent calls; v3 averaged 1.45 (5,076 episodes). Agree the spend before running.")
         return 0
     out = cfg.out_dir(args.runs_dir)
-    fp = fingerprint(cfg, rules)
+    fp = fingerprint(cfg, all_rules)   # whole rules file, so rule-subset batches share one run
+    paid = args.command in ("compact", "mutate", "replay", "pilot", "continue-capped") and os.environ.get("MTM_MOCK") != "1"
+    if paid:
+        problem = _budget_problem(cfg, out)
+        if problem:
+            print(f"ERROR: {problem}", file=sys.stderr)
+            return 2
     if args.command == "import-run":
         from .revise import ImportRefused, import_run
 
@@ -156,15 +205,16 @@ def main(argv: list[str] | None = None) -> int:
             print(json.dumps(continue_capped(source, out, rules, client_from_env("agent"), cfg), indent=2))
     except (RunMismatch, PartialTrajectory) as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
+        _record_usage(args, out)
         return 2
-    if "mtm.llm_anthropic" in sys.modules:
-        usage = dict(sys.modules["mtm.llm_anthropic"].USAGE)
-        print(f"[usage] {usage}")
-        if usage.get("calls"):   # measured usage, kept so later cost estimates need no guessing
-            import datetime as _dt
-            from .experiment import append_jsonl
-            append_jsonl(out / "usage.jsonl", {"command": args.command, "config": args.config,
-                                               "at": _dt.datetime.now().isoformat(timespec="seconds"), **usage})
+    except Exception as exc:
+        if type(exc).__name__ == "BudgetExceeded":
+            print(f"STOPPED: {exc}. Rows written so far are kept; raise the cap to continue.", file=sys.stderr)
+            _record_usage(args, out)
+            return 3
+        _record_usage(args, out)
+        raise
+    _record_usage(args, out)
     if args.command in ("analyze", "pilot", "continue-capped"):
         result = analyze(out, cfg.fail_threshold)
         path = write_report(result, out)

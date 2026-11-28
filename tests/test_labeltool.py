@@ -9,7 +9,7 @@ from pathlib import Path
 
 import pytest
 
-from mtm.analysis import CONFIDENCE, DAMAGE, LABEL_FIELDS, PRESERVATION, SURFACE
+from mtm.analysis import ALLOWED_LABELS, DAMAGE, LABEL_FIELDS, LABEL_KEYS, LABEL_SCHEMA_VERSION
 from mtm.labeltool import build_tool, check_labels
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -71,9 +71,9 @@ def test_page_is_blind_and_offline(tmp_path):
 
 def test_allowed_values_match_the_validator(tmp_path):
     data = _embedded(build_tool(SHEET, tmp_path / "t.html", GUIDE).read_text(encoding="utf-8"))
-    assert data["allowed"] == {"damage_type": DAMAGE, "semantic_preservation": PRESERVATION,
-                               "surface_presence": SURFACE, "annotation_confidence": CONFIDENCE}
-    assert data["fields"] == LABEL_FIELDS
+    assert data["allowed"] == ALLOWED_LABELS
+    assert data["fields"] == LABEL_FIELDS and data["label_keys"] == LABEL_KEYS
+    assert [f["key"] for f in data["schema"]] == LABEL_KEYS and data["schema_version"] == LABEL_SCHEMA_VERSION
     assert all(p["damage_type"] in DAMAGE for p in data["practice"])
 
 
@@ -98,8 +98,8 @@ def test_javascript_logic_and_full_round_trip(tmp_path):
 
 def test_check_labels_catches_every_kind_of_damage(tmp_path):
     original = _sheet(tmp_path, TRICKY)
-    good = [r | {"damage_type": "none", "semantic_preservation": "intact", "surface_presence": "yes",
-                 "annotation_confidence": "high"} for r in TRICKY]
+    full = {k: v[0] for k, v in ALLOWED_LABELS.items()} | {"annotator": "AS", "label_schema": LABEL_SCHEMA_VERSION}
+    good = [r | full for r in TRICKY]
     def check(rows):
         d = tmp_path / str(len(list(tmp_path.iterdir())))
         d.mkdir()
@@ -111,5 +111,7 @@ def test_check_labels_catches_every_kind_of_damage(tmp_path):
     assert check([good[0]])["missing_ids"] == ["r002"]
     assert check(good + [good[0] | {"residue_id": "r777"}])["unknown_ids"] == ["r777"]
     assert check(good + [good[1]])["duplicate_rows"] == 1
-    partial = check([good[0] | {"surface_presence": ""}, TRICKY[1]])
+    assert check([good[0] | {"label_schema": "1"}, good[1]])["wrong_schema"] == ["1"]
+    assert check(good)["annotators"] == ["AS"]
+    partial = check([good[0] | {"surface_presence": ""}, TRICKY[1] | {"label_schema": LABEL_SCHEMA_VERSION}])
     assert partial["ok"] and partial["partial"] == 1 and partial["empty"] == 1

@@ -120,7 +120,10 @@ What this means:
 
 ## 9. Order of work
 1. Finish the pilot: labels, grader review, shortcut diagnostics (done), manuscript corrections.
-2. Feasibility: a 12-residue matched-context replication (`configs/stage2_feasibility.yaml`, `mtm import-run --fresh`), 2,544 episodes with natural and neutral conditions replayed fresh. Not confirmatory.
+2. Feasibility: a 12-residue matched-context replication (`configs/stage2_feasibility.yaml`, `mtm import-run --fresh`), 2,544 episodes, or 2,832 with the 12 paraphrases. Natural and neutral conditions are replayed fresh. Not confirmatory.
+   - Runs in three batches with a required spending cap: 1 rule (240 episodes), 4 rules (852), 7 rules (1,452).
+   - Fresh and historical rows carry separate `origin` tags. They are compared as a check on drift between runs, never pooled.
+   - Human review first: spans, paraphrases and grader challenge cases (`docs/review/`).
    - **Must hold, or the run is repeated after a fix:**
      - complete records (accounting: planned = executed + reported unavailable)
      - graders behave as reviewed

@@ -142,6 +142,7 @@ def test_focus_limits_new_replay_to_chosen_residues():
     assert not in_focus(cfg, "R01", "residue:b30:c2") and not in_focus(cfg, "R01", "mutant:hedge")
     assert not in_focus(cfg, "R02", "residue:b30:c1")
     assert in_focus(Config(), "R09", "anything")
+    assert in_focus(cfg, "R01", "paraphrase")          # the neutral paraphrase belongs to every focused rule
 
 
 def test_fresh_import_replays_everything_and_accounting_adds_up(tmp_path):

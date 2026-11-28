@@ -21,8 +21,9 @@ def _module(tmp_path, labels):
 def _sheet(tmp_path, fill: int):
     rows = list(csv.DictReader((ROOT / "labels_a.csv").open(newline="", encoding="utf-8")))
     for k, r in enumerate(rows[:fill]):
-        r.update(damage_type="deleted", semantic_preservation="absent", surface_presence="no",
-                 annotation_confidence="high")
+        r.update(surface_presence="absent", semantic_preservation="absent", obligation_strength="not_applicable",
+                 scope="not_applicable", exceptions="not_applicable", contradiction="no", overall_damage="deletion",
+                 damage_type="deleted", annotation_confidence="high", annotator="T", label_schema="2")
     path = tmp_path / "labels.csv"
     with path.open("w", newline="", encoding="utf-8") as fh:
         w = csv.DictWriter(fh, fieldnames=list(rows[0]))

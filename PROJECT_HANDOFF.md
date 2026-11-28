@@ -16,7 +16,7 @@ Long-running LLM agents compress their history (context compaction) to stay with
 
 | Item | Status |
 |---|---|
-| Experiment harness (`mtm` Python package) | Done; 172 tests pass (updated 2026-11-28) |
+| Experiment harness (`mtm` Python package) | Done; 174 tests pass (updated 2026-11-28) |
 | Stage 2 code (matched context, permitted probes, multi-rule, trajectories, fingerprints, `mtm plan`) | **Implemented and tested, not yet run**; see `STUDY_DESIGN.md` |
 | Mentor | TARA mentor; send plan and paper updates to the mentor |
 | Pilot run `runs/pilot-haiku-v3` | Done; this is the current dataset |
