@@ -1,0 +1,28 @@
+# Stage 2 matched-context replay on the frozen v3 residues. NOT YET RUN; agree spend first.
+# Copies no v3 rows: replays the intact rule, the deletion, the reframed residue, each
+# rule mutant and a pinned rule inside each residue's own summary context, for cycle 1.
+# Start it with: mtm import-run -c configs/stage2_matched.yaml --source pilot-haiku-v3
+# (copies v3 rows only if the current graders reproduce every stored verdict).
+run_name: stage2-matched-v3
+rules: []
+budgets: [30, 60]
+cycles: 2
+turns_per_cycle: 12
+samples: 3
+operators: []
+llm_mutants: 3
+intact_repeats: 2
+permit_probes: true
+isolated_residues: true
+matched_context: true
+matched_cycles: [1]
+matched_operators: []
+matched_pinned: true
+matched_sham: true        # edit control: one non-policy segment removed
+# These decay mutants planted in place of the residue's policy span (+1,692 episodes on v3). Compared
+# with the same mutants in the neutral frame, this measures context dependence of mutant behavior.
+matched_planted: [weaken_modal, add_exception, narrow_scope, generalize]
+matched_permit: false     # prohibited-action probes only inside matched contexts
+workers: 6
+seed: 7
+fail_threshold: 0.5

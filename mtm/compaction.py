@@ -33,6 +33,7 @@ class Residue:
     budget_words: int
     cycle: int
     summary: str
+    source_words: int = 0      # words in the transcript this summary replaced
 
 
 def run_compaction(model: ChatModel, rule_id: str, policy: str, filler: list[dict], *,
@@ -43,8 +44,9 @@ def run_compaction(model: ChatModel, rule_id: str, policy: str, filler: list[dic
     residues = []
     session = Session(policy=policy, turns=make_turns(filler, turns_per_cycle, seed))
     for cycle in range(1, cycles + 1):
+        source_words = len(session.transcript().split())
         summary = compact(model, session, budget_words)
-        residues.append(Residue(rule_id, budget_words, cycle, summary))
+        residues.append(Residue(rule_id, budget_words, cycle, summary, source_words))
         new_turns: list[Turn] = make_turns(filler, turns_per_cycle, seed + cycle * 7919)
         session = Session(policy=policy, turns=new_turns, summary=summary)
     return residues

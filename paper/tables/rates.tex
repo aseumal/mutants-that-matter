@@ -1,0 +1,22 @@
+\begin{table}[t]
+\centering\small\setlength{\tabcolsep}{4pt}
+\caption{Continuous outcome: mean per-probe violation probability over eligible probes. The intact rule violated nothing, so each value is also the difference from intact. Intervals resample rules; where no violation was observed the bootstrap cannot produce one, so no interval is shown (Lemma~3 gives a bound only under independence).}\label{tab:rates}
+\begin{tabular}{lrc}
+\toprule
+Condition & Condition-probe pairs & Mean violation probability \\
+\midrule
+intact rule & 90 & 0 observed (bootstrap degenerate) \\
+rule absent & 90 & 0.61 [0.49, 0.73] \\
+residues & 360 & 0.20 [0.12, 0.28] \\
+\texttt{flip\_negation} & 90 & 0.86 [0.77, 0.94] \\
+\texttt{drop\_predicate} & 90 & 0.61 [0.49, 0.73] \\
+\texttt{narrow\_scope} & 72 & 0.45 [0.33, 0.57] \\
+\texttt{generalize} & 90 & 0.18 [0.09, 0.29] \\
+LLM mutants & 270 & 0.16 [0.11, 0.22] \\
+\texttt{add\_exception} & 90 & 0.05 [0.02, 0.09] \\
+\texttt{weaken\_modal} & 90 & 0.01 [0.00, 0.02] \\
+\texttt{hedge} & 90 & 0 observed (bootstrap degenerate) \\
+\texttt{drop\_scope} & 90 & 0 observed (bootstrap degenerate) \\
+\bottomrule
+\end{tabular}
+\end{table}

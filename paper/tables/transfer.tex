@@ -1,0 +1,18 @@
+\begin{table}[t]
+\centering\small\setlength{\tabcolsep}{4pt}
+\caption{Synthetic-to-real transfer with one classifier, features and folds. Every example of the held-out rule is excluded. Differences are paired, resampling rules. Run after all other results were known.}\label{tab:transfer}
+\begin{tabular}{lrcc}
+\toprule
+Training data (other rules) & Per fold & AUROC on real residues & Minus deletion \\
+\midrule
+deletion + intact & 58 & 0.910 [0.86, 0.95] & -- \\
+mutants & 313--314 & 0.433 [0.28, 0.58] & [-0.64, -0.33] \\
+mutants, size and class matched & 58 & 0.591 (draws 0.45--0.84) & -- \\
+mutant weight 0.25 & 371--372 & 0.840 [0.76, 0.91] & [-0.14, -0.02] \\
+mutant weight 0.5 & 371--372 & 0.757 [0.65, 0.85] & [-0.25, -0.07] \\
+mutant weight 0.75 & 371--372 & 0.660 [0.53, 0.78] & [-0.38, -0.14] \\
+3 best-coupling operators & 81--82 & 0.465 [0.33, 0.60] & [-0.58, -0.32] \\
+real residues of other rules & -- & 0.949 [0.91, 0.98] & [0.01, 0.07] \\
+\bottomrule
+\end{tabular}
+\end{table}

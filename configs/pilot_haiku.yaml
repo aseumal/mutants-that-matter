@@ -1,0 +1,17 @@
+# November pilot on Claude Haiku 5.5: all 30 rules. Budgets are 30 and 60 words because
+# 60 and 150 caused little damage in smoke tests; this choice must be disclosed.
+# Model settings come from .env. Temperature has no effect on Claude.
+#   compaction: 30 rules x 2 budgets x 2 cycles                = 120 calls
+#   replay:     about 5,100 episodes, including noise floor and LLM mutants
+run_name: pilot-haiku
+rules: []
+budgets: [30, 60]
+cycles: 2
+turns_per_cycle: 12
+samples: 3
+operators: []
+llm_mutants: 3
+workers: 6
+seed: 7
+fail_threshold: 0.5
+intact_repeats: 2

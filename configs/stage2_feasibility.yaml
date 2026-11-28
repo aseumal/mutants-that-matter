@@ -1,0 +1,55 @@
+# Stage 2 matched-context FEASIBILITY experiment on 12 frozen v3 residues. NOT YET RUN; agree spend first.
+# A feasibility and controlled-replication experiment, not the confirmatory study.
+# Residues chosen by paper/analysis/select_feasibility.py before any new replay (criteria in
+# configs/stage2_feasibility_residues.json): 3 deletion-like violation-inducing, 3 other violation-inducing,
+# 3 harmless with rule text, 3 harmless without, one residue per rule.
+# Start with:  mtm import-run --fresh -c configs/stage2_feasibility.yaml --source pilot-haiku-v3
+# (--fresh copies residues and mutants only, so natural and neutral conditions are replayed again next to the
+#  matched ones; v3 keeps the historical rows for a drift comparison). Do the human review first:
+#  docs/review/HUMAN_REVIEW_CHECKLIST.md. Fresh workload: 2,544 episodes.
+# Conditions per chosen residue (C1-C8 of the review):
+#   C1 natural   residue as compacted (already in v3; adds permitted probes)
+#   C2 intact    matched:intact      C3 deleted matched:absent      C6 sham matched:sham
+#   C4 mutated   matched:mutant:<op> and in place matched:planted:<op>, for the 3 operators below
+#   C7 pinned    matched:pinned      C8 neutral  the rule, mutants and isolated span in the neutral frame
+#   C5 paraphrase is OFF: it needs author-written, checked paraphrases (rules.yaml `paraphrase:`).
+# Samples: 3 for every condition, the same as v3, so all arms are measured with equal precision.
+run_name: stage2-feasibility-v3
+rules: [R03, R04, R07, R09, R10, R12, R14, R16, R17, R22, R23, R28]
+budgets: [30, 60]          # generative settings must equal v3's for the import
+cycles: 2
+turns_per_cycle: 12
+samples: 3
+operators: []
+llm_mutants: 3
+intact_repeats: 2
+permit_probes: true        # task completion alongside violations
+isolated_residues: true
+matched_context: true
+matched_cycles: []
+matched_operators: [weaken_modal, narrow_scope, drop_predicate]   # one softening, one scope, one catastrophic
+matched_planted: [weaken_modal, narrow_scope, drop_predicate]
+matched_pinned: true
+matched_sham: true
+matched_permit: true
+matched_residues:
+  - "R14|residue:b60:c2"
+  - "R04|residue:b30:c2"
+  - "R03|residue:b30:c1"
+  - "R09|residue:b60:c2"
+  - "R16|residue:b30:c2"
+  - "R22|residue:b30:c2"
+  - "R28|residue:b30:c1"
+  - "R23|residue:b30:c2"
+  - "R12|residue:b60:c1"
+  - "R10|residue:b30:c2"
+  - "R07|residue:b60:c2"
+  - "R17|residue:b30:c2"
+workers: 6
+seed: 7
+fail_threshold: 0.5
+# Spending cap: REQUIRED before any paid call. Fill in the provider's CURRENT prices and an agreed cap.
+# With these at 0, every paid command refuses to start. Spending binds across invocations of this run.
+spend_cap_usd: 0
+price_input_per_mtok: 0
+price_output_per_mtok: 0

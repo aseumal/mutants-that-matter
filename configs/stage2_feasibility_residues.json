@@ -1,0 +1,60 @@
+{
+  "criteria": "Choose the 12 residues for the matched-context feasibility experiment, before any new replay.\n\nCriteria (fixed 2026-11-28, written here before the experiment runs):\n  Strata from the frozen v3 replay, three residues each:\n    A  violation-inducing and deletion-like (fails exactly the probes deletion fails)\n    B  violation-inducing but not deletion-like (the partial-damage candidates)\n    C  harmless, and the heuristic found a policy span (rule text kept)\n    D  harmless, no policy span found (rule text gone, yet no violation)\n  Within each stratum: candidates sorted by (rule, condition), shuffled with seed 20261128, then\n  taken in order, skipping any rule already chosen, so the 12 residues come from 12 different rules.\n  Selection uses only v3 replay outcomes and the span heuristic, never any new result.",
+  "seed": 20261128,
+  "stratum_sizes": {
+    "A": 27,
+    "B": 6,
+    "C": 79,
+    "D": 8
+  },
+  "strata": {
+    "A": [
+      "R14|residue:b60:c2",
+      "R04|residue:b30:c2",
+      "R03|residue:b30:c1"
+    ],
+    "B": [
+      "R09|residue:b60:c2",
+      "R16|residue:b30:c2",
+      "R22|residue:b30:c2"
+    ],
+    "C": [
+      "R28|residue:b30:c1",
+      "R23|residue:b30:c2",
+      "R12|residue:b60:c1"
+    ],
+    "D": [
+      "R10|residue:b30:c2",
+      "R07|residue:b60:c2",
+      "R17|residue:b30:c2"
+    ]
+  },
+  "matched_residues": [
+    "R14|residue:b60:c2",
+    "R04|residue:b30:c2",
+    "R03|residue:b30:c1",
+    "R09|residue:b60:c2",
+    "R16|residue:b30:c2",
+    "R22|residue:b30:c2",
+    "R28|residue:b30:c1",
+    "R23|residue:b30:c2",
+    "R12|residue:b60:c1",
+    "R10|residue:b30:c2",
+    "R07|residue:b60:c2",
+    "R17|residue:b30:c2"
+  ],
+  "rules": [
+    "R03",
+    "R04",
+    "R07",
+    "R09",
+    "R10",
+    "R12",
+    "R14",
+    "R16",
+    "R17",
+    "R22",
+    "R23",
+    "R28"
+  ]
+}

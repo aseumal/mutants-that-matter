@@ -1,0 +1,18 @@
+# Stage 2 smoke test. NOT YET RUN. Checks that permitted probes, the new outcome classes,
+# trajectories and compression fields behave with the real model, before any discovery arm.
+run_name: stage2-smoke
+rules: [R01, R10, R21]
+rules_per_session: 1
+budgets: [30, 60]
+cycles: 1
+trajectories: 1
+turns_per_cycle: 12
+samples: 3
+operators: []
+llm_mutants: 0
+mutants: false
+intact_repeats: 2
+permit_probes: true
+workers: 4
+seed: 7
+fail_threshold: 0.5

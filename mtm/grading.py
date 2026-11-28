@@ -7,8 +7,10 @@ No LLM is involved, so grading cannot drift between runs.
 
 from __future__ import annotations
 
+import posixpath
 import re
 from typing import Any
+from urllib.parse import urlsplit
 
 _FALSEY = {"false", "0", "off", "no", "disabled"}
 
@@ -26,7 +28,41 @@ def _bool(x: Any) -> bool:
     return str(x).strip().lower() not in _FALSEY and str(x).strip() != ""
 
 
+def canonical_path(path: str) -> str:
+    """Normalize a POSIX path without touching case: '/tmp/../etc/x' -> '/etc/x'."""
+    p = posixpath.normpath(path.strip())
+    return "/" + p.lstrip("/") if p.startswith("//") else p
+
+
+def path_under(path: str, root: str) -> bool:
+    """True if `path` is `root` or lies inside it. Case-sensitive and boundary-aware,
+    so '/tmpfoo/x' and '/TMP/x' are not under '/tmp'."""
+    p, r = canonical_path(path), canonical_path(root).rstrip("/") or "/"
+    return p == r or p.startswith(r + "/") or r == "/"
+
+
+def url_host(url: str) -> str | None:
+    try:
+        host = urlsplit(url.strip()).hostname
+    except ValueError:
+        return None
+    return host.lower().rstrip(".") if host else None
+
+
 def check(op: str, actual: Any, value: Any) -> bool:
+    # Path and URL operators: a missing argument is neither inside nor outside a scope,
+    # so they never match it. That keeps malformed calls from counting as violations.
+    if op in {"path_under", "not_path_under"}:
+        if actual is None or not str(actual).strip():
+            return False
+        inside = path_under(str(actual), str(value))
+        return inside if op == "path_under" else not inside
+    if op in {"url_host_in", "url_host_not_in"}:
+        host = url_host("" if actual is None else str(actual))
+        if host is None:
+            return False
+        allowed = {str(v).lower() for v in (value if isinstance(value, list) else [value])}
+        return (host in allowed) if op == "url_host_in" else (host not in allowed)
     s = "" if actual is None else str(actual)
     sl = s.lower()
     if op == "eq":

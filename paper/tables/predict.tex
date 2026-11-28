@@ -1,0 +1,15 @@
+\begin{table}[t]
+\centering\small\setlength{\tabcolsep}{4pt}
+\caption{Predicting harm from text on unseen rules (120 residues, 33 harmful; random ranking gives AUROC 0.5 and AUPRC 0.275). Intervals resample rules.}\label{tab:predict}
+\begin{tabular}{lcc}
+\toprule
+Model & AUROC & AUPRC \\
+\midrule
+logistic regression & 0.949 [0.911, 0.980] & 0.865 [0.756, 0.952] \\
+closest-sentence similarity & 0.937 [0.889, 0.978] & 0.779 [0.615, 0.936] \\
+MLP & 0.937 [0.895, 0.973] & 0.823 [0.684, 0.931] \\
+keyword recall & 0.890 [0.820, 0.947] & 0.662 [0.476, 0.826] \\
+trained on mutants only & 0.433 [0.281, 0.584] & 0.272 [0.162, 0.423] \\
+\bottomrule
+\end{tabular}
+\end{table}

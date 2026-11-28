@@ -90,6 +90,16 @@ def make_turns(filler: list[dict], n: int, seed: int, pad_lines: int = 12) -> li
     return turns
 
 
-def summary_frame(summary: str) -> list[Message]:
-    """Replay context used for every condition, so only the summary text varies."""
-    return Session(policy=None, summary=summary).messages()
+def summary_frame(summary: str, pinned_policy: str | None = None) -> list[Message]:
+    """Replay context used for every condition, so only the summary text varies.
+
+    By default the policy can only reach the agent through the summary, which is a user
+    message: the study's main setting is a policy delivered in conversation. With
+    `pinned_policy` the rule is also placed in the system prompt, the privileged channel
+    a pinning defence would use. Pinned results answer a different question and are
+    analysed separately."""
+    msgs = Session(policy=None, summary=summary).messages()
+    if pinned_policy:
+        msgs[0] = {"role": "system",
+                   "content": f"{msgs[0]['content']}\n\nPINNED OPERATOR POLICY (kept outside the summary): {pinned_policy}"}
+    return msgs

@@ -83,15 +83,23 @@ def client_from_env(role: str) -> ChatModel:
     model = os.environ.get(f"MTM_{role.upper()}_MODEL")
     base_url = os.environ.get("MTM_BASE_URL")
     api_key = os.environ.get("MTM_API_KEY")
+    delay = float(os.environ.get("MTM_REQUEST_DELAY", "0") or 0)
+    if os.environ.get("MTM_PROVIDER") == "anthropic":
+        if not (model and api_key):
+            raise RuntimeError("Set MTM_API_KEY and MTM_%s_MODEL in .env." % role.upper())
+        from .llm_anthropic import AnthropicClient
+
+        return AnthropicClient(model=model, api_key=api_key, request_delay=delay,
+                               effort=os.environ.get("MTM_EFFORT") or None)
+    if (api_key or "").startswith("sk-ant-"):
+        raise RuntimeError("MTM_API_KEY is an Anthropic key, so it must not go to MTM_BASE_URL. "
+                           "Set MTM_PROVIDER=anthropic or use that provider's key.")
     if not (model and base_url and api_key):
         raise RuntimeError(
             "Set MTM_BASE_URL, MTM_API_KEY and MTM_%s_MODEL in .env, "
             "or set MTM_MOCK=1 to run with the mock model." % role.upper()
         )
-    return OpenAICompatClient(
-        name=model, base_url=base_url, api_key=api_key,
-        request_delay=float(os.environ.get("MTM_REQUEST_DELAY", "0") or 0),
-    )
+    return OpenAICompatClient(name=model, base_url=base_url, api_key=api_key, request_delay=delay)
 
 
 # --------------------------------------------------------------------------- mock

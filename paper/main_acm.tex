@@ -1,0 +1,211 @@
+% First manuscript draft. Result tables come from paper/make_tables.py.
+% Build from this folder: tectonic main.tex
+\documentclass[manuscript,screen,nonacm]{acmart}
+\usepackage{booktabs}
+\newcommand{\todo}[1]{\textbf{[TODO: #1]}}
+
+\begin{document}
+
+\title{Mutants That Matter: Validating Mutation Testing for Silent Guardrail Decay in LLM Agents}
+
+\author{Anthony Seumal}
+\affiliation{%
+  \institution{Asian Institute of Management}
+  \country{Philippines}}
+\affiliation{%
+  \institution{TARA}
+  \country{Philippines}}
+
+\begin{abstract}
+Long-running LLM agents compress their history to stay within context limits, and this compaction can remove the safety rules an operator gave them. Safety assurance for such agents depends on tests, yet the evidence those tests provide is rarely examined. Mutating a rule offers a cheap way to test for compaction damage, but we know of no study establishing that policy mutants behave like faults compaction actually produces. We report an exploratory pilot on one model: 30 operator rules, 120 compaction residues, 324 mutants and 5,076 replay episodes graded deterministically from tool calls. Under single-rule sessions and severe compaction stress, harmful residues mostly showed a deletion-like behavioral pattern: 27 of 33 failed exactly the same probes as removing the rule. Few mutation operators coupled with residues clearly above chance, and those that did mainly remove the rule's content. In fixed-size probe suites, mutation score was associated with residue detection (Spearman $\rho=0.55$), but no better than scoring suites on rule deletion alone ($\rho=0.64$; difference interval $-0.11$ to $0.30$). Mutant-guided probe selection found more residues than random selection (89\% vs 72\%) and showed no advantage over deletion-guided selection (98\%). These results do not show that mutation-guided testing is ineffective, because the pilot reused its probes and did not evaluate held-out faults. They indicate that a mutant triggering a violation is weak safety evidence on its own, that deletion is the baseline to beat and that high coupling can largely reflect chance, and they define what a confirmatory study must test.
+\end{abstract}
+
+\keywords{AI safety, safety evaluation, LLM agents, context compaction, guardrails, mutation testing, safety assurance}
+
+\maketitle
+
+\section{Introduction}
+
+Agents that run for many turns periodically replace their transcript with a model-generated summary. If that summary omits a standing safety rule, the agent can later perform an action the rule prohibited, with no signal at runtime. Chen~\cite{chen2026} shows that this kind of constraint loss drives violations across seven model families, and Kwartler et al.~\cite{kwartler2026} characterize how rules are lost in a single compaction cycle.
+
+This raises a testing question. A team that wants to know whether its guardrail tests would catch such damage could mutate its rules, for example by softening the wording or narrowing the scope, and see whether its tests notice. Tools such as muteval~\cite{muteval} already apply operators of this kind to LLM evaluation suites. But the value of these mutants rests on an untested assumption: that detecting them says something about detecting faults compaction really produces.
+
+This is a safety question as well as a testing one. Risk frameworks such as the NIST Generative AI Profile~\cite{nist2024} call for evaluation and measurement, but a team that declares its guardrails tested is making an assurance claim that is only as good as the evidence behind it. If synthetic mutants do not reflect real failures, a high mutation score could give false confidence about an agent acting on production systems. Our position is that synthetic guardrail mutations are useful for safety assurance only when they provide credible evidence about real failures, so we ask when that evidence holds and where it fails.
+
+Software engineering has examined this assumption for code. Just et al.~\cite{just2014} ask whether mutants are a valid substitute for real faults. Papadakis et al.~\cite{papadakis2018} report that correlations between mutation score and fault detection become weak once suite size is controlled, while suites selected for high mutation scores still detect faults better than random suites of the same size. Correlation and practical utility therefore need separate evaluation. We apply this distinction to operator policies and compaction.
+
+\paragraph{Research questions} We organize the study around mutation-testing validity:
+\begin{description}
+\item[RQ1, fault characterization.] How does compaction damage rules in this setting?
+\item[RQ2, mutation fidelity.] Which operators fail the way harmful residues do, beyond chance?
+\item[RQ3, predictive validity.] Does mutation score predict residue detection at fixed suite size, beyond a rule-deletion baseline?
+\item[RQ4, practical utility.] Does mutant-guided probe selection find more harmful residues than random or deletion-guided selection?
+\end{description}
+As secondary analyses, we examine a text presence check and text-based prediction of harm, which are candidate alternatives to behavioral replay.
+
+\paragraph{Contributions} (1) A replay harness and dataset linking policy mutants to compaction-derived faults through deterministic grading. (2) Exploratory evidence separating fidelity from utility for policy mutants, using rule deletion as a baseline. (3) A documented audit showing how grading errors can hide in agent safety evaluations. (4) A specification of what a confirmatory study must establish.
+
+All analyses in this paper were chosen after seeing pilot data, and every result is exploratory.
+
+\section{Related Work}
+
+\paragraph{Compaction and constraint loss} Chen~\cite{chen2026} introduces a benchmark of long-horizon agent scenarios with deterministic tool-call grading, and reports that violations rise after compaction when a policy is dropped. Kwartler et al.~\cite{kwartler2026} study one compaction cycle and report keep-or-drop behavior with a single rule, predicate-loss residues under a tighter multi-item budget, and the conclusion that a presence check is not a safety check. They leave repeated cycles open. Neither paper evaluates mutants.
+
+\paragraph{Validity of mutation testing} Beyond the studies above, Petrovi\'c et al.~\cite{petrovic2021} study mutation testing in practice at Google and report that developers using it write more tests and improve their suites, and that mutants are coupled with real faults.
+
+\paragraph{LLMs and mutation} Wang et al.~\cite{wang2024} compare LLM-generated and rule-based mutants on real bugs in Java and report that LLM mutants behave more like real bugs, alongside higher rates of duplicate and equivalent mutants. Kiele et al.~\cite{kiele2026} generate mutants that take existing tests into account. Both study program code. Muteval~\cite{muteval} applies mutation to LLM evaluation suites and, according to its package page, reports that mutation score rises with evaluation coverage, without validating operators against compaction failures.
+
+\paragraph{Agent safety} Other work improves or enforces agent safety directly. SafeAgent~\cite{zhou2026} uses synthetic risk scenarios to improve the safety of tool-using agents. Doshi et al.~\cite{doshi2026} derive enforceable specifications on data flows and tool sequences from a hazard analysis, arguing that model-based safeguards alone cannot guarantee system safety. Our question is complementary: not how to make an agent safer, but how far a particular kind of test can be trusted as evidence of safety.
+
+\todo{Replace this targeted search with a systematic one before claiming priority. Read the full text of each source; some entries above rest on abstracts or package pages. Locate and read three works known only from secondary sources: ARCBench (``Do Agents Still Follow the Rules?'', reported as finding violations in compacted runs that kept the rule), ``Lost in Context Compaction'' (arXiv:2608.11242) and ``What Compression Preserves'' (NeurIPS 2026). ARCBench's reported finding would directly contrast with the deletion-like pattern here.}
+
+\section{Threat Model and Scope}
+
+\paragraph{Target deployment} We target long-running, tool-using LLM agents in enterprise operations, including IT operations, data access, workflow automation and configuration management. These agents work across many interactions and may use summarization to manage limited context. Coding and DevOps agents are a planned secondary domain, because their actions can be checked through file changes, shell commands and tool traces. The pilot simulates an operations assistant, and its rules govern sensitive data, access, finance, communications, infrastructure, files and code.
+
+\paragraph{Failure} Compaction omits, partly preserves or alters an operator-defined rule, and the agent later takes an action the rule prohibited. We assume no attacker: a benign summarizer loses the rule, and an ordinary user request exposes the loss. The failure is silent at runtime.
+
+\paragraph{Assurance claim under test} A team runs mutation testing on its rules and concludes that its tests would catch this failure. Our central question is whether synthetic policy mutations provide valid and useful evidence about a suite's ability to detect unseen, behaviorally verified compaction failures. Mutation testing assesses the adequacy of safety evaluations and does not replace persistent instructions, authorization controls or independent enforcement. We do not estimate how often compaction causes harm in deployed systems.
+
+\paragraph{What is observed} The hazard runs from policy degradation to an unsafe agent decision, an attempted prohibited action, and potential operational harm. We observe only attempted actions. A prohibited tool call is a policy violation in a simulated environment; it does not show that the action would succeed or cause harm. Likewise, evidence that a probe detects a mutant, evidence that a suite detects compaction faults, and evidence that an agent is safe in deployment are three different things. This study addresses the relationship between the first two and makes no claim about the third.
+
+\paragraph{Out of scope} Adversarial content that pushes a summarizer to drop a policy, which Chen~\cite{chen2026} demonstrates; real tool execution and downstream harm; severity of consequences; and model internals.
+
+\paragraph{Why test if rules can be pinned?} Chen~\cite{chen2026} reports that keeping constraints out of lossy compaction restored violations to 0\% on that benchmark, and runtime enforcement can give stronger guarantees~\cite{doshi2026}. Pinning and enforcement do different jobs: pinned instructions keep a rule available to the model, while independent enforcement can block a prohibited action whatever the model does. Neither guarantees that every constraint is correctly implemented or that every relevant tool is covered. Safety-critical actions should not rely on summaries alone, and independent enforcement should generally be preferred for them. This pilot examines only compacted instructions without external enforcement, which is the least protected configuration. Testing still matters where these defenses do not fully apply: standing instructions that arrive mid-session or are not marked as policy, rules too contextual to express as enforceable specifications, and systems whose compaction the deployer does not control. Testing is also how a team would check that a defense works. In each case, the test's validity is what is at stake. \todo{Confirm these cases against real agent frameworks.}
+
+\section{Study Design}
+
+\subsection{Rules, probes and sessions}
+
+We wrote 30 operator rules across seven categories (privacy, infrastructure, code, finance, files, access, communications). Each rule has three probes: user requests that would break it. The agent, a simulated operations assistant, acts by emitting JSON tool calls across 17 simulated tools. Nothing is executed, and each call receives a canned result. Its system prompt states that operator policies in the conversation or its summary are binding.
+
+A session holds one rule, stated at the start, followed by benign filler tasks drawn from a pool of 26 that violate no rule.
+
+\subsection{Compaction residues}
+
+The compactor uses a generic prompt that does not mention safety. It summarizes the session under a stated word budget of 30 or 60 words, over two cycles of 12 turns. The rule appears only in the first cycle's transcript, so a second-cycle summary can keep the rule only if the first one did. This gives 120 residues. The budgets are stress conditions chosen after a smoke run in which a stronger model kept nearly every rule, and they do not represent production compaction. They were also nominal: median output was 47 and 68.5 words. We call residues \emph{compaction-derived faults}: a real model produced them, but in constructed sessions.
+
+\subsection{Mutants}
+
+We generated 324 mutants: 234 from eight rule-based operators, and 90 written by an LLM (three per rule). \texttt{weaken\_modal}, \texttt{hedge} and \texttt{add\_exception} soften the rule's force; \texttt{narrow\_scope} and \texttt{generalize} reduce its coverage or specificity; \texttt{drop\_predicate} keeps the shape of a rule but loses what is forbidden; \texttt{flip\_negation} reverses it; and \texttt{drop\_scope} broadens it and serves as a control. We group \texttt{flip\_negation} and \texttt{drop\_predicate} as \emph{catastrophic} and the five others, excluding the control, as \emph{decay} operators. Mutants have not been checked for semantic equivalence to the original rules, and whether \texttt{drop\_scope} is a valid negative control depends on rule semantics.
+
+\subsection{Replay and grading}
+
+Each condition places a different text in front of the agent as its only context, and the same probes then run, with three samples each and up to eight steps. Besides mutants and residues, baselines are the intact rule, the rule absent, and two repeats of the intact rule. This gives 5,076 episodes (3,996 for mutants and residues, 1,080 for baselines).
+
+Violations are decided by a deterministic predicate over tool calls, with no LLM judge. A probe \emph{fails} under a condition when at least two of three samples violate the rule, excluding probes the intact rule already fails. A residue is \emph{harmful}, and a mutant \emph{killed}, when at least one probe fails.
+
+\subsection{Model}
+
+Claude Haiku 5.5 (\texttt{claude-haiku-5-5}) at low effort served as both compactor and agent, through the Anthropic Python SDK, in November 2026. Temperature cannot be set on this model, so repeated samples rely on default sampling. The output token limit was set high enough that the word limit stated in the prompt was the only budget on summaries.
+
+\subsection{Measures}
+
+For a mutant and harmful residue of the same rule with failing sets $F_m$ and $F_r$, the pair is \emph{coupled} when $F_m \cap F_r \neq \emptyset$. We also report Jaccard similarity and the mean absolute difference in per-probe violation rate (\emph{rate gap}). Chance coupling is the rate expected if failing sets of the same sizes were drawn at random. Because probes differ in how easily they fail, we add a stricter baseline that draws probes in proportion to how often they fail across the rule's conditions. It uses the conditions it tests, so it is conservative.
+
+For RQ3 we sample suites holding the same number of probes per rule, which removes suite size and rule coverage as explanations. A suite's mutation score is the share of killable non-control mutants it detects, and its detection rate is the share of harmful residues it detects. Residues play no part in the score. A mutant counts as killable when any probe in the full pool detects it, which holds for 109 of the 294 non-control mutants. The remainder have not been shown to be equivalent, since they may only need probes we did not write, so all scores are conditional on this pool. We compare mutant groups with a score based only on whether a suite catches rule deletion. For RQ4, each strategy picks the probe subsets that detect the most of its own conditions, and we average detection over ties.
+
+We use \emph{residue} for any compaction summary, \emph{harmful} or \emph{violation-inducing} for a residue with at least one failing probe, and \emph{behavioral failure} for an observed prohibited call. A residue can lose policy meaning without inducing a violation, and a rule that survives intact can still be ignored; harm in the sense of real consequences is outside this study. We distinguish three kinds of equivalence between two rule texts: \emph{semantic} (they express the same policy), \emph{behavioral} (they produce the same distribution of actions) and \emph{observational} (they fail the same probes in our pool). With three probes per rule, the pilot can establish only observational equivalence, so ``deletion-like'' below means failing the same probes as deletion, not losing the rule's meaning.
+
+Intervals are 95\% percentile bootstrap intervals that resample whole rules, because the 5,076 episodes cluster within probes and rules and are not independent.
+
+\subsection{Grading audit}
+
+After seeing first results, we regraded all episodes against saved tool calls, read a stratified sample of raw episodes, and searched all episodes for missed violations. This was machine-assisted, so an independent human review is still needed. Reading raw data led to three corrections, and all results below use the corrected data:
+\begin{enumerate}
+\item A YAML parsing defect truncated text in three rules and two filler tasks. We fixed the data, added a test, and reran the full pilot.
+\item Some graders watched only one tool, while the agent also acted through the shell, for example editing \texttt{/etc} files with \texttt{sed}. Graders for six rules now cover the shell route. This added 76 violations, all on one rule, and three harmful residues.
+\item Episodes were first capped at three steps, so violations that came later went uncounted. We continued 212 undecided episodes to eight steps, adding 16 violations and no harmful residues. Six remain censored and are reported as undecided, not safe. Resumes rebuild the conversation from saved calls with the same summary and deterministic tool results, though the model samples afresh. For 20 episodes a failed-parse turn could not be restored, so they are not exact continuations.
+\end{enumerate}
+A later review of the grader code found three boundary errors that the probes had not exercised: a path prefix test treated \texttt{/tmpfoo} and \texttt{/TMP} as inside \texttt{/tmp}, a URL prefix test treated \texttt{internal.acme.com.evil.io} as internal, and a shell pattern for deletions misread command flags. We replaced them with path- and host-aware checks and added positive, negative, boundary and malformed-call tests. Regrading all 5,076 episodes with the corrected graders changed no verdict, so these fixes do not affect any result reported here.
+
+The corrections raised total violations from 978 to 1,070, only under damaged conditions. Of 120 residues, 117 kept their label. Counting censored episodes as violations, dropping them, or dropping the 20 inexact resumes left harmful residues at 33 and moved no suite correlation by more than 0.01. These corrections reuse the same residues, so this shows robustness to the corrections and is not an independent replication.
+
+\section{Results}
+
+The harness separated conditions: violation rates were 0\% with the intact rule and 61\% with the rule absent, the noise floor on intact repeats was 0\%, and no episode was invalid. Removing the rule produced a failing probe in 26 of 30 rules. Compaction itself varies more than replay does: before the audit corrections, two full runs agreed on 85\% of residues (92 of 108, on the 27 rules unaffected by the data defect).
+
+\subsection{RQ1: Fault characterization}
+
+Of 120 residues, 33 were harmful, across 17 rules: 23 at 30 words and 10 at 60, and 23 in cycle 2 and 10 in cycle 1. Of the 33, 27 failed exactly the same probes as rule deletion, and 27 retained none of the rule's keywords. We call this a deletion-like behavioral pattern: failing the same probes as deletion does not by itself show that the text lost the whole rule, which annotation must establish. The pattern is consistent with the keep-or-drop behavior Kwartler et al.~\cite{kwartler2026} report for single rules. The failure we hypothesized, a rule that still looks present but no longer works, was not evident.
+
+The paired view of the 60 session pairs clarifies the cycle comparison: 37 stayed harmless across both cycles, 10 were harmful in both, 13 became harmful in cycle 2, and none recovered. Of those 13, 11 kept no rule keywords in cycle 2. Because the rule enters only in cycle 1, this pattern fits accumulated, irreversible loss, and it does not show an independent effect of a second compaction.
+
+Harm occurred in every rule category, from 8 of 12 residues for file rules and 7 of 24 for privacy rules to 3 of 24 for infrastructure rules. With at most six rules per category, these counts do not show that some kinds of rule are safer, and they do not measure severity.
+
+\todo{Add damage-type, semantic-preservation and surface-presence results from the annotated residues. Report one annotator as descriptive and partially blinded.}
+
+\subsection{RQ2: Mutation fidelity}
+
+Table~\ref{tab:operators} shows that high coupling alone says little. \texttt{flip\_negation} reaches 100\%, but chance already gives 94\%. Every harmful residue coupled with some non-control rule-based mutant, while chance predicts 98\%. Only rule deletion, \texttt{drop\_predicate} and \texttt{narrow\_scope} have excess intervals clearly above zero, under either baseline, and \texttt{narrow\_scope} only barely under the stricter one. The closest fit by Jaccard and rate gap was removing the rule. \texttt{hedge} never changed behavior and \texttt{weaken\_modal} almost never did: the agent kept obeying softened rules. This could reflect semantic equivalence, the binding-policy system prompt, insensitive probes, or the model's own caution, and the pilot cannot separate these.
+
+\input{tables/operators}
+
+\subsection{RQ3: Predictive validity}
+
+Without a size control, nearly all scores correlated with detection at 0.95 or above (Table~\ref{tab:suites}), illustrating the confound Papadakis et al.~\cite{papadakis2018} report. With size held fixed, mutation score remained associated with detection. But rule deletion alone correlated at least as strongly, and the correlation left after removing deletion was not distinguishable from zero. The paired difference between deletion and all mutants was $-0.11$ to $0.30$, so deletion is not shown to be stronger; mutants simply did not demonstrate added signal. The difference between all mutants and decay operators was $0.05$ to $0.42$.
+
+\input{tables/suites}
+
+\subsection{RQ4: Practical utility}
+
+All-mutant selection found more harmful residues than random selection and showed no advantage over deletion-guided selection (Table~\ref{tab:selection}). Its interval against deletion reaches zero, so it is not clearly inferior; only the LLM and decay intervals fall below zero. Decay-guided selection did not clearly beat random. The 98\% for deletion is not a generalization estimate. It nearly follows from RQ1, since 27 of 33 harmful residues share deletion's failing probes, and only two rules lose any detection. Random reaches 72\% partly because 15 of the 33 fail all three probes. The ordering does not depend on the failing threshold: counting a probe as failing at one, two or three of three violating samples gives 36, 33 and 31 harmful residues, of which 30, 27 and 24 fail the same probes as deletion, with deletion-guided selection at 97\%, 98\% and 95\% and all-mutant selection at 94\%, 89\% and 90\%.
+
+Equal numbers of selected probes do not mean equal cost. To choose its probe, a strategy must first replay every candidate probe under each of its conditions: deletion needs one condition per rule, all-mutant selection about ten. For one probe per rule, deletion-guided selection used 270 candidate episodes, about 32 per harmful residue found beyond random, and all-mutant selection used 2,646, about 453 per extra residue. Cost per extra fault found should therefore be a primary utility measure, alongside detection at a fixed suite size.
+
+\input{tables/selection}
+
+\subsection{Secondary analyses}
+
+\paragraph{Presence check} A keyword check, which passes a residue when at least 60\% of the rule's content words appear, passed none of the 33 harmful residues. The exact two-sided 95\% interval reaches about 11\% if residues are independent (one-sided bound 8.7\%). Counting instead whether any violation-inducing residue of a rule passed, a rule-level event, the 17 affected rules give an upper limit of 20\% (one-sided 16\%). It failed 74\% of harmless residues, often paraphrases that still worked. This does not contradict Kwartler et al.~\cite{kwartler2026}, whose conclusion rests on degraded residues this setup rarely creates. We claim only that no false assurance was observed here.
+
+\paragraph{Text-based prediction} We used pretrained MiniLM sentence embeddings, which were not fitted to this data, with leave-one-rule-out evaluation and labels from replay only. Feature scaling and classifiers were fitted within training folds, with fixed untuned settings. Logistic regression beat keyword recall (paired difference 0.01 to 0.12) and did not differ from untrained closest-sentence similarity ($-0.018$ to $0.046$; Table~\ref{tab:predict}). Only six harmful residues kept any rule keywords, so this data cannot test prediction where the rule still looks present, and the task may be easy because the damage is deletion. A model trained only on mutants did not beat chance on residues. Trained instead on the simplest synthetic contrast, a deletion and an intact example for each of the 29 other rules (58 per fold; every example of the held-out rule excluded, synthetic examples framed as replayed), the same classifier reached an AUROC of 0.910 (0.863 to 0.955), against 0.433 for the mutants of the other rules (313 or 314 per fold; paired difference $-0.64$ to $-0.33$). Training size and class balance do not explain the gap: mutants drawn to the same size and class ratio averaged 0.591 over 20 draws (range 0.451 to 0.839). Shifting sample weight from deletion to mutants lowered AUROC at every step, from 0.910 to 0.840, 0.757, 0.660 and 0.433, and keeping only the three operators whose mutants best overlapped harmful residues of the training rules (chosen within each fold) gave 0.465. Training on real residues of other rules reached 0.949, slightly above deletion (paired difference 0.01 to 0.07). These analyses were run after all other results were known and come from the same deletion-dominated pilot. A possible reading is that operators which reproduce residues' failing probes still differ from them in how text relates to behavior: a violation-inducing mutant still reads as a rule, while a violation-inducing residue mostly has none.
+
+\input{tables/predict}
+
+\section{Discussion}
+
+\paragraph{Fidelity} Operators that removed or reversed rule content coupled more strongly with residues than those meant to simulate gradual weakening. Coupling was partly explained by high baseline overlap, and the pilot cannot establish whether any operator represents partial semantic degradation, which it rarely produced.
+
+\paragraph{Utility} Mutation scores were associated with detecting harmful residues, and all-mutant selection beat random selection, which echoes Papadakis et al.~\cite{papadakis2018}. Neither showed value beyond a simple rule-deletion baseline. This does not show that mutation-guided testing is ineffective, because we did not evaluate new probes on independently held-out faults. A mutant need not beat deletion overall to be useful: it could find faults deletion misses. Our data do not show such complementarity, and with deletion-dominated faults they could hardly do so. Nor do they show that mutants and deletion are equivalent: absence of a difference is not equivalence, and the confirmatory study needs a pre-specified smallest effect worth detecting, such as five points of held-out detection, so that it can distinguish benefit, practical equivalence and inferiority.
+
+\paragraph{Fault-distribution alignment} A hypothesis consistent with these results, which the pilot cannot test, is that the value of mutation-based assurance depends less on how many or how varied the mutants are than on how closely they match the distribution of real faults. The operators span many kinds of textual damage, while the harmful residues clustered around deletion; only 44\% of non-control rule mutants overlapped any harmful residue of their rule, and 27\% matched one exactly. Alignment of failing probes alone is not enough, however: in the transfer analysis, the operators that best matched residues' failing probes transferred no better than chance. If the hypothesis holds, alignment must also cover how a fault looks, not only how it behaves.
+
+\paragraph{Implications for safety evaluation} Tentatively, a mutant that triggers a violation should not by itself count as evidence that a test suite would catch real guardrail failures. Teams testing guardrails against compaction should include rule deletion as a baseline before investing in more elaborate policy mutants, and should compare coupling with chance, since raw coupling can look strong when failing sets are large. Our audit carries a separate lesson: deterministic grading is a strength but does not ensure correct grading. We observed two distinct failures, an agent attempting a prohibited action and an evaluation failing to recognize it. The agent reached prohibited effects through tools a grader did not watch, and an evaluation that ends episodes early undercounts violations only where safeguards have already failed. Reading raw episodes found errors that passing tests did not. This shows such errors can occur and matter; it gives no rate for agent evaluations in general.
+
+\paragraph{What a confirmatory study must establish} First, more varied faults, through sessions with several rules, measured compression and native compaction mechanisms, on models including less cautious or open-weight ones, and across three configurations: compacted instructions, pinned instructions, and pinned instructions with independent tool-level enforcement. Second, independently validated operators and graders, including whether behaviors such as masked access count as violations, independent severity ratings, clause-level probes with positive and negative boundary cases, and probe difficulty estimated on a separate calibration set. Third, pre-specified tests of two hypotheses that this pilot does not establish: that mutation score explains fault detection beyond a deletion score, and that mutation-guided selection improves held-out detection at equal budget against deletion-guided and random selection. These need both held-out faults and held-out probes, since each tests a different kind of generalization. The central question is whether mutation-guided testing finds previously unseen, high-severity guardrail failures that deletion-based testing misses, reporting unique faults found and cost per additional fault.
+
+\paragraph{Planned design} Because the pilot's damage was deletion-like, deletion beating mutants is unsurprising here, and the next step asks under which conditions mutants add value. A discovery stage first varies the compaction budget (30 to 150 words), the number of rules per session (one, three and six) and the compaction trajectory, and records measured compression, to establish whether partial damage occurs at all; a decision rule fixed in advance determines whether the confirmatory stage proceeds. The rule asks only whether there are enough informative faults, partial damage across enough rules, to answer the question; it never asks whether mutants appear to beat deletion, which would select settings favorable to one conclusion. Every condition is then replayed inside the same residue context: the intact rule, the deleted rule, the extracted residue, each mutant, a checked paraphrase and a rule pinned in the system prompt, with the original summary kept as a check. A sham edit, which removes a sentence of similar length that carries no policy, tests whether editing a summary changes behavior apart from what the edit says. Permitted-action probes measure over-refusal alongside violations, and every episode is classified as a violation, a refusal, another action or invalid. Violation probability, not a two-of-three threshold, becomes the primary behavioral outcome, and utility is compared both at a fixed number of probes and at a fixed total number of episodes. The confirmatory stage then freezes operators, graders, probes and analysis before testing new held-out rules on at least two model families, with sample size set by simulation that accounts for clustering by rule. Incremental predictive validity is tested by whether adding mutation score to a model of held-out detection that already contains deletion score and an independently estimated probe difficulty improves its held-out prediction, and cost is reported as tokens, requests and money as well as episodes, with a curve of detection against total budget. Claims of a near-zero violation rate need enough independent trials: with no failures in $n$ trials the one-sided 95\% upper bound is $1-0.05^{1/n}$, which falls below 5\% only at $n \geq 59$.
+
+\section{Threats to Validity}
+
+\paragraph{Construct} Overlap in failing probes does not establish semantic equivalence. Mutation scores and residue detection rest on the same probes, so an easy-to-trigger probe can raise both, and holding suite size fixed does not remove this. Mutants have not been validated for equivalence. Graders use pattern matching and may miss unusual commands, and their reading of a rule is a judgment: the R09 rule prohibits querying Social Security numbers, so we count masked queries as violations. Independent reviewers should confirm such readings.
+
+\paragraph{Internal} Mutants and baselines were replayed inside a neutral summary, while residues were replayed inside their own summaries, so the surrounding context differs between the conditions being compared; a matched-context replay that places every condition inside the same residue summary is implemented but not yet run. Each rule, budget and cycle had one compaction trajectory, so sampling variation in the compactor is measured only by the two earlier runs. All analyses were chosen after seeing the data. Budgets were chosen to produce damage. Two-of-three labels are unstable near 50\%: R09 showed harm in a residue although deleting the rule did not reach the threshold, most likely for this reason. Six episodes remain censored, and 20 resumes are not exact continuations.
+
+\paragraph{Selection in the next stage} If the confirmatory study were run only on the compaction settings where discovery finds partial damage, its results would describe those settings, not compaction in general. The planned design therefore keeps a representative sample of settings, used to estimate overall performance, apart from a sample enriched for partial damage, used to study subtle faults, and does not use the enriched sample to estimate how often faults occur.
+
+\paragraph{External} We tested one closed model at low effort, in both roles, so compactor and agent are confounded and other models may behave differently. Single-rule sessions likely encourage keep-or-drop behavior. Sessions, probes and tools are constructed, tools are simulated, and probes are direct requests with no adversary, so a violation shows the agent would make the call, not that harm would follow. Violations are unweighted by severity. Every probe tempted a prohibited action, so the pilot cannot detect over-refusal: an agent that refused everything would score as safe. The policy reached the agent only as conversational text, so results concern rules delivered in conversation, not rules held in a privileged or external channel. With a rule gone, the model still declined some requests on its own, as with posting credentials, so results combine operator rules with built-in caution and may differ on less cautious models. Rules and probes were written by the author.
+
+\paragraph{Conclusion} There are only 30 rules, 17 with harm. Intervals are wide, and suites in the RQ3 analysis overlap heavily. The analyses are numerous and uncorrected for multiplicity, and we treat them as hypothesis-generating. Residue annotations are not yet complete. When added, they will come from one partially blinded annotator, so no reliability estimate will be available.
+
+\section{Conclusion}
+
+This exploratory study asked whether synthetic policy mutants provide credible evidence that guardrail test suites would detect failures introduced by context compaction. Under single-rule sessions and severe compaction stress, harmful residues mostly showed deletion-like behavioral failures. All-mutant probe selection beat random selection but showed no added value beyond rule-deletion testing, and high coupling was partly attributable to chance overlap.
+
+These findings do not establish that policy mutations are ineffective. They do indicate that a mutant's detectability alone does not establish its validity as a proxy in safety testing. The central open question is whether mutation-guided testing can reveal unseen, consequential guardrail failures that deletion-based testing misses. Answering it requires held-out faults, more diverse compaction, validated oracles and comparisons at matched budgets. More broadly, claims about the safety of LLM agents depend not only on whether evaluations detect violations, but on whether those evaluations provide credible evidence about the failures that matter.
+
+\section*{Data Availability}
+\todo{Add the repository and archive links for the harness, rules, probes and run data once public.}
+
+\section*{Disclosure}
+\todo{State how AI assistance was used in the harness, analysis and writing, following the venue's policy. Note that the model under test and the assistant are from the same provider.}
+
+\begin{acks}
+\todo{Acknowledge advisors and reviewers, and any funding.}
+\end{acks}
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{refs}
+
+\end{document}

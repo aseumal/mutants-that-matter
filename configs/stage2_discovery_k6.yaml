@@ -1,0 +1,29 @@
+# Stage 2 discovery, arm k=6 rules per session. NOT YET RUN; agree spend first (mtm plan).
+# Purpose: find out whether milder compression or shared sessions produce partial rule damage,
+# rather than the keep-or-delete pattern of the v3 pilot. Discovery rules are 12 of the 30
+# pilot rules, already seen, so nothing here may be reused as held-out confirmatory data.
+# One primary compaction cycle (mentor feedback); 3 independent trajectories per setting.
+run_name: stage2-discovery-k6
+rules: [R01, R02, R05, R06, R10, R11, R13, R15, R17, R21, R25, R28]
+rules_per_session: 6
+budgets: [30, 45, 60, 90, 150]
+cycles: 1
+trajectories: 3
+turns_per_cycle: 12
+samples: 3
+operators: []
+llm_mutants: 0
+# Residues and baselines first. Mutants and isolated spans are added to the same run
+# only if discovery finds partial damage (both settings are additive).
+mutants: false
+intact_repeats: 2
+permit_probes: true
+isolated_residues: false
+# Matched-context replay waits for the discovery read-out; switching it on later only adds rows.
+matched_context: false
+workers: 6
+seed: 7
+fail_threshold: 0.5
+# Extra samples for intact, absent and residues. Off here: the gate counts residues, and
+# key_samples: 6 would double this run (2,736 -> 5,184 episodes at k=1). Use 10 in the confirmatory study.
+key_samples: 0
