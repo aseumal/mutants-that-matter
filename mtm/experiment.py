@@ -6,6 +6,7 @@ from __future__ import annotations
 import hashlib
 import json
 import random
+import re
 import threading
 from collections import defaultdict
 from concurrent.futures import ThreadPoolExecutor
@@ -31,6 +32,7 @@ NEUTRAL_SUMMARY = ("The agent has been completing routine operations tasks for t
 @dataclass
 class Config:
     run_name: str = "pilot"
+    rules_file: str = ""            # empty = data/rules.yaml (the pilot rules); a held-out set goes here
     rules: list[str] = field(default_factory=list)       # empty = all
     budgets: list[int] = field(default_factory=lambda: [60, 150])
     cycles: int = 2
@@ -58,6 +60,12 @@ class Config:
     mutants: bool = True            # build rule mutants (off for a residue-only discovery run)
     matched_permit: bool = False    # also replay permitted probes in matched conditions
     matched_sham: bool = False      # real summary minus one non-policy segment (edit control)
+    matched_planted: list[str] = field(default_factory=list)  # these operators' mutants planted in place
+                                    # of the residue's policy span: context dependence of mutant behavior
+    matched_residues: list[str] = field(default_factory=list)  # "RULE|condition" ids: restrict new replay to
+                                    # these residues (feasibility runs); empty = all
+    key_samples: int = 0            # samples for key conditions (intact, absent, residues and their
+                                    # matched intact/absent/residue); 0 = same as samples
 
     @classmethod
     def load(cls, path: str | Path) -> "Config":
@@ -299,6 +307,8 @@ def conditions_for(rule: Rule, mutants: list[dict], residues: list[dict],
       matched:<residue>:paraphrase   the context + the paraphrase
       matched:<residue>:pinned       the real summary, intact rule in the system prompt
       matched:<residue>:sham         the real summary minus one non-policy segment
+      matched:<residue>:planted:<op> the real summary with its policy span replaced in place by a
+                                     mutant: does the mutant behave as in the neutral frame?
     """
     intact = policy_summary(rule.text)
     conds = [("intact", intact), ("absent", NEUTRAL_SUMMARY)]
@@ -330,6 +340,8 @@ def conditions_for(rule: Rule, mutants: list[dict], residues: list[dict],
             s = split_by.get((rule.id, r["condition"]))
             if s is None:
                 continue
+            if s.get("ambiguous_spans") and s.get("source") != "manual":
+                continue   # an unreviewed shared sentence: no causal edit until a human assigns it
             base, ctx = f"matched:{r['condition']}", s["context"]
             conds += [(f"{base}:intact", framed(ctx, rule.text)),
                       (f"{base}:absent", framed(ctx, "")),
@@ -341,7 +353,44 @@ def conditions_for(rule: Rule, mutants: list[dict], residues: list[dict],
                 conds.append((f"{base}:pinned", r["summary"]))
             if cfg.matched_sham and s.get("sham_summary"):
                 conds.append((f"{base}:sham", s["sham_summary"]))
+            if cfg.matched_planted:
+                from .context import plant
+                for m in mutants:
+                    if m["rule_id"] == rule.id and m["family"] == "rule" and m["operator"] in cfg.matched_planted:
+                        planted = plant(r["summary"], s["spans"], m["text"])
+                        if planted is not None:
+                            conds.append((f"{base}:planted:{m['operator']}", planted))
     return conds
+
+
+KEY_MATCHED = ("intact", "absent", "residue")
+
+
+def is_key(condition: str) -> bool:
+    """Conditions whose violation probability anchors every comparison."""
+    if condition in ("intact", "absent") or condition.startswith("residue:"):
+        return True
+    return condition.startswith("matched:") and condition.rsplit(":", 1)[-1] in KEY_MATCHED
+
+
+def samples_for(cfg: Config, condition: str) -> int:
+    return max(cfg.samples, cfg.key_samples) if cfg.key_samples and is_key(condition) else cfg.samples
+
+
+_RESIDUE_IN = re.compile(r"(residue:b\d+:c\d+(?::t\d+)?)")
+
+
+def in_focus(cfg: Config, rule_id: str, cond: str) -> bool:
+    """With matched_residues set, new replay is limited to: intact, absent and repeats; the chosen
+    residues and every condition built from them; and neutral-frame mutants of matched_operators."""
+    if not cfg.matched_residues:
+        return True
+    if cond in ("intact", "absent") or cond.startswith("intact:rep"):
+        return True
+    if cond.startswith("mutant:"):
+        return not cfg.matched_operators or cond.split(":", 1)[1] in cfg.matched_operators
+    m = _RESIDUE_IN.search(cond)
+    return bool(m) and f"{rule_id}|{m.group(1)}" in cfg.matched_residues
 
 
 def replay_jobs(cfg: Config, rules: list[Rule], out: Path, done: set | None = None,
@@ -358,10 +407,12 @@ def replay_jobs(cfg: Config, rules: list[Rule], out: Path, done: set | None = No
     for rule in rules:
         permits = list(rule.permit_probes) if cfg.permit_probes else []
         for cond, summary in conditions_for(rule, mutants, residues, cfg.intact_repeats, cfg, splits):
+            if not in_focus(cfg, rule.id, cond):
+                continue
             matched = cond.startswith("matched:")
             probes = list(rule.probes) + ([] if matched and not cfg.matched_permit else permits)
             for probe in probes:
-                for s in range(cfg.samples):
+                for s in range(samples_for(cfg, cond)):
                     if (rule.id, cond, probe.id, s) not in done:
                         jobs.append((rule, cond, summary, probe, s))
     return jobs
@@ -393,6 +444,57 @@ def stage_replay(cfg: Config, rules: list[Rule], agent: ChatModel, out: Path) ->
     return path
 
 
+def account(cfg: Config, rules: list[Rule], out: Path) -> dict:
+    """Planned against actual work for a run: episodes planned, imported, newly executed, pending,
+    invalid and censored, and every planned matched condition that could not be generated, with
+    the reason. Censored = ran out of steps with no final answer and no violation."""
+    from .context import build_splits
+    behavior = read_jsonl(out / "behavior.jsonl")
+    manifest = json.loads((out / "run.json").read_text(encoding="utf-8")) if (out / "run.json").exists() else {}
+    residues = read_jsonl(out / "residues.jsonl")
+    mutants = read_jsonl(out / "mutants.jsonl")
+    splits = build_splits(rules, residues, out, write=False)
+    planned = replay_jobs(cfg, rules, out, write_splits=False)
+    keys = {(r.id, c, p.id, s) for r, c, _, p, s in planned}
+    have = {(b["rule_id"], b["condition"], b["probe_id"], b["sample"]) for b in behavior}
+    imported = manifest.get("imported_rows", 0)
+    invalid = sum(bool(b.get("parse_errors")) and not b.get("calls") and b.get("final") is None for b in behavior)
+    censored = sum(b.get("final") is None and not b["violated"] and bool(b.get("calls"))
+                   and len(b["calls"]) + b.get("parse_errors", 0) >= cfg.max_steps for b in behavior)
+    unavailable = []
+    if cfg.matched_context:
+        split_by = {(s["rule_id"], s["condition"]): s for s in splits}
+        ops_for = {r.id: {m["operator"] for m in mutants if m["rule_id"] == r.id and m["family"] == "rule"} for r in rules}
+        for r in rules:
+            for res in (x for x in residues if x["rule_id"] == r.id):
+                if not in_focus(cfg, r.id, res["condition"]):
+                    continue
+                if cfg.matched_cycles and res["cycle"] not in cfg.matched_cycles:
+                    continue
+                key, s = f"{r.id}|{res['condition']}", split_by.get((r.id, res["condition"]))
+                if s is None:
+                    unavailable.append({"residue": key, "conditions": "all matched", "reason": "no split"})
+                    continue
+                if s.get("ambiguous_spans") and s.get("source") != "manual":
+                    unavailable.append({"residue": key, "conditions": "all matched",
+                                        "reason": "ambiguous shared sentence awaiting human review"})
+                    continue
+                for op in cfg.matched_operators:
+                    if op not in ops_for[r.id]:
+                        unavailable.append({"residue": key, "conditions": f"mutant:{op}, planted:{op}",
+                                            "reason": f"rule has no {op} mutant"})
+                if cfg.matched_planted and not s["spans"]:
+                    unavailable.append({"residue": key, "conditions": "planted:*", "reason": "no policy span to replace"})
+                if cfg.matched_sham and not s.get("sham_summary"):
+                    unavailable.append({"residue": key, "conditions": "sham", "reason": "no non-policy segment to remove"})
+                if cfg.paraphrase and not r.paraphrase:
+                    unavailable.append({"residue": key, "conditions": "paraphrase", "reason": "no checked paraphrase"})
+    return {"planned_episodes": len(planned), "imported_rows": imported, "rows_present": len(behavior),
+            "newly_executed": len(behavior) - imported, "pending": len(keys - have),
+            "invalid": invalid, "censored": censored, "fresh_replay": manifest.get("fresh_replay", False),
+            "unavailable": unavailable}
+
+
 def estimate(cfg: Config, rules: list[Rule], out: Path) -> dict:
     """Work a config implies, without calling any model. Replay counts are exact once
     residues and mutants exist; before that they are projected from the config."""
@@ -407,7 +509,7 @@ def estimate(cfg: Config, rules: list[Rule], out: Path) -> dict:
             parts = cond.split(":")
             kind = parts[0]
             if kind == "matched":
-                kind += ":" + ("mutant" if "mutant" in parts else parts[-1])
+                kind += ":" + ("mutant" if "mutant" in parts else "planted" if "planted" in parts else parts[-1])
             by_kind[("permit " if hasattr(probe, "allowed") else "") + kind] += 1
         pending = sum((r.id, c, p.id, s) not in done for r, c, _, p, s in jobs)
         calls_done = len({(r.get("session_id", r["rule_id"]), r["budget_words"], r.get("trajectory", 1), r["cycle"])
@@ -426,16 +528,21 @@ def estimate(cfg: Config, rules: list[Rule], out: Path) -> dict:
         probes = len(rule.probes) + (len(rule.permit_probes) if cfg.permit_probes else 0)
         matched_probes = len(rule.probes) + (len(rule.permit_probes) if cfg.permit_probes and cfg.matched_permit else 0)
         para = cfg.paraphrase and bool(rule.paraphrase)
-        conds = {"intact/absent/repeats": 2 + cfg.intact_repeats, "mutant": n_mut, "residue": n_res}
+        key = max(cfg.samples, cfg.key_samples) if cfg.key_samples else cfg.samples
+        n_planted = len([m for m in rule_mutants(rule, None) if m.operator in cfg.matched_planted])
+        # name: (conditions, probes per condition, samples per probe); planted assumes a span exists
+        conds = {"intact/absent": (2, probes, key), "repeats": (cfg.intact_repeats, probes, cfg.samples),
+                 "mutant": (n_mut, probes, cfg.samples), "residue": (n_res, probes, key)}
         if para:
-            conds["paraphrase"] = 1
+            conds["paraphrase"] = (1, probes, cfg.samples)
         if cfg.isolated_residues:
-            conds["iso"] = n_res
+            conds["iso"] = (n_res, probes, cfg.samples)
         if cfg.matched_context:
-            conds["matched"] = n_match_res * (3 + n_rule_ops + int(cfg.matched_pinned) + int(para)
-                                              + int(cfg.matched_sham))
-        for k, v in conds.items():
-            n = v * (matched_probes if k == "matched" else probes) * cfg.samples
+            conds["matched key"] = (n_match_res * 3, matched_probes, key)
+            conds["matched"] = (n_match_res * (n_rule_ops + int(cfg.matched_pinned) + int(para)
+                                               + int(cfg.matched_sham) + n_planted), matched_probes, cfg.samples)
+        for k, (c, p, s) in conds.items():
+            n = c * p * s
             by_kind[k] += n
             total += n
     return {"compaction_calls": compaction_calls, "compaction_done": 0, "replay_episodes": total,

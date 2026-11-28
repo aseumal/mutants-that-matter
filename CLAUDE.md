@@ -52,8 +52,12 @@ mtm import-run -c configs/stage2_matched.yaml --source pilot-haiku-v3   # copy v
 mtm stage2 -c configs/stage2_matched.yaml   # outcomes, over-refusal, compression, matched context
 mtm label-tool                              # local blinded labeling page from labels_a.csv
 mtm label-check exported.csv                # verify an exported label sheet
+mtm validate --rules data/heldout_rules.yaml # held-out rule set: no pilot copies, >= 10 probes, permitted probes
 ```
 
+v3 is FROZEN (2026-11-28): data files are read-only, archived with SHA-256 in `archive/`; new analyses write to
+`paper/analysis/results/`, never into `runs/pilot-haiku-v3`. Confirmatory protocol draft: `PREREGISTRATION_DRAFT.md`.
+Feasibility config (12 residues, not run): `configs/stage2_feasibility.yaml`.
 Stage 2 code (2026-11-27, not yet run): see `STUDY_DESIGN.md`. Fingerprints in `run.json` block resuming
 under changed rules, probes, graders, filler, prompts or generative settings. Core analyses read only
 pilot-design rows (`analysis.is_core`); Stage 2 rows go to `mtm/stage2.py`. Permitted probes were drafted by

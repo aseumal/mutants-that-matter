@@ -24,3 +24,6 @@ matched_context: false
 workers: 6
 seed: 7
 fail_threshold: 0.5
+# Extra samples for intact, absent and residues. Off here: the gate counts residues, and
+# key_samples: 6 would double this run (2,736 -> 5,184 episodes at k=1). Use 10 in the confirmatory study.
+key_samples: 0

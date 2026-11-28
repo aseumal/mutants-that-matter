@@ -1,0 +1,6951 @@
+{
+ "settings": {
+  "simulations_per_cell": 1000,
+  "margin": 0.05,
+  "sd_base_logit": 0.8,
+  "sd_effect_logit": 0.5,
+  "grid": {
+   "b": [
+    0.7,
+    0.85,
+    0.97
+   ],
+   "k": [
+    2,
+    6
+   ],
+   "rules": [
+    50,
+    80,
+    120
+   ],
+   "delta": [
+    -0.1,
+    -0.05,
+    0.0,
+    0.05,
+    0.1,
+    0.15
+   ],
+   "rho": [
+    0.0,
+    0.5,
+    0.9
+   ]
+  }
+ },
+ "cells": {
+  "b=0.70 k=2 rules=50 delta=-0.10 rho=0.0": {
+   "feasible": true,
+   "theta": -0.471,
+   "realized_mean_estimate": -0.1042,
+   "joint_outcomes": {
+    "both": 0.419,
+    "mutation_only": 0.159,
+    "deletion_only": 0.261,
+    "neither": 0.161
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.103,
+    "inconclusive": 0.897,
+    "superiority": 0.001
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.136,
+    "inconclusive": 0.864,
+    "superiority": 0.001
+   }
+  },
+  "b=0.70 k=2 rules=50 delta=-0.10 rho=0.5": {
+   "feasible": true,
+   "theta": -0.471,
+   "realized_mean_estimate": -0.0992,
+   "joint_outcomes": {
+    "both": 0.479,
+    "mutation_only": 0.1,
+    "deletion_only": 0.199,
+    "neither": 0.223
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.124,
+    "inconclusive": 0.876,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.149,
+    "inconclusive": 0.851,
+    "superiority": 0.0
+   }
+  },
+  "b=0.70 k=2 rules=50 delta=-0.10 rho=0.9": {
+   "feasible": true,
+   "theta": -0.471,
+   "realized_mean_estimate": -0.0979,
+   "joint_outcomes": {
+    "both": 0.546,
+    "mutation_only": 0.033,
+    "deletion_only": 0.132,
+    "neither": 0.289
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.147,
+    "inconclusive": 0.853,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.212,
+    "inconclusive": 0.788,
+    "superiority": 0.0
+   }
+  },
+  "b=0.70 k=2 rules=50 delta=-0.05 rho=0.0": {
+   "feasible": true,
+   "theta": -0.224,
+   "realized_mean_estimate": -0.0491,
+   "joint_outcomes": {
+    "both": 0.452,
+    "mutation_only": 0.178,
+    "deletion_only": 0.227,
+    "neither": 0.143
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.025,
+    "inconclusive": 0.975,
+    "superiority": 0.002
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.025,
+    "inconclusive": 0.975,
+    "superiority": 0.004
+   }
+  },
+  "b=0.70 k=2 rules=50 delta=-0.05 rho=0.5": {
+   "feasible": true,
+   "theta": -0.224,
+   "realized_mean_estimate": -0.0521,
+   "joint_outcomes": {
+    "both": 0.507,
+    "mutation_only": 0.118,
+    "deletion_only": 0.17,
+    "neither": 0.205
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.035,
+    "inconclusive": 0.965,
+    "superiority": 0.003
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.028,
+    "inconclusive": 0.972,
+    "superiority": 0.003
+   }
+  },
+  "b=0.70 k=2 rules=50 delta=-0.05 rho=0.9": {
+   "feasible": true,
+   "theta": -0.224,
+   "realized_mean_estimate": -0.048,
+   "joint_outcomes": {
+    "both": 0.582,
+    "mutation_only": 0.049,
+    "deletion_only": 0.097,
+    "neither": 0.272
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.003,
+    "inferiority": 0.017,
+    "inconclusive": 0.98,
+    "superiority": 0.001
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.022,
+    "inconclusive": 0.978,
+    "superiority": 0.0
+   }
+  },
+  "b=0.70 k=2 rules=50 delta=+0.00 rho=0.0": {
+   "feasible": true,
+   "theta": 0.036,
+   "realized_mean_estimate": 0.0001,
+   "joint_outcomes": {
+    "both": 0.484,
+    "mutation_only": 0.194,
+    "deletion_only": 0.194,
+    "neither": 0.128
+   },
+   "rule_weighted": {
+    "benefit": 0.004,
+    "equivalence": 0.0,
+    "inferiority": 0.003,
+    "inconclusive": 0.993,
+    "superiority": 0.026
+   },
+   "residue_weighted": {
+    "benefit": 0.003,
+    "equivalence": 0.0,
+    "inferiority": 0.002,
+    "inconclusive": 0.995,
+    "superiority": 0.024
+   }
+  },
+  "b=0.70 k=2 rules=50 delta=+0.00 rho=0.5": {
+   "feasible": true,
+   "theta": 0.036,
+   "realized_mean_estimate": -0.0031,
+   "joint_outcomes": {
+    "both": 0.541,
+    "mutation_only": 0.135,
+    "deletion_only": 0.138,
+    "neither": 0.186
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 1.0,
+    "superiority": 0.026
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.001,
+    "inconclusive": 0.999,
+    "superiority": 0.029
+   }
+  },
+  "b=0.70 k=2 rules=50 delta=+0.00 rho=0.9": {
+   "feasible": true,
+   "theta": 0.036,
+   "realized_mean_estimate": 0.0032,
+   "joint_outcomes": {
+    "both": 0.607,
+    "mutation_only": 0.07,
+    "deletion_only": 0.068,
+    "neither": 0.255
+   },
+   "rule_weighted": {
+    "benefit": 0.001,
+    "equivalence": 0.002,
+    "inferiority": 0.0,
+    "inconclusive": 0.997,
+    "superiority": 0.026
+   },
+   "residue_weighted": {
+    "benefit": 0.002,
+    "equivalence": 0.003,
+    "inferiority": 0.001,
+    "inconclusive": 0.994,
+    "superiority": 0.028
+   }
+  },
+  "b=0.70 k=2 rules=50 delta=+0.05 rho=0.0": {
+   "feasible": true,
+   "theta": 0.316,
+   "realized_mean_estimate": 0.0542,
+   "joint_outcomes": {
+    "both": 0.516,
+    "mutation_only": 0.213,
+    "deletion_only": 0.16,
+    "neither": 0.111
+   },
+   "rule_weighted": {
+    "benefit": 0.035,
+    "equivalence": 0.0,
+    "inferiority": 0.001,
+    "inconclusive": 0.964,
+    "superiority": 0.126
+   },
+   "residue_weighted": {
+    "benefit": 0.037,
+    "equivalence": 0.0,
+    "inferiority": 0.002,
+    "inconclusive": 0.961,
+    "superiority": 0.14
+   }
+  },
+  "b=0.70 k=2 rules=50 delta=+0.05 rho=0.5": {
+   "feasible": true,
+   "theta": 0.316,
+   "realized_mean_estimate": 0.052,
+   "joint_outcomes": {
+    "both": 0.572,
+    "mutation_only": 0.157,
+    "deletion_only": 0.106,
+    "neither": 0.165
+   },
+   "rule_weighted": {
+    "benefit": 0.026,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.974,
+    "superiority": 0.138
+   },
+   "residue_weighted": {
+    "benefit": 0.028,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.972,
+    "superiority": 0.169
+   }
+  },
+  "b=0.70 k=2 rules=50 delta=+0.05 rho=0.9": {
+   "feasible": true,
+   "theta": 0.316,
+   "realized_mean_estimate": 0.051,
+   "joint_outcomes": {
+    "both": 0.633,
+    "mutation_only": 0.094,
+    "deletion_only": 0.043,
+    "neither": 0.229
+   },
+   "rule_weighted": {
+    "benefit": 0.017,
+    "equivalence": 0.001,
+    "inferiority": 0.0,
+    "inconclusive": 0.982,
+    "superiority": 0.233
+   },
+   "residue_weighted": {
+    "benefit": 0.022,
+    "equivalence": 0.001,
+    "inferiority": 0.0,
+    "inconclusive": 0.977,
+    "superiority": 0.272
+   }
+  },
+  "b=0.70 k=2 rules=50 delta=+0.10 rho=0.0": {
+   "feasible": true,
+   "theta": 0.627,
+   "realized_mean_estimate": 0.0954,
+   "joint_outcomes": {
+    "both": 0.548,
+    "mutation_only": 0.229,
+    "deletion_only": 0.131,
+    "neither": 0.091
+   },
+   "rule_weighted": {
+    "benefit": 0.093,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.907,
+    "superiority": 0.304
+   },
+   "residue_weighted": {
+    "benefit": 0.13,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.87,
+    "superiority": 0.389
+   }
+  },
+  "b=0.70 k=2 rules=50 delta=+0.10 rho=0.5": {
+   "feasible": true,
+   "theta": 0.627,
+   "realized_mean_estimate": 0.1035,
+   "joint_outcomes": {
+    "both": 0.594,
+    "mutation_only": 0.183,
+    "deletion_only": 0.081,
+    "neither": 0.142
+   },
+   "rule_weighted": {
+    "benefit": 0.127,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.873,
+    "superiority": 0.426
+   },
+   "residue_weighted": {
+    "benefit": 0.168,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.832,
+    "superiority": 0.521
+   }
+  },
+  "b=0.70 k=2 rules=50 delta=+0.10 rho=0.9": {
+   "feasible": true,
+   "theta": 0.627,
+   "realized_mean_estimate": 0.0999,
+   "joint_outcomes": {
+    "both": 0.654,
+    "mutation_only": 0.125,
+    "deletion_only": 0.025,
+    "neither": 0.196
+   },
+   "rule_weighted": {
+    "benefit": 0.174,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.826,
+    "superiority": 0.664
+   },
+   "residue_weighted": {
+    "benefit": 0.239,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.761,
+    "superiority": 0.759
+   }
+  },
+  "b=0.70 k=2 rules=50 delta=+0.15 rho=0.0": {
+   "feasible": true,
+   "theta": 0.987,
+   "realized_mean_estimate": 0.1515,
+   "joint_outcomes": {
+    "both": 0.579,
+    "mutation_only": 0.252,
+    "deletion_only": 0.099,
+    "neither": 0.071
+   },
+   "rule_weighted": {
+    "benefit": 0.342,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.658,
+    "superiority": 0.625
+   },
+   "residue_weighted": {
+    "benefit": 0.424,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.576,
+    "superiority": 0.762
+   }
+  },
+  "b=0.70 k=2 rules=50 delta=+0.15 rho=0.5": {
+   "feasible": true,
+   "theta": 0.987,
+   "realized_mean_estimate": 0.1504,
+   "joint_outcomes": {
+    "both": 0.621,
+    "mutation_only": 0.207,
+    "deletion_only": 0.058,
+    "neither": 0.115
+   },
+   "rule_weighted": {
+    "benefit": 0.442,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.558,
+    "superiority": 0.776
+   },
+   "residue_weighted": {
+    "benefit": 0.521,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.479,
+    "superiority": 0.837
+   }
+  },
+  "b=0.70 k=2 rules=50 delta=+0.15 rho=0.9": {
+   "feasible": true,
+   "theta": 0.987,
+   "realized_mean_estimate": 0.1493,
+   "joint_outcomes": {
+    "both": 0.663,
+    "mutation_only": 0.162,
+    "deletion_only": 0.012,
+    "neither": 0.163
+   },
+   "rule_weighted": {
+    "benefit": 0.611,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.389,
+    "superiority": 0.95
+   },
+   "residue_weighted": {
+    "benefit": 0.711,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.289,
+    "superiority": 0.983
+   }
+  },
+  "b=0.70 k=2 rules=80 delta=-0.10 rho=0.0": {
+   "feasible": true,
+   "theta": -0.471,
+   "realized_mean_estimate": -0.0977,
+   "joint_outcomes": {
+    "both": 0.417,
+    "mutation_only": 0.162,
+    "deletion_only": 0.259,
+    "neither": 0.162
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.119,
+    "inconclusive": 0.881,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.138,
+    "inconclusive": 0.862,
+    "superiority": 0.0
+   }
+  },
+  "b=0.70 k=2 rules=80 delta=-0.10 rho=0.5": {
+   "feasible": true,
+   "theta": -0.471,
+   "realized_mean_estimate": -0.1015,
+   "joint_outcomes": {
+    "both": 0.479,
+    "mutation_only": 0.098,
+    "deletion_only": 0.2,
+    "neither": 0.223
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.183,
+    "inconclusive": 0.817,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.239,
+    "inconclusive": 0.761,
+    "superiority": 0.0
+   }
+  },
+  "b=0.70 k=2 rules=80 delta=-0.10 rho=0.9": {
+   "feasible": true,
+   "theta": -0.471,
+   "realized_mean_estimate": -0.0979,
+   "joint_outcomes": {
+    "both": 0.543,
+    "mutation_only": 0.034,
+    "deletion_only": 0.133,
+    "neither": 0.29
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.254,
+    "inconclusive": 0.746,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.314,
+    "inconclusive": 0.686,
+    "superiority": 0.0
+   }
+  },
+  "b=0.70 k=2 rules=80 delta=-0.05 rho=0.0": {
+   "feasible": true,
+   "theta": -0.224,
+   "realized_mean_estimate": -0.0467,
+   "joint_outcomes": {
+    "both": 0.453,
+    "mutation_only": 0.179,
+    "deletion_only": 0.226,
+    "neither": 0.143
+   },
+   "rule_weighted": {
+    "benefit": 0.001,
+    "equivalence": 0.0,
+    "inferiority": 0.018,
+    "inconclusive": 0.981,
+    "superiority": 0.004
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.024,
+    "inconclusive": 0.976,
+    "superiority": 0.003
+   }
+  },
+  "b=0.70 k=2 rules=80 delta=-0.05 rho=0.5": {
+   "feasible": true,
+   "theta": -0.224,
+   "realized_mean_estimate": -0.0479,
+   "joint_outcomes": {
+    "both": 0.51,
+    "mutation_only": 0.118,
+    "deletion_only": 0.167,
+    "neither": 0.206
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.022,
+    "inconclusive": 0.978,
+    "superiority": 0.002
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.022,
+    "inconclusive": 0.978,
+    "superiority": 0.0
+   }
+  },
+  "b=0.70 k=2 rules=80 delta=-0.05 rho=0.9": {
+   "feasible": true,
+   "theta": -0.224,
+   "realized_mean_estimate": -0.0504,
+   "joint_outcomes": {
+    "both": 0.579,
+    "mutation_only": 0.049,
+    "deletion_only": 0.099,
+    "neither": 0.274
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.004,
+    "inferiority": 0.016,
+    "inconclusive": 0.98,
+    "superiority": 0.001
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.004,
+    "inferiority": 0.016,
+    "inconclusive": 0.98,
+    "superiority": 0.0
+   }
+  },
+  "b=0.70 k=2 rules=80 delta=+0.00 rho=0.0": {
+   "feasible": true,
+   "theta": 0.036,
+   "realized_mean_estimate": 0.002,
+   "joint_outcomes": {
+    "both": 0.485,
+    "mutation_only": 0.195,
+    "deletion_only": 0.193,
+    "neither": 0.128
+   },
+   "rule_weighted": {
+    "benefit": 0.001,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.999,
+    "superiority": 0.027
+   },
+   "residue_weighted": {
+    "benefit": 0.002,
+    "equivalence": 0.0,
+    "inferiority": 0.001,
+    "inconclusive": 0.997,
+    "superiority": 0.028
+   }
+  },
+  "b=0.70 k=2 rules=80 delta=+0.00 rho=0.5": {
+   "feasible": true,
+   "theta": 0.036,
+   "realized_mean_estimate": 0.0028,
+   "joint_outcomes": {
+    "both": 0.543,
+    "mutation_only": 0.137,
+    "deletion_only": 0.135,
+    "neither": 0.185
+   },
+   "rule_weighted": {
+    "benefit": 0.004,
+    "equivalence": 0.0,
+    "inferiority": 0.001,
+    "inconclusive": 0.995,
+    "superiority": 0.028
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.002,
+    "inconclusive": 0.998,
+    "superiority": 0.034
+   }
+  },
+  "b=0.70 k=2 rules=80 delta=+0.00 rho=0.9": {
+   "feasible": true,
+   "theta": 0.036,
+   "realized_mean_estimate": 0.0007,
+   "joint_outcomes": {
+    "both": 0.61,
+    "mutation_only": 0.069,
+    "deletion_only": 0.068,
+    "neither": 0.253
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.012,
+    "inferiority": 0.0,
+    "inconclusive": 0.988,
+    "superiority": 0.026
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.023,
+    "inferiority": 0.0,
+    "inconclusive": 0.977,
+    "superiority": 0.029
+   }
+  },
+  "b=0.70 k=2 rules=80 delta=+0.05 rho=0.0": {
+   "feasible": true,
+   "theta": 0.316,
+   "realized_mean_estimate": 0.0504,
+   "joint_outcomes": {
+    "both": 0.515,
+    "mutation_only": 0.213,
+    "deletion_only": 0.163,
+    "neither": 0.108
+   },
+   "rule_weighted": {
+    "benefit": 0.017,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.983,
+    "superiority": 0.126
+   },
+   "residue_weighted": {
+    "benefit": 0.021,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.979,
+    "superiority": 0.163
+   }
+  },
+  "b=0.70 k=2 rules=80 delta=+0.05 rho=0.5": {
+   "feasible": true,
+   "theta": 0.316,
+   "realized_mean_estimate": 0.0491,
+   "joint_outcomes": {
+    "both": 0.57,
+    "mutation_only": 0.157,
+    "deletion_only": 0.108,
+    "neither": 0.165
+   },
+   "rule_weighted": {
+    "benefit": 0.022,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.978,
+    "superiority": 0.189
+   },
+   "residue_weighted": {
+    "benefit": 0.027,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.973,
+    "superiority": 0.229
+   }
+  },
+  "b=0.70 k=2 rules=80 delta=+0.05 rho=0.9": {
+   "feasible": true,
+   "theta": 0.316,
+   "realized_mean_estimate": 0.0496,
+   "joint_outcomes": {
+    "both": 0.634,
+    "mutation_only": 0.093,
+    "deletion_only": 0.044,
+    "neither": 0.229
+   },
+   "rule_weighted": {
+    "benefit": 0.019,
+    "equivalence": 0.004,
+    "inferiority": 0.0,
+    "inconclusive": 0.977,
+    "superiority": 0.329
+   },
+   "residue_weighted": {
+    "benefit": 0.019,
+    "equivalence": 0.003,
+    "inferiority": 0.0,
+    "inconclusive": 0.978,
+    "superiority": 0.385
+   }
+  },
+  "b=0.70 k=2 rules=80 delta=+0.10 rho=0.0": {
+   "feasible": true,
+   "theta": 0.627,
+   "realized_mean_estimate": 0.1012,
+   "joint_outcomes": {
+    "both": 0.548,
+    "mutation_only": 0.231,
+    "deletion_only": 0.131,
+    "neither": 0.09
+   },
+   "rule_weighted": {
+    "benefit": 0.155,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.845,
+    "superiority": 0.46
+   },
+   "residue_weighted": {
+    "benefit": 0.196,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.804,
+    "superiority": 0.578
+   }
+  },
+  "b=0.70 k=2 rules=80 delta=+0.10 rho=0.5": {
+   "feasible": true,
+   "theta": 0.627,
+   "realized_mean_estimate": 0.1018,
+   "joint_outcomes": {
+    "both": 0.598,
+    "mutation_only": 0.181,
+    "deletion_only": 0.08,
+    "neither": 0.141
+   },
+   "rule_weighted": {
+    "benefit": 0.21,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.79,
+    "superiority": 0.608
+   },
+   "residue_weighted": {
+    "benefit": 0.25,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.75,
+    "superiority": 0.7
+   }
+  },
+  "b=0.70 k=2 rules=80 delta=+0.10 rho=0.9": {
+   "feasible": true,
+   "theta": 0.627,
+   "realized_mean_estimate": 0.1006,
+   "joint_outcomes": {
+    "both": 0.652,
+    "mutation_only": 0.126,
+    "deletion_only": 0.025,
+    "neither": 0.197
+   },
+   "rule_weighted": {
+    "benefit": 0.296,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.704,
+    "superiority": 0.861
+   },
+   "residue_weighted": {
+    "benefit": 0.366,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.634,
+    "superiority": 0.928
+   }
+  },
+  "b=0.70 k=2 rules=80 delta=+0.15 rho=0.0": {
+   "feasible": true,
+   "theta": 0.987,
+   "realized_mean_estimate": 0.1509,
+   "joint_outcomes": {
+    "both": 0.578,
+    "mutation_only": 0.25,
+    "deletion_only": 0.1,
+    "neither": 0.072
+   },
+   "rule_weighted": {
+    "benefit": 0.485,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.515,
+    "superiority": 0.827
+   },
+   "residue_weighted": {
+    "benefit": 0.598,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.402,
+    "superiority": 0.902
+   }
+  },
+  "b=0.70 k=2 rules=80 delta=+0.15 rho=0.5": {
+   "feasible": true,
+   "theta": 0.987,
+   "realized_mean_estimate": 0.1496,
+   "joint_outcomes": {
+    "both": 0.623,
+    "mutation_only": 0.205,
+    "deletion_only": 0.057,
+    "neither": 0.116
+   },
+   "rule_weighted": {
+    "benefit": 0.614,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.386,
+    "superiority": 0.937
+   },
+   "residue_weighted": {
+    "benefit": 0.716,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.284,
+    "superiority": 0.973
+   }
+  },
+  "b=0.70 k=2 rules=80 delta=+0.15 rho=0.9": {
+   "feasible": true,
+   "theta": 0.987,
+   "realized_mean_estimate": 0.151,
+   "joint_outcomes": {
+    "both": 0.668,
+    "mutation_only": 0.161,
+    "deletion_only": 0.012,
+    "neither": 0.159
+   },
+   "rule_weighted": {
+    "benefit": 0.859,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.141,
+    "superiority": 0.995
+   },
+   "residue_weighted": {
+    "benefit": 0.917,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.083,
+    "superiority": 0.998
+   }
+  },
+  "b=0.70 k=2 rules=120 delta=-0.10 rho=0.0": {
+   "feasible": true,
+   "theta": -0.471,
+   "realized_mean_estimate": -0.0983,
+   "joint_outcomes": {
+    "both": 0.419,
+    "mutation_only": 0.161,
+    "deletion_only": 0.26,
+    "neither": 0.16
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.173,
+    "inconclusive": 0.827,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.228,
+    "inconclusive": 0.772,
+    "superiority": 0.0
+   }
+  },
+  "b=0.70 k=2 rules=120 delta=-0.10 rho=0.5": {
+   "feasible": true,
+   "theta": -0.471,
+   "realized_mean_estimate": -0.0979,
+   "joint_outcomes": {
+    "both": 0.482,
+    "mutation_only": 0.1,
+    "deletion_only": 0.198,
+    "neither": 0.22
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.226,
+    "inconclusive": 0.774,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.271,
+    "inconclusive": 0.729,
+    "superiority": 0.0
+   }
+  },
+  "b=0.70 k=2 rules=120 delta=-0.10 rho=0.9": {
+   "feasible": true,
+   "theta": -0.471,
+   "realized_mean_estimate": -0.0999,
+   "joint_outcomes": {
+    "both": 0.547,
+    "mutation_only": 0.033,
+    "deletion_only": 0.132,
+    "neither": 0.288
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.394,
+    "inconclusive": 0.606,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.463,
+    "inconclusive": 0.537,
+    "superiority": 0.0
+   }
+  },
+  "b=0.70 k=2 rules=120 delta=-0.05 rho=0.0": {
+   "feasible": true,
+   "theta": -0.224,
+   "realized_mean_estimate": -0.0507,
+   "joint_outcomes": {
+    "both": 0.45,
+    "mutation_only": 0.177,
+    "deletion_only": 0.228,
+    "neither": 0.145
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.025,
+    "inconclusive": 0.975,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.028,
+    "inconclusive": 0.972,
+    "superiority": 0.0
+   }
+  },
+  "b=0.70 k=2 rules=120 delta=-0.05 rho=0.5": {
+   "feasible": true,
+   "theta": -0.224,
+   "realized_mean_estimate": -0.0504,
+   "joint_outcomes": {
+    "both": 0.511,
+    "mutation_only": 0.117,
+    "deletion_only": 0.168,
+    "neither": 0.205
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.031,
+    "inconclusive": 0.969,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.027,
+    "inconclusive": 0.973,
+    "superiority": 0.0
+   }
+  },
+  "b=0.70 k=2 rules=120 delta=-0.05 rho=0.9": {
+   "feasible": true,
+   "theta": -0.224,
+   "realized_mean_estimate": -0.0498,
+   "joint_outcomes": {
+    "both": 0.578,
+    "mutation_only": 0.049,
+    "deletion_only": 0.099,
+    "neither": 0.275
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.007,
+    "inferiority": 0.016,
+    "inconclusive": 0.977,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.011,
+    "inferiority": 0.022,
+    "inconclusive": 0.967,
+    "superiority": 0.0
+   }
+  },
+  "b=0.70 k=2 rules=120 delta=+0.00 rho=0.0": {
+   "feasible": true,
+   "theta": 0.036,
+   "realized_mean_estimate": -0.0025,
+   "joint_outcomes": {
+    "both": 0.484,
+    "mutation_only": 0.194,
+    "deletion_only": 0.195,
+    "neither": 0.127
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 1.0,
+    "superiority": 0.015
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 1.0,
+    "superiority": 0.017
+   }
+  },
+  "b=0.70 k=2 rules=120 delta=+0.00 rho=0.5": {
+   "feasible": true,
+   "theta": 0.036,
+   "realized_mean_estimate": 0.0008,
+   "joint_outcomes": {
+    "both": 0.542,
+    "mutation_only": 0.136,
+    "deletion_only": 0.135,
+    "neither": 0.187
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 1.0,
+    "superiority": 0.029
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 1.0,
+    "superiority": 0.026
+   }
+  },
+  "b=0.70 k=2 rules=120 delta=+0.00 rho=0.9": {
+   "feasible": true,
+   "theta": 0.036,
+   "realized_mean_estimate": -0.0006,
+   "joint_outcomes": {
+    "both": 0.61,
+    "mutation_only": 0.068,
+    "deletion_only": 0.069,
+    "neither": 0.253
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.044,
+    "inferiority": 0.0,
+    "inconclusive": 0.956,
+    "superiority": 0.019
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.12,
+    "inferiority": 0.0,
+    "inconclusive": 0.88,
+    "superiority": 0.023
+   }
+  },
+  "b=0.70 k=2 rules=120 delta=+0.05 rho=0.0": {
+   "feasible": true,
+   "theta": 0.316,
+   "realized_mean_estimate": 0.0528,
+   "joint_outcomes": {
+    "both": 0.516,
+    "mutation_only": 0.214,
+    "deletion_only": 0.161,
+    "neither": 0.109
+   },
+   "rule_weighted": {
+    "benefit": 0.027,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.973,
+    "superiority": 0.236
+   },
+   "residue_weighted": {
+    "benefit": 0.024,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.976,
+    "superiority": 0.275
+   }
+  },
+  "b=0.70 k=2 rules=120 delta=+0.05 rho=0.5": {
+   "feasible": true,
+   "theta": 0.316,
+   "realized_mean_estimate": 0.0493,
+   "joint_outcomes": {
+    "both": 0.572,
+    "mutation_only": 0.156,
+    "deletion_only": 0.107,
+    "neither": 0.165
+   },
+   "rule_weighted": {
+    "benefit": 0.022,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.978,
+    "superiority": 0.245
+   },
+   "residue_weighted": {
+    "benefit": 0.022,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.978,
+    "superiority": 0.312
+   }
+  },
+  "b=0.70 k=2 rules=120 delta=+0.05 rho=0.9": {
+   "feasible": true,
+   "theta": 0.316,
+   "realized_mean_estimate": 0.05,
+   "joint_outcomes": {
+    "both": 0.636,
+    "mutation_only": 0.094,
+    "deletion_only": 0.043,
+    "neither": 0.227
+   },
+   "rule_weighted": {
+    "benefit": 0.014,
+    "equivalence": 0.011,
+    "inferiority": 0.0,
+    "inconclusive": 0.975,
+    "superiority": 0.457
+   },
+   "residue_weighted": {
+    "benefit": 0.024,
+    "equivalence": 0.025,
+    "inferiority": 0.0,
+    "inconclusive": 0.951,
+    "superiority": 0.555
+   }
+  },
+  "b=0.70 k=2 rules=120 delta=+0.10 rho=0.0": {
+   "feasible": true,
+   "theta": 0.627,
+   "realized_mean_estimate": 0.1013,
+   "joint_outcomes": {
+    "both": 0.547,
+    "mutation_only": 0.232,
+    "deletion_only": 0.131,
+    "neither": 0.09
+   },
+   "rule_weighted": {
+    "benefit": 0.223,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.777,
+    "superiority": 0.648
+   },
+   "residue_weighted": {
+    "benefit": 0.268,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.732,
+    "superiority": 0.764
+   }
+  },
+  "b=0.70 k=2 rules=120 delta=+0.10 rho=0.5": {
+   "feasible": true,
+   "theta": 0.627,
+   "realized_mean_estimate": 0.0976,
+   "joint_outcomes": {
+    "both": 0.599,
+    "mutation_only": 0.179,
+    "deletion_only": 0.081,
+    "neither": 0.14
+   },
+   "rule_weighted": {
+    "benefit": 0.234,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.766,
+    "superiority": 0.757
+   },
+   "residue_weighted": {
+    "benefit": 0.301,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.699,
+    "superiority": 0.854
+   }
+  },
+  "b=0.70 k=2 rules=120 delta=+0.10 rho=0.9": {
+   "feasible": true,
+   "theta": 0.627,
+   "realized_mean_estimate": 0.1003,
+   "joint_outcomes": {
+    "both": 0.654,
+    "mutation_only": 0.126,
+    "deletion_only": 0.025,
+    "neither": 0.195
+   },
+   "rule_weighted": {
+    "benefit": 0.423,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.577,
+    "superiority": 0.963
+   },
+   "residue_weighted": {
+    "benefit": 0.525,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.475,
+    "superiority": 0.988
+   }
+  },
+  "b=0.70 k=2 rules=120 delta=+0.15 rho=0.0": {
+   "feasible": true,
+   "theta": 0.987,
+   "realized_mean_estimate": 0.1489,
+   "joint_outcomes": {
+    "both": 0.579,
+    "mutation_only": 0.249,
+    "deletion_only": 0.101,
+    "neither": 0.071
+   },
+   "rule_weighted": {
+    "benefit": 0.649,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.351,
+    "superiority": 0.928
+   },
+   "residue_weighted": {
+    "benefit": 0.772,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.228,
+    "superiority": 0.988
+   }
+  },
+  "b=0.70 k=2 rules=120 delta=+0.15 rho=0.5": {
+   "feasible": true,
+   "theta": 0.987,
+   "realized_mean_estimate": 0.1509,
+   "joint_outcomes": {
+    "both": 0.62,
+    "mutation_only": 0.208,
+    "deletion_only": 0.057,
+    "neither": 0.115
+   },
+   "rule_weighted": {
+    "benefit": 0.806,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.194,
+    "superiority": 0.991
+   },
+   "residue_weighted": {
+    "benefit": 0.886,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.114,
+    "superiority": 1.0
+   }
+  },
+  "b=0.70 k=2 rules=120 delta=+0.15 rho=0.9": {
+   "feasible": true,
+   "theta": 0.987,
+   "realized_mean_estimate": 0.1506,
+   "joint_outcomes": {
+    "both": 0.666,
+    "mutation_only": 0.162,
+    "deletion_only": 0.012,
+    "neither": 0.16
+   },
+   "rule_weighted": {
+    "benefit": 0.961,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.039,
+    "superiority": 1.0
+   },
+   "residue_weighted": {
+    "benefit": 0.985,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.015,
+    "superiority": 1.0
+   }
+  },
+  "b=0.70 k=6 rules=50 delta=-0.10 rho=0.0": {
+   "feasible": true,
+   "theta": -0.471,
+   "realized_mean_estimate": -0.0986,
+   "joint_outcomes": {
+    "both": 0.42,
+    "mutation_only": 0.16,
+    "deletion_only": 0.259,
+    "neither": 0.16
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.206,
+    "inconclusive": 0.794,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.241,
+    "inconclusive": 0.759,
+    "superiority": 0.0
+   }
+  },
+  "b=0.70 k=6 rules=50 delta=-0.10 rho=0.5": {
+   "feasible": true,
+   "theta": -0.471,
+   "realized_mean_estimate": -0.0997,
+   "joint_outcomes": {
+    "both": 0.479,
+    "mutation_only": 0.099,
+    "deletion_only": 0.2,
+    "neither": 0.222
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.261,
+    "inconclusive": 0.739,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.298,
+    "inconclusive": 0.702,
+    "superiority": 0.0
+   }
+  },
+  "b=0.70 k=6 rules=50 delta=-0.10 rho=0.9": {
+   "feasible": true,
+   "theta": -0.471,
+   "realized_mean_estimate": -0.099,
+   "joint_outcomes": {
+    "both": 0.546,
+    "mutation_only": 0.033,
+    "deletion_only": 0.132,
+    "neither": 0.288
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.385,
+    "inconclusive": 0.615,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.415,
+    "inconclusive": 0.585,
+    "superiority": 0.0
+   }
+  },
+  "b=0.70 k=6 rules=50 delta=-0.05 rho=0.0": {
+   "feasible": true,
+   "theta": -0.224,
+   "realized_mean_estimate": -0.05,
+   "joint_outcomes": {
+    "both": 0.451,
+    "mutation_only": 0.177,
+    "deletion_only": 0.228,
+    "neither": 0.145
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.03,
+    "inconclusive": 0.97,
+    "superiority": 0.001
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.039,
+    "inconclusive": 0.961,
+    "superiority": 0.002
+   }
+  },
+  "b=0.70 k=6 rules=50 delta=-0.05 rho=0.5": {
+   "feasible": true,
+   "theta": -0.224,
+   "realized_mean_estimate": -0.0508,
+   "joint_outcomes": {
+    "both": 0.51,
+    "mutation_only": 0.117,
+    "deletion_only": 0.168,
+    "neither": 0.205
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.02,
+    "inconclusive": 0.98,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.024,
+    "inconclusive": 0.976,
+    "superiority": 0.0
+   }
+  },
+  "b=0.70 k=6 rules=50 delta=-0.05 rho=0.9": {
+   "feasible": true,
+   "theta": -0.224,
+   "realized_mean_estimate": -0.0502,
+   "joint_outcomes": {
+    "both": 0.582,
+    "mutation_only": 0.048,
+    "deletion_only": 0.098,
+    "neither": 0.271
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.004,
+    "inferiority": 0.023,
+    "inconclusive": 0.973,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.014,
+    "inferiority": 0.024,
+    "inconclusive": 0.962,
+    "superiority": 0.0
+   }
+  },
+  "b=0.70 k=6 rules=50 delta=+0.00 rho=0.0": {
+   "feasible": true,
+   "theta": 0.036,
+   "realized_mean_estimate": -0.001,
+   "joint_outcomes": {
+    "both": 0.484,
+    "mutation_only": 0.194,
+    "deletion_only": 0.195,
+    "neither": 0.127
+   },
+   "rule_weighted": {
+    "benefit": 0.001,
+    "equivalence": 0.0,
+    "inferiority": 0.002,
+    "inconclusive": 0.997,
+    "superiority": 0.024
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 1.0,
+    "superiority": 0.026
+   }
+  },
+  "b=0.70 k=6 rules=50 delta=+0.00 rho=0.5": {
+   "feasible": true,
+   "theta": 0.036,
+   "realized_mean_estimate": 0.0011,
+   "joint_outcomes": {
+    "both": 0.542,
+    "mutation_only": 0.137,
+    "deletion_only": 0.136,
+    "neither": 0.184
+   },
+   "rule_weighted": {
+    "benefit": 0.001,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.999,
+    "superiority": 0.023
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 1.0,
+    "superiority": 0.03
+   }
+  },
+  "b=0.70 k=6 rules=50 delta=+0.00 rho=0.9": {
+   "feasible": true,
+   "theta": 0.036,
+   "realized_mean_estimate": 0.0016,
+   "joint_outcomes": {
+    "both": 0.608,
+    "mutation_only": 0.07,
+    "deletion_only": 0.068,
+    "neither": 0.254
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.051,
+    "inferiority": 0.001,
+    "inconclusive": 0.948,
+    "superiority": 0.029
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.089,
+    "inferiority": 0.0,
+    "inconclusive": 0.911,
+    "superiority": 0.021
+   }
+  },
+  "b=0.70 k=6 rules=50 delta=+0.05 rho=0.0": {
+   "feasible": true,
+   "theta": 0.316,
+   "realized_mean_estimate": 0.0505,
+   "joint_outcomes": {
+    "both": 0.516,
+    "mutation_only": 0.211,
+    "deletion_only": 0.163,
+    "neither": 0.11
+   },
+   "rule_weighted": {
+    "benefit": 0.026,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.974,
+    "superiority": 0.237
+   },
+   "residue_weighted": {
+    "benefit": 0.027,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.973,
+    "superiority": 0.255
+   }
+  },
+  "b=0.70 k=6 rules=50 delta=+0.05 rho=0.5": {
+   "feasible": true,
+   "theta": 0.316,
+   "realized_mean_estimate": 0.0502,
+   "joint_outcomes": {
+    "both": 0.573,
+    "mutation_only": 0.157,
+    "deletion_only": 0.107,
+    "neither": 0.163
+   },
+   "rule_weighted": {
+    "benefit": 0.021,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.979,
+    "superiority": 0.298
+   },
+   "residue_weighted": {
+    "benefit": 0.024,
+    "equivalence": 0.002,
+    "inferiority": 0.0,
+    "inconclusive": 0.974,
+    "superiority": 0.351
+   }
+  },
+  "b=0.70 k=6 rules=50 delta=+0.05 rho=0.9": {
+   "feasible": true,
+   "theta": 0.316,
+   "realized_mean_estimate": 0.0496,
+   "joint_outcomes": {
+    "both": 0.635,
+    "mutation_only": 0.094,
+    "deletion_only": 0.044,
+    "neither": 0.228
+   },
+   "rule_weighted": {
+    "benefit": 0.017,
+    "equivalence": 0.014,
+    "inferiority": 0.0,
+    "inconclusive": 0.969,
+    "superiority": 0.474
+   },
+   "residue_weighted": {
+    "benefit": 0.015,
+    "equivalence": 0.019,
+    "inferiority": 0.0,
+    "inconclusive": 0.966,
+    "superiority": 0.523
+   }
+  },
+  "b=0.70 k=6 rules=50 delta=+0.10 rho=0.0": {
+   "feasible": true,
+   "theta": 0.627,
+   "realized_mean_estimate": 0.0994,
+   "joint_outcomes": {
+    "both": 0.546,
+    "mutation_only": 0.231,
+    "deletion_only": 0.131,
+    "neither": 0.092
+   },
+   "rule_weighted": {
+    "benefit": 0.241,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.759,
+    "superiority": 0.695
+   },
+   "residue_weighted": {
+    "benefit": 0.259,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.741,
+    "superiority": 0.76
+   }
+  },
+  "b=0.70 k=6 rules=50 delta=+0.10 rho=0.5": {
+   "feasible": true,
+   "theta": 0.627,
+   "realized_mean_estimate": 0.1001,
+   "joint_outcomes": {
+    "both": 0.599,
+    "mutation_only": 0.18,
+    "deletion_only": 0.081,
+    "neither": 0.14
+   },
+   "rule_weighted": {
+    "benefit": 0.308,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.692,
+    "superiority": 0.807
+   },
+   "residue_weighted": {
+    "benefit": 0.342,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.658,
+    "superiority": 0.862
+   }
+  },
+  "b=0.70 k=6 rules=50 delta=+0.10 rho=0.9": {
+   "feasible": true,
+   "theta": 0.627,
+   "realized_mean_estimate": 0.0999,
+   "joint_outcomes": {
+    "both": 0.652,
+    "mutation_only": 0.125,
+    "deletion_only": 0.025,
+    "neither": 0.199
+   },
+   "rule_weighted": {
+    "benefit": 0.451,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.549,
+    "superiority": 0.97
+   },
+   "residue_weighted": {
+    "benefit": 0.503,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.497,
+    "superiority": 0.98
+   }
+  },
+  "b=0.70 k=6 rules=50 delta=+0.15 rho=0.0": {
+   "feasible": true,
+   "theta": 0.987,
+   "realized_mean_estimate": 0.1487,
+   "joint_outcomes": {
+    "both": 0.578,
+    "mutation_only": 0.25,
+    "deletion_only": 0.101,
+    "neither": 0.072
+   },
+   "rule_weighted": {
+    "benefit": 0.714,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.286,
+    "superiority": 0.956
+   },
+   "residue_weighted": {
+    "benefit": 0.797,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.203,
+    "superiority": 0.976
+   }
+  },
+  "b=0.70 k=6 rules=50 delta=+0.15 rho=0.5": {
+   "feasible": true,
+   "theta": 0.987,
+   "realized_mean_estimate": 0.1495,
+   "joint_outcomes": {
+    "both": 0.623,
+    "mutation_only": 0.206,
+    "deletion_only": 0.056,
+    "neither": 0.115
+   },
+   "rule_weighted": {
+    "benefit": 0.837,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.163,
+    "superiority": 0.99
+   },
+   "residue_weighted": {
+    "benefit": 0.894,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.106,
+    "superiority": 0.997
+   }
+  },
+  "b=0.70 k=6 rules=50 delta=+0.15 rho=0.9": {
+   "feasible": true,
+   "theta": 0.987,
+   "realized_mean_estimate": 0.1514,
+   "joint_outcomes": {
+    "both": 0.665,
+    "mutation_only": 0.163,
+    "deletion_only": 0.012,
+    "neither": 0.159
+   },
+   "rule_weighted": {
+    "benefit": 0.969,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.031,
+    "superiority": 1.0
+   },
+   "residue_weighted": {
+    "benefit": 0.986,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.014,
+    "superiority": 1.0
+   }
+  },
+  "b=0.70 k=6 rules=80 delta=-0.10 rho=0.0": {
+   "feasible": true,
+   "theta": -0.471,
+   "realized_mean_estimate": -0.0991,
+   "joint_outcomes": {
+    "both": 0.418,
+    "mutation_only": 0.161,
+    "deletion_only": 0.259,
+    "neither": 0.162
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.305,
+    "inconclusive": 0.695,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.314,
+    "inconclusive": 0.686,
+    "superiority": 0.0
+   }
+  },
+  "b=0.70 k=6 rules=80 delta=-0.10 rho=0.5": {
+   "feasible": true,
+   "theta": -0.471,
+   "realized_mean_estimate": -0.0988,
+   "joint_outcomes": {
+    "both": 0.481,
+    "mutation_only": 0.099,
+    "deletion_only": 0.198,
+    "neither": 0.221
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.364,
+    "inconclusive": 0.636,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.444,
+    "inconclusive": 0.556,
+    "superiority": 0.0
+   }
+  },
+  "b=0.70 k=6 rules=80 delta=-0.10 rho=0.9": {
+   "feasible": true,
+   "theta": -0.471,
+   "realized_mean_estimate": -0.0994,
+   "joint_outcomes": {
+    "both": 0.544,
+    "mutation_only": 0.033,
+    "deletion_only": 0.133,
+    "neither": 0.29
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.575,
+    "inconclusive": 0.425,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.624,
+    "inconclusive": 0.376,
+    "superiority": 0.0
+   }
+  },
+  "b=0.70 k=6 rules=80 delta=-0.05 rho=0.0": {
+   "feasible": true,
+   "theta": -0.224,
+   "realized_mean_estimate": -0.0513,
+   "joint_outcomes": {
+    "both": 0.45,
+    "mutation_only": 0.177,
+    "deletion_only": 0.228,
+    "neither": 0.145
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.028,
+    "inconclusive": 0.972,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.024,
+    "inconclusive": 0.976,
+    "superiority": 0.0
+   }
+  },
+  "b=0.70 k=6 rules=80 delta=-0.05 rho=0.5": {
+   "feasible": true,
+   "theta": -0.224,
+   "realized_mean_estimate": -0.0494,
+   "joint_outcomes": {
+    "both": 0.512,
+    "mutation_only": 0.117,
+    "deletion_only": 0.166,
+    "neither": 0.205
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.001,
+    "inferiority": 0.026,
+    "inconclusive": 0.973,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.002,
+    "inferiority": 0.02,
+    "inconclusive": 0.978,
+    "superiority": 0.001
+   }
+  },
+  "b=0.70 k=6 rules=80 delta=-0.05 rho=0.9": {
+   "feasible": true,
+   "theta": -0.224,
+   "realized_mean_estimate": -0.0491,
+   "joint_outcomes": {
+    "both": 0.578,
+    "mutation_only": 0.049,
+    "deletion_only": 0.098,
+    "neither": 0.275
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.031,
+    "inferiority": 0.02,
+    "inconclusive": 0.949,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.027,
+    "inferiority": 0.018,
+    "inconclusive": 0.955,
+    "superiority": 0.0
+   }
+  },
+  "b=0.70 k=6 rules=80 delta=+0.00 rho=0.0": {
+   "feasible": true,
+   "theta": 0.036,
+   "realized_mean_estimate": 0.0008,
+   "joint_outcomes": {
+    "both": 0.485,
+    "mutation_only": 0.194,
+    "deletion_only": 0.194,
+    "neither": 0.128
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.001,
+    "inferiority": 0.0,
+    "inconclusive": 0.999,
+    "superiority": 0.02
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.002,
+    "inferiority": 0.0,
+    "inconclusive": 0.998,
+    "superiority": 0.016
+   }
+  },
+  "b=0.70 k=6 rules=80 delta=+0.00 rho=0.5": {
+   "feasible": true,
+   "theta": 0.036,
+   "realized_mean_estimate": 0.0009,
+   "joint_outcomes": {
+    "both": 0.542,
+    "mutation_only": 0.136,
+    "deletion_only": 0.136,
+    "neither": 0.186
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.01,
+    "inferiority": 0.0,
+    "inconclusive": 0.99,
+    "superiority": 0.03
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.031,
+    "inferiority": 0.0,
+    "inconclusive": 0.969,
+    "superiority": 0.027
+   }
+  },
+  "b=0.70 k=6 rules=80 delta=+0.00 rho=0.9": {
+   "feasible": true,
+   "theta": 0.036,
+   "realized_mean_estimate": -0.0004,
+   "joint_outcomes": {
+    "both": 0.609,
+    "mutation_only": 0.068,
+    "deletion_only": 0.069,
+    "neither": 0.254
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.295,
+    "inferiority": 0.0,
+    "inconclusive": 0.705,
+    "superiority": 0.028
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.366,
+    "inferiority": 0.0,
+    "inconclusive": 0.634,
+    "superiority": 0.025
+   }
+  },
+  "b=0.70 k=6 rules=80 delta=+0.05 rho=0.0": {
+   "feasible": true,
+   "theta": 0.316,
+   "realized_mean_estimate": 0.0502,
+   "joint_outcomes": {
+    "both": 0.516,
+    "mutation_only": 0.212,
+    "deletion_only": 0.163,
+    "neither": 0.109
+   },
+   "rule_weighted": {
+    "benefit": 0.028,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.972,
+    "superiority": 0.344
+   },
+   "residue_weighted": {
+    "benefit": 0.027,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.973,
+    "superiority": 0.38
+   }
+  },
+  "b=0.70 k=6 rules=80 delta=+0.05 rho=0.5": {
+   "feasible": true,
+   "theta": 0.316,
+   "realized_mean_estimate": 0.0522,
+   "joint_outcomes": {
+    "both": 0.57,
+    "mutation_only": 0.158,
+    "deletion_only": 0.107,
+    "neither": 0.165
+   },
+   "rule_weighted": {
+    "benefit": 0.028,
+    "equivalence": 0.004,
+    "inferiority": 0.0,
+    "inconclusive": 0.968,
+    "superiority": 0.46
+   },
+   "residue_weighted": {
+    "benefit": 0.027,
+    "equivalence": 0.012,
+    "inferiority": 0.0,
+    "inconclusive": 0.961,
+    "superiority": 0.521
+   }
+  },
+  "b=0.70 k=6 rules=80 delta=+0.05 rho=0.9": {
+   "feasible": true,
+   "theta": 0.316,
+   "realized_mean_estimate": 0.0512,
+   "joint_outcomes": {
+    "both": 0.635,
+    "mutation_only": 0.094,
+    "deletion_only": 0.043,
+    "neither": 0.228
+   },
+   "rule_weighted": {
+    "benefit": 0.023,
+    "equivalence": 0.023,
+    "inferiority": 0.0,
+    "inconclusive": 0.954,
+    "superiority": 0.682
+   },
+   "residue_weighted": {
+    "benefit": 0.029,
+    "equivalence": 0.028,
+    "inferiority": 0.0,
+    "inconclusive": 0.943,
+    "superiority": 0.735
+   }
+  },
+  "b=0.70 k=6 rules=80 delta=+0.10 rho=0.0": {
+   "feasible": true,
+   "theta": 0.627,
+   "realized_mean_estimate": 0.0999,
+   "joint_outcomes": {
+    "both": 0.547,
+    "mutation_only": 0.231,
+    "deletion_only": 0.132,
+    "neither": 0.091
+   },
+   "rule_weighted": {
+    "benefit": 0.341,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.659,
+    "superiority": 0.88
+   },
+   "residue_weighted": {
+    "benefit": 0.382,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.618,
+    "superiority": 0.921
+   }
+  },
+  "b=0.70 k=6 rules=80 delta=+0.10 rho=0.5": {
+   "feasible": true,
+   "theta": 0.627,
+   "realized_mean_estimate": 0.1003,
+   "joint_outcomes": {
+    "both": 0.597,
+    "mutation_only": 0.181,
+    "deletion_only": 0.081,
+    "neither": 0.141
+   },
+   "rule_weighted": {
+    "benefit": 0.451,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.549,
+    "superiority": 0.958
+   },
+   "residue_weighted": {
+    "benefit": 0.516,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.484,
+    "superiority": 0.984
+   }
+  },
+  "b=0.70 k=6 rules=80 delta=+0.10 rho=0.9": {
+   "feasible": true,
+   "theta": 0.627,
+   "realized_mean_estimate": 0.0998,
+   "joint_outcomes": {
+    "both": 0.654,
+    "mutation_only": 0.125,
+    "deletion_only": 0.025,
+    "neither": 0.197
+   },
+   "rule_weighted": {
+    "benefit": 0.677,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.323,
+    "superiority": 0.997
+   },
+   "residue_weighted": {
+    "benefit": 0.715,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.285,
+    "superiority": 1.0
+   }
+  },
+  "b=0.70 k=6 rules=80 delta=+0.15 rho=0.0": {
+   "feasible": true,
+   "theta": 0.987,
+   "realized_mean_estimate": 0.1496,
+   "joint_outcomes": {
+    "both": 0.578,
+    "mutation_only": 0.25,
+    "deletion_only": 0.1,
+    "neither": 0.071
+   },
+   "rule_weighted": {
+    "benefit": 0.898,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.102,
+    "superiority": 0.996
+   },
+   "residue_weighted": {
+    "benefit": 0.943,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.057,
+    "superiority": 1.0
+   }
+  },
+  "b=0.70 k=6 rules=80 delta=+0.15 rho=0.5": {
+   "feasible": true,
+   "theta": 0.987,
+   "realized_mean_estimate": 0.1481,
+   "joint_outcomes": {
+    "both": 0.623,
+    "mutation_only": 0.206,
+    "deletion_only": 0.057,
+    "neither": 0.114
+   },
+   "rule_weighted": {
+    "benefit": 0.94,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.06,
+    "superiority": 0.998
+   },
+   "residue_weighted": {
+    "benefit": 0.968,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.032,
+    "superiority": 1.0
+   }
+  },
+  "b=0.70 k=6 rules=80 delta=+0.15 rho=0.9": {
+   "feasible": true,
+   "theta": 0.987,
+   "realized_mean_estimate": 0.1508,
+   "joint_outcomes": {
+    "both": 0.666,
+    "mutation_only": 0.162,
+    "deletion_only": 0.012,
+    "neither": 0.16
+   },
+   "rule_weighted": {
+    "benefit": 0.997,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.003,
+    "superiority": 1.0
+   },
+   "residue_weighted": {
+    "benefit": 0.999,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.001,
+    "superiority": 1.0
+   }
+  },
+  "b=0.70 k=6 rules=120 delta=-0.10 rho=0.0": {
+   "feasible": true,
+   "theta": -0.471,
+   "realized_mean_estimate": -0.0988,
+   "joint_outcomes": {
+    "both": 0.418,
+    "mutation_only": 0.16,
+    "deletion_only": 0.259,
+    "neither": 0.162
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.411,
+    "inconclusive": 0.589,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.455,
+    "inconclusive": 0.545,
+    "superiority": 0.0
+   }
+  },
+  "b=0.70 k=6 rules=120 delta=-0.10 rho=0.5": {
+   "feasible": true,
+   "theta": -0.471,
+   "realized_mean_estimate": -0.0999,
+   "joint_outcomes": {
+    "both": 0.479,
+    "mutation_only": 0.1,
+    "deletion_only": 0.2,
+    "neither": 0.222
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.548,
+    "inconclusive": 0.452,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.606,
+    "inconclusive": 0.394,
+    "superiority": 0.0
+   }
+  },
+  "b=0.70 k=6 rules=120 delta=-0.10 rho=0.9": {
+   "feasible": true,
+   "theta": -0.471,
+   "realized_mean_estimate": -0.0999,
+   "joint_outcomes": {
+    "both": 0.546,
+    "mutation_only": 0.033,
+    "deletion_only": 0.133,
+    "neither": 0.289
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.775,
+    "inconclusive": 0.225,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.819,
+    "inconclusive": 0.181,
+    "superiority": 0.0
+   }
+  },
+  "b=0.70 k=6 rules=120 delta=-0.05 rho=0.0": {
+   "feasible": true,
+   "theta": -0.224,
+   "realized_mean_estimate": -0.0501,
+   "joint_outcomes": {
+    "both": 0.45,
+    "mutation_only": 0.177,
+    "deletion_only": 0.227,
+    "neither": 0.146
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.002,
+    "inferiority": 0.02,
+    "inconclusive": 0.978,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.008,
+    "inferiority": 0.028,
+    "inconclusive": 0.964,
+    "superiority": 0.0
+   }
+  },
+  "b=0.70 k=6 rules=120 delta=-0.05 rho=0.5": {
+   "feasible": true,
+   "theta": -0.224,
+   "realized_mean_estimate": -0.0494,
+   "joint_outcomes": {
+    "both": 0.511,
+    "mutation_only": 0.117,
+    "deletion_only": 0.167,
+    "neither": 0.206
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.011,
+    "inferiority": 0.019,
+    "inconclusive": 0.97,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.028,
+    "inferiority": 0.019,
+    "inconclusive": 0.953,
+    "superiority": 0.0
+   }
+  },
+  "b=0.70 k=6 rules=120 delta=-0.05 rho=0.9": {
+   "feasible": true,
+   "theta": -0.224,
+   "realized_mean_estimate": -0.049,
+   "joint_outcomes": {
+    "both": 0.58,
+    "mutation_only": 0.049,
+    "deletion_only": 0.098,
+    "neither": 0.274
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.032,
+    "inferiority": 0.021,
+    "inconclusive": 0.947,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.033,
+    "inferiority": 0.019,
+    "inconclusive": 0.948,
+    "superiority": 0.0
+   }
+  },
+  "b=0.70 k=6 rules=120 delta=+0.00 rho=0.0": {
+   "feasible": true,
+   "theta": 0.036,
+   "realized_mean_estimate": -0.0002,
+   "joint_outcomes": {
+    "both": 0.483,
+    "mutation_only": 0.195,
+    "deletion_only": 0.195,
+    "neither": 0.128
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.011,
+    "inferiority": 0.0,
+    "inconclusive": 0.989,
+    "superiority": 0.02
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.063,
+    "inferiority": 0.0,
+    "inconclusive": 0.937,
+    "superiority": 0.024
+   }
+  },
+  "b=0.70 k=6 rules=120 delta=+0.00 rho=0.5": {
+   "feasible": true,
+   "theta": 0.036,
+   "realized_mean_estimate": -0.0001,
+   "joint_outcomes": {
+    "both": 0.542,
+    "mutation_only": 0.137,
+    "deletion_only": 0.137,
+    "neither": 0.185
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.162,
+    "inferiority": 0.0,
+    "inconclusive": 0.838,
+    "superiority": 0.029
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.282,
+    "inferiority": 0.0,
+    "inconclusive": 0.718,
+    "superiority": 0.025
+   }
+  },
+  "b=0.70 k=6 rules=120 delta=+0.00 rho=0.9": {
+   "feasible": true,
+   "theta": 0.036,
+   "realized_mean_estimate": 0.0,
+   "joint_outcomes": {
+    "both": 0.61,
+    "mutation_only": 0.069,
+    "deletion_only": 0.069,
+    "neither": 0.253
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.642,
+    "inferiority": 0.0,
+    "inconclusive": 0.358,
+    "superiority": 0.027
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.721,
+    "inferiority": 0.0,
+    "inconclusive": 0.279,
+    "superiority": 0.03
+   }
+  },
+  "b=0.70 k=6 rules=120 delta=+0.05 rho=0.0": {
+   "feasible": true,
+   "theta": 0.316,
+   "realized_mean_estimate": 0.0498,
+   "joint_outcomes": {
+    "both": 0.515,
+    "mutation_only": 0.213,
+    "deletion_only": 0.163,
+    "neither": 0.109
+   },
+   "rule_weighted": {
+    "benefit": 0.018,
+    "equivalence": 0.001,
+    "inferiority": 0.0,
+    "inconclusive": 0.981,
+    "superiority": 0.476
+   },
+   "residue_weighted": {
+    "benefit": 0.017,
+    "equivalence": 0.012,
+    "inferiority": 0.0,
+    "inconclusive": 0.971,
+    "superiority": 0.534
+   }
+  },
+  "b=0.70 k=6 rules=120 delta=+0.05 rho=0.5": {
+   "feasible": true,
+   "theta": 0.316,
+   "realized_mean_estimate": 0.0503,
+   "joint_outcomes": {
+    "both": 0.57,
+    "mutation_only": 0.158,
+    "deletion_only": 0.108,
+    "neither": 0.164
+   },
+   "rule_weighted": {
+    "benefit": 0.022,
+    "equivalence": 0.013,
+    "inferiority": 0.0,
+    "inconclusive": 0.965,
+    "superiority": 0.601
+   },
+   "residue_weighted": {
+    "benefit": 0.02,
+    "equivalence": 0.025,
+    "inferiority": 0.0,
+    "inconclusive": 0.955,
+    "superiority": 0.657
+   }
+  },
+  "b=0.70 k=6 rules=120 delta=+0.05 rho=0.9": {
+   "feasible": true,
+   "theta": 0.316,
+   "realized_mean_estimate": 0.0493,
+   "joint_outcomes": {
+    "both": 0.634,
+    "mutation_only": 0.094,
+    "deletion_only": 0.044,
+    "neither": 0.228
+   },
+   "rule_weighted": {
+    "benefit": 0.022,
+    "equivalence": 0.031,
+    "inferiority": 0.0,
+    "inconclusive": 0.947,
+    "superiority": 0.811
+   },
+   "residue_weighted": {
+    "benefit": 0.023,
+    "equivalence": 0.027,
+    "inferiority": 0.0,
+    "inconclusive": 0.95,
+    "superiority": 0.845
+   }
+  },
+  "b=0.70 k=6 rules=120 delta=+0.10 rho=0.0": {
+   "feasible": true,
+   "theta": 0.627,
+   "realized_mean_estimate": 0.1007,
+   "joint_outcomes": {
+    "both": 0.547,
+    "mutation_only": 0.231,
+    "deletion_only": 0.131,
+    "neither": 0.091
+   },
+   "rule_weighted": {
+    "benefit": 0.508,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.492,
+    "superiority": 0.969
+   },
+   "residue_weighted": {
+    "benefit": 0.573,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.427,
+    "superiority": 0.989
+   }
+  },
+  "b=0.70 k=6 rules=120 delta=+0.10 rho=0.5": {
+   "feasible": true,
+   "theta": 0.627,
+   "realized_mean_estimate": 0.0997,
+   "joint_outcomes": {
+    "both": 0.598,
+    "mutation_only": 0.181,
+    "deletion_only": 0.081,
+    "neither": 0.14
+   },
+   "rule_weighted": {
+    "benefit": 0.599,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.401,
+    "superiority": 0.995
+   },
+   "residue_weighted": {
+    "benefit": 0.688,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.312,
+    "superiority": 0.999
+   }
+  },
+  "b=0.70 k=6 rules=120 delta=+0.10 rho=0.9": {
+   "feasible": true,
+   "theta": 0.627,
+   "realized_mean_estimate": 0.1014,
+   "joint_outcomes": {
+    "both": 0.653,
+    "mutation_only": 0.126,
+    "deletion_only": 0.024,
+    "neither": 0.197
+   },
+   "rule_weighted": {
+    "benefit": 0.84,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.16,
+    "superiority": 1.0
+   },
+   "residue_weighted": {
+    "benefit": 0.884,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.116,
+    "superiority": 1.0
+   }
+  },
+  "b=0.70 k=6 rules=120 delta=+0.15 rho=0.0": {
+   "feasible": true,
+   "theta": 0.987,
+   "realized_mean_estimate": 0.1504,
+   "joint_outcomes": {
+    "both": 0.578,
+    "mutation_only": 0.25,
+    "deletion_only": 0.1,
+    "neither": 0.072
+   },
+   "rule_weighted": {
+    "benefit": 0.979,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.021,
+    "superiority": 1.0
+   },
+   "residue_weighted": {
+    "benefit": 0.993,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.007,
+    "superiority": 1.0
+   }
+  },
+  "b=0.70 k=6 rules=120 delta=+0.15 rho=0.5": {
+   "feasible": true,
+   "theta": 0.987,
+   "realized_mean_estimate": 0.1498,
+   "joint_outcomes": {
+    "both": 0.622,
+    "mutation_only": 0.206,
+    "deletion_only": 0.057,
+    "neither": 0.115
+   },
+   "rule_weighted": {
+    "benefit": 0.994,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.006,
+    "superiority": 1.0
+   },
+   "residue_weighted": {
+    "benefit": 1.0,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.0,
+    "superiority": 1.0
+   }
+  },
+  "b=0.70 k=6 rules=120 delta=+0.15 rho=0.9": {
+   "feasible": true,
+   "theta": 0.987,
+   "realized_mean_estimate": 0.1485,
+   "joint_outcomes": {
+    "both": 0.667,
+    "mutation_only": 0.161,
+    "deletion_only": 0.012,
+    "neither": 0.161
+   },
+   "rule_weighted": {
+    "benefit": 1.0,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.0,
+    "superiority": 1.0
+   },
+   "residue_weighted": {
+    "benefit": 1.0,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.0,
+    "superiority": 1.0
+   }
+  },
+  "b=0.85 k=2 rules=50 delta=-0.10 rho=0.0": {
+   "feasible": true,
+   "theta": -0.595,
+   "realized_mean_estimate": -0.0979,
+   "joint_outcomes": {
+    "both": 0.615,
+    "mutation_only": 0.112,
+    "deletion_only": 0.21,
+    "neither": 0.063
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.112,
+    "inconclusive": 0.888,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.138,
+    "inconclusive": 0.862,
+    "superiority": 0.0
+   }
+  },
+  "b=0.85 k=2 rules=50 delta=-0.10 rho=0.5": {
+   "feasible": true,
+   "theta": -0.595,
+   "realized_mean_estimate": -0.0987,
+   "joint_outcomes": {
+    "both": 0.654,
+    "mutation_only": 0.069,
+    "deletion_only": 0.169,
+    "neither": 0.108
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.141,
+    "inconclusive": 0.859,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.181,
+    "inconclusive": 0.819,
+    "superiority": 0.0
+   }
+  },
+  "b=0.85 k=2 rules=50 delta=-0.10 rho=0.9": {
+   "feasible": true,
+   "theta": -0.595,
+   "realized_mean_estimate": -0.1008,
+   "joint_outcomes": {
+    "both": 0.703,
+    "mutation_only": 0.02,
+    "deletion_only": 0.121,
+    "neither": 0.155
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.001,
+    "inferiority": 0.182,
+    "inconclusive": 0.817,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.001,
+    "inferiority": 0.233,
+    "inconclusive": 0.766,
+    "superiority": 0.0
+   }
+  },
+  "b=0.85 k=2 rules=50 delta=-0.05 rho=0.0": {
+   "feasible": true,
+   "theta": -0.287,
+   "realized_mean_estimate": -0.0505,
+   "joint_outcomes": {
+    "both": 0.65,
+    "mutation_only": 0.123,
+    "deletion_only": 0.174,
+    "neither": 0.054
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.034,
+    "inconclusive": 0.966,
+    "superiority": 0.002
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.036,
+    "inconclusive": 0.964,
+    "superiority": 0.003
+   }
+  },
+  "b=0.85 k=2 rules=50 delta=-0.05 rho=0.5": {
+   "feasible": true,
+   "theta": -0.287,
+   "realized_mean_estimate": -0.0497,
+   "joint_outcomes": {
+    "both": 0.695,
+    "mutation_only": 0.082,
+    "deletion_only": 0.131,
+    "neither": 0.092
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.001,
+    "inferiority": 0.022,
+    "inconclusive": 0.977,
+    "superiority": 0.004
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.001,
+    "inferiority": 0.02,
+    "inconclusive": 0.979,
+    "superiority": 0.005
+   }
+  },
+  "b=0.85 k=2 rules=50 delta=-0.05 rho=0.9": {
+   "feasible": true,
+   "theta": -0.287,
+   "realized_mean_estimate": -0.0494,
+   "joint_outcomes": {
+    "both": 0.743,
+    "mutation_only": 0.032,
+    "deletion_only": 0.081,
+    "neither": 0.145
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.01,
+    "inferiority": 0.011,
+    "inconclusive": 0.979,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.009,
+    "inferiority": 0.012,
+    "inconclusive": 0.979,
+    "superiority": 0.0
+   }
+  },
+  "b=0.85 k=2 rules=50 delta=+0.00 rho=0.0": {
+   "feasible": true,
+   "theta": 0.068,
+   "realized_mean_estimate": -0.0038,
+   "joint_outcomes": {
+    "both": 0.691,
+    "mutation_only": 0.131,
+    "deletion_only": 0.135,
+    "neither": 0.043
+   },
+   "rule_weighted": {
+    "benefit": 0.002,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.998,
+    "superiority": 0.025
+   },
+   "residue_weighted": {
+    "benefit": 0.001,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.999,
+    "superiority": 0.025
+   }
+  },
+  "b=0.85 k=2 rules=50 delta=+0.00 rho=0.5": {
+   "feasible": true,
+   "theta": 0.068,
+   "realized_mean_estimate": -0.0031,
+   "joint_outcomes": {
+    "both": 0.727,
+    "mutation_only": 0.095,
+    "deletion_only": 0.098,
+    "neither": 0.079
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.001,
+    "inconclusive": 0.999,
+    "superiority": 0.019
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.001,
+    "inconclusive": 0.999,
+    "superiority": 0.025
+   }
+  },
+  "b=0.85 k=2 rules=50 delta=+0.00 rho=0.9": {
+   "feasible": true,
+   "theta": 0.068,
+   "realized_mean_estimate": 0.0005,
+   "joint_outcomes": {
+    "both": 0.774,
+    "mutation_only": 0.049,
+    "deletion_only": 0.049,
+    "neither": 0.128
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.046,
+    "inferiority": 0.0,
+    "inconclusive": 0.954,
+    "superiority": 0.028
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.051,
+    "inferiority": 0.0,
+    "inconclusive": 0.949,
+    "superiority": 0.026
+   }
+  },
+  "b=0.85 k=2 rules=50 delta=+0.05 rho=0.0": {
+   "feasible": true,
+   "theta": 0.507,
+   "realized_mean_estimate": 0.0511,
+   "joint_outcomes": {
+    "both": 0.729,
+    "mutation_only": 0.145,
+    "deletion_only": 0.095,
+    "neither": 0.032
+   },
+   "rule_weighted": {
+    "benefit": 0.025,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.975,
+    "superiority": 0.146
+   },
+   "residue_weighted": {
+    "benefit": 0.027,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.973,
+    "superiority": 0.17
+   }
+  },
+  "b=0.85 k=2 rules=50 delta=+0.05 rho=0.5": {
+   "feasible": true,
+   "theta": 0.507,
+   "realized_mean_estimate": 0.0507,
+   "joint_outcomes": {
+    "both": 0.76,
+    "mutation_only": 0.113,
+    "deletion_only": 0.064,
+    "neither": 0.062
+   },
+   "rule_weighted": {
+    "benefit": 0.02,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.98,
+    "superiority": 0.17
+   },
+   "residue_weighted": {
+    "benefit": 0.021,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.979,
+    "superiority": 0.205
+   }
+  },
+  "b=0.85 k=2 rules=50 delta=+0.05 rho=0.9": {
+   "feasible": true,
+   "theta": 0.507,
+   "realized_mean_estimate": 0.0516,
+   "joint_outcomes": {
+    "both": 0.8,
+    "mutation_only": 0.074,
+    "deletion_only": 0.023,
+    "neither": 0.103
+   },
+   "rule_weighted": {
+    "benefit": 0.01,
+    "equivalence": 0.026,
+    "inferiority": 0.0,
+    "inconclusive": 0.964,
+    "superiority": 0.307
+   },
+   "residue_weighted": {
+    "benefit": 0.014,
+    "equivalence": 0.022,
+    "inferiority": 0.0,
+    "inconclusive": 0.964,
+    "superiority": 0.363
+   }
+  },
+  "b=0.85 k=2 rules=50 delta=+0.10 rho=0.0": {
+   "feasible": true,
+   "theta": 1.117,
+   "realized_mean_estimate": 0.0983,
+   "joint_outcomes": {
+    "both": 0.767,
+    "mutation_only": 0.155,
+    "deletion_only": 0.057,
+    "neither": 0.021
+   },
+   "rule_weighted": {
+    "benefit": 0.149,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.851,
+    "superiority": 0.499
+   },
+   "residue_weighted": {
+    "benefit": 0.182,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.818,
+    "superiority": 0.605
+   }
+  },
+  "b=0.85 k=2 rules=50 delta=+0.10 rho=0.5": {
+   "feasible": true,
+   "theta": 1.117,
+   "realized_mean_estimate": 0.1009,
+   "joint_outcomes": {
+    "both": 0.789,
+    "mutation_only": 0.134,
+    "deletion_only": 0.034,
+    "neither": 0.042
+   },
+   "rule_weighted": {
+    "benefit": 0.185,
+    "equivalence": 0.001,
+    "inferiority": 0.0,
+    "inconclusive": 0.814,
+    "superiority": 0.615
+   },
+   "residue_weighted": {
+    "benefit": 0.232,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.768,
+    "superiority": 0.734
+   }
+  },
+  "b=0.85 k=2 rules=50 delta=+0.10 rho=0.9": {
+   "feasible": true,
+   "theta": 1.117,
+   "realized_mean_estimate": 0.0993,
+   "joint_outcomes": {
+    "both": 0.817,
+    "mutation_only": 0.106,
+    "deletion_only": 0.007,
+    "neither": 0.07
+   },
+   "rule_weighted": {
+    "benefit": 0.191,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.809,
+    "superiority": 0.854
+   },
+   "residue_weighted": {
+    "benefit": 0.285,
+    "equivalence": 0.001,
+    "inferiority": 0.0,
+    "inconclusive": 0.714,
+    "superiority": 0.903
+   }
+  },
+  "b=0.85 k=2 rules=50 delta=+0.15 rho=0.0": {
+   "feasible": true,
+   "theta": 2.295,
+   "realized_mean_estimate": 0.1466,
+   "joint_outcomes": {
+    "both": 0.808,
+    "mutation_only": 0.166,
+    "deletion_only": 0.019,
+    "neither": 0.007
+   },
+   "rule_weighted": {
+    "benefit": 0.537,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.463,
+    "superiority": 0.923
+   },
+   "residue_weighted": {
+    "benefit": 0.657,
+    "equivalence": 0.001,
+    "inferiority": 0.0,
+    "inconclusive": 0.342,
+    "superiority": 0.963
+   }
+  },
+  "b=0.85 k=2 rules=50 delta=+0.15 rho=0.5": {
+   "feasible": true,
+   "theta": 2.295,
+   "realized_mean_estimate": 0.1497,
+   "joint_outcomes": {
+    "both": 0.816,
+    "mutation_only": 0.158,
+    "deletion_only": 0.009,
+    "neither": 0.017
+   },
+   "rule_weighted": {
+    "benefit": 0.645,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.355,
+    "superiority": 0.975
+   },
+   "residue_weighted": {
+    "benefit": 0.771,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.229,
+    "superiority": 0.994
+   }
+  },
+  "b=0.85 k=2 rules=50 delta=+0.15 rho=0.9": {
+   "feasible": true,
+   "theta": 2.295,
+   "realized_mean_estimate": 0.1512,
+   "joint_outcomes": {
+    "both": 0.823,
+    "mutation_only": 0.15,
+    "deletion_only": 0.0,
+    "neither": 0.026
+   },
+   "rule_weighted": {
+    "benefit": 0.714,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.286,
+    "superiority": 0.999
+   },
+   "residue_weighted": {
+    "benefit": 0.825,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.175,
+    "superiority": 1.0
+   }
+  },
+  "b=0.85 k=2 rules=80 delta=-0.10 rho=0.0": {
+   "feasible": true,
+   "theta": -0.595,
+   "realized_mean_estimate": -0.0987,
+   "joint_outcomes": {
+    "both": 0.613,
+    "mutation_only": 0.112,
+    "deletion_only": 0.211,
+    "neither": 0.063
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.155,
+    "inconclusive": 0.845,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.188,
+    "inconclusive": 0.812,
+    "superiority": 0.0
+   }
+  },
+  "b=0.85 k=2 rules=80 delta=-0.10 rho=0.5": {
+   "feasible": true,
+   "theta": -0.595,
+   "realized_mean_estimate": -0.1016,
+   "joint_outcomes": {
+    "both": 0.655,
+    "mutation_only": 0.068,
+    "deletion_only": 0.17,
+    "neither": 0.107
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.212,
+    "inconclusive": 0.788,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.252,
+    "inconclusive": 0.748,
+    "superiority": 0.0
+   }
+  },
+  "b=0.85 k=2 rules=80 delta=-0.10 rho=0.9": {
+   "feasible": true,
+   "theta": -0.595,
+   "realized_mean_estimate": -0.1002,
+   "joint_outcomes": {
+    "both": 0.703,
+    "mutation_only": 0.02,
+    "deletion_only": 0.12,
+    "neither": 0.156
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.304,
+    "inconclusive": 0.696,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.366,
+    "inconclusive": 0.634,
+    "superiority": 0.0
+   }
+  },
+  "b=0.85 k=2 rules=80 delta=-0.05 rho=0.0": {
+   "feasible": true,
+   "theta": -0.287,
+   "realized_mean_estimate": -0.0484,
+   "joint_outcomes": {
+    "both": 0.652,
+    "mutation_only": 0.122,
+    "deletion_only": 0.172,
+    "neither": 0.054
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.023,
+    "inconclusive": 0.977,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.023,
+    "inconclusive": 0.977,
+    "superiority": 0.001
+   }
+  },
+  "b=0.85 k=2 rules=80 delta=-0.05 rho=0.5": {
+   "feasible": true,
+   "theta": -0.287,
+   "realized_mean_estimate": -0.0517,
+   "joint_outcomes": {
+    "both": 0.691,
+    "mutation_only": 0.082,
+    "deletion_only": 0.133,
+    "neither": 0.095
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.029,
+    "inconclusive": 0.971,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.029,
+    "inconclusive": 0.971,
+    "superiority": 0.002
+   }
+  },
+  "b=0.85 k=2 rules=80 delta=-0.05 rho=0.9": {
+   "feasible": true,
+   "theta": -0.287,
+   "realized_mean_estimate": -0.0492,
+   "joint_outcomes": {
+    "both": 0.742,
+    "mutation_only": 0.032,
+    "deletion_only": 0.082,
+    "neither": 0.144
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.013,
+    "inferiority": 0.013,
+    "inconclusive": 0.974,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.016,
+    "inferiority": 0.02,
+    "inconclusive": 0.964,
+    "superiority": 0.0
+   }
+  },
+  "b=0.85 k=2 rules=80 delta=+0.00 rho=0.0": {
+   "feasible": true,
+   "theta": 0.068,
+   "realized_mean_estimate": 0.0006,
+   "joint_outcomes": {
+    "both": 0.69,
+    "mutation_only": 0.133,
+    "deletion_only": 0.133,
+    "neither": 0.043
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 1.0,
+    "superiority": 0.029
+   },
+   "residue_weighted": {
+    "benefit": 0.003,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.997,
+    "superiority": 0.04
+   }
+  },
+  "b=0.85 k=2 rules=80 delta=+0.00 rho=0.5": {
+   "feasible": true,
+   "theta": 0.068,
+   "realized_mean_estimate": -0.0005,
+   "joint_outcomes": {
+    "both": 0.727,
+    "mutation_only": 0.096,
+    "deletion_only": 0.097,
+    "neither": 0.079
+   },
+   "rule_weighted": {
+    "benefit": 0.001,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.999,
+    "superiority": 0.017
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.001,
+    "inferiority": 0.001,
+    "inconclusive": 0.998,
+    "superiority": 0.018
+   }
+  },
+  "b=0.85 k=2 rules=80 delta=+0.00 rho=0.9": {
+   "feasible": true,
+   "theta": 0.068,
+   "realized_mean_estimate": -0.0003,
+   "joint_outcomes": {
+    "both": 0.774,
+    "mutation_only": 0.049,
+    "deletion_only": 0.049,
+    "neither": 0.128
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.071,
+    "inferiority": 0.0,
+    "inconclusive": 0.929,
+    "superiority": 0.023
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.122,
+    "inferiority": 0.0,
+    "inconclusive": 0.878,
+    "superiority": 0.026
+   }
+  },
+  "b=0.85 k=2 rules=80 delta=+0.05 rho=0.0": {
+   "feasible": true,
+   "theta": 0.507,
+   "realized_mean_estimate": 0.0522,
+   "joint_outcomes": {
+    "both": 0.727,
+    "mutation_only": 0.146,
+    "deletion_only": 0.095,
+    "neither": 0.032
+   },
+   "rule_weighted": {
+    "benefit": 0.019,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.981,
+    "superiority": 0.212
+   },
+   "residue_weighted": {
+    "benefit": 0.032,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.968,
+    "superiority": 0.271
+   }
+  },
+  "b=0.85 k=2 rules=80 delta=+0.05 rho=0.5": {
+   "feasible": true,
+   "theta": 0.507,
+   "realized_mean_estimate": 0.0507,
+   "joint_outcomes": {
+    "both": 0.763,
+    "mutation_only": 0.113,
+    "deletion_only": 0.063,
+    "neither": 0.062
+   },
+   "rule_weighted": {
+    "benefit": 0.025,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.975,
+    "superiority": 0.273
+   },
+   "residue_weighted": {
+    "benefit": 0.027,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.973,
+    "superiority": 0.336
+   }
+  },
+  "b=0.85 k=2 rules=80 delta=+0.05 rho=0.9": {
+   "feasible": true,
+   "theta": 0.507,
+   "realized_mean_estimate": 0.0496,
+   "joint_outcomes": {
+    "both": 0.8,
+    "mutation_only": 0.073,
+    "deletion_only": 0.023,
+    "neither": 0.103
+   },
+   "rule_weighted": {
+    "benefit": 0.014,
+    "equivalence": 0.023,
+    "inferiority": 0.0,
+    "inconclusive": 0.963,
+    "superiority": 0.448
+   },
+   "residue_weighted": {
+    "benefit": 0.021,
+    "equivalence": 0.023,
+    "inferiority": 0.0,
+    "inconclusive": 0.956,
+    "superiority": 0.544
+   }
+  },
+  "b=0.85 k=2 rules=80 delta=+0.10 rho=0.0": {
+   "feasible": true,
+   "theta": 1.117,
+   "realized_mean_estimate": 0.1005,
+   "joint_outcomes": {
+    "both": 0.768,
+    "mutation_only": 0.156,
+    "deletion_only": 0.057,
+    "neither": 0.019
+   },
+   "rule_weighted": {
+    "benefit": 0.216,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.784,
+    "superiority": 0.7
+   },
+   "residue_weighted": {
+    "benefit": 0.262,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.738,
+    "superiority": 0.828
+   }
+  },
+  "b=0.85 k=2 rules=80 delta=+0.10 rho=0.5": {
+   "feasible": true,
+   "theta": 1.117,
+   "realized_mean_estimate": 0.099,
+   "joint_outcomes": {
+    "both": 0.789,
+    "mutation_only": 0.134,
+    "deletion_only": 0.034,
+    "neither": 0.043
+   },
+   "rule_weighted": {
+    "benefit": 0.263,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.737,
+    "superiority": 0.796
+   },
+   "residue_weighted": {
+    "benefit": 0.341,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.659,
+    "superiority": 0.901
+   }
+  },
+  "b=0.85 k=2 rules=80 delta=+0.10 rho=0.9": {
+   "feasible": true,
+   "theta": 1.117,
+   "realized_mean_estimate": 0.1,
+   "joint_outcomes": {
+    "both": 0.819,
+    "mutation_only": 0.106,
+    "deletion_only": 0.007,
+    "neither": 0.068
+   },
+   "rule_weighted": {
+    "benefit": 0.375,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.625,
+    "superiority": 0.967
+   },
+   "residue_weighted": {
+    "benefit": 0.469,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.531,
+    "superiority": 0.99
+   }
+  },
+  "b=0.85 k=2 rules=80 delta=+0.15 rho=0.0": {
+   "feasible": true,
+   "theta": 2.295,
+   "realized_mean_estimate": 0.1506,
+   "joint_outcomes": {
+    "both": 0.804,
+    "mutation_only": 0.17,
+    "deletion_only": 0.019,
+    "neither": 0.007
+   },
+   "rule_weighted": {
+    "benefit": 0.814,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.186,
+    "superiority": 0.993
+   },
+   "residue_weighted": {
+    "benefit": 0.904,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.096,
+    "superiority": 0.999
+   }
+  },
+  "b=0.85 k=2 rules=80 delta=+0.15 rho=0.5": {
+   "feasible": true,
+   "theta": 2.295,
+   "realized_mean_estimate": 0.15,
+   "joint_outcomes": {
+    "both": 0.814,
+    "mutation_only": 0.159,
+    "deletion_only": 0.009,
+    "neither": 0.017
+   },
+   "rule_weighted": {
+    "benefit": 0.866,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.134,
+    "superiority": 0.998
+   },
+   "residue_weighted": {
+    "benefit": 0.935,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.065,
+    "superiority": 1.0
+   }
+  },
+  "b=0.85 k=2 rules=80 delta=+0.15 rho=0.9": {
+   "feasible": true,
+   "theta": 2.295,
+   "realized_mean_estimate": 0.1498,
+   "joint_outcomes": {
+    "both": 0.824,
+    "mutation_only": 0.15,
+    "deletion_only": 0.0,
+    "neither": 0.025
+   },
+   "rule_weighted": {
+    "benefit": 0.93,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.07,
+    "superiority": 1.0
+   },
+   "residue_weighted": {
+    "benefit": 0.971,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.029,
+    "superiority": 1.0
+   }
+  },
+  "b=0.85 k=2 rules=120 delta=-0.10 rho=0.0": {
+   "feasible": true,
+   "theta": -0.595,
+   "realized_mean_estimate": -0.0982,
+   "joint_outcomes": {
+    "both": 0.612,
+    "mutation_only": 0.113,
+    "deletion_only": 0.211,
+    "neither": 0.064
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.225,
+    "inconclusive": 0.775,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.277,
+    "inconclusive": 0.723,
+    "superiority": 0.0
+   }
+  },
+  "b=0.85 k=2 rules=120 delta=-0.10 rho=0.5": {
+   "feasible": true,
+   "theta": -0.595,
+   "realized_mean_estimate": -0.101,
+   "joint_outcomes": {
+    "both": 0.655,
+    "mutation_only": 0.069,
+    "deletion_only": 0.169,
+    "neither": 0.107
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.318,
+    "inconclusive": 0.682,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.369,
+    "inconclusive": 0.631,
+    "superiority": 0.0
+   }
+  },
+  "b=0.85 k=2 rules=120 delta=-0.10 rho=0.9": {
+   "feasible": true,
+   "theta": -0.595,
+   "realized_mean_estimate": -0.1005,
+   "joint_outcomes": {
+    "both": 0.703,
+    "mutation_only": 0.02,
+    "deletion_only": 0.121,
+    "neither": 0.155
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.465,
+    "inconclusive": 0.535,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.58,
+    "inconclusive": 0.42,
+    "superiority": 0.0
+   }
+  },
+  "b=0.85 k=2 rules=120 delta=-0.05 rho=0.0": {
+   "feasible": true,
+   "theta": -0.287,
+   "realized_mean_estimate": -0.0495,
+   "joint_outcomes": {
+    "both": 0.653,
+    "mutation_only": 0.122,
+    "deletion_only": 0.171,
+    "neither": 0.054
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.021,
+    "inconclusive": 0.979,
+    "superiority": 0.002
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.021,
+    "inconclusive": 0.979,
+    "superiority": 0.001
+   }
+  },
+  "b=0.85 k=2 rules=120 delta=-0.05 rho=0.5": {
+   "feasible": true,
+   "theta": -0.287,
+   "realized_mean_estimate": -0.048,
+   "joint_outcomes": {
+    "both": 0.694,
+    "mutation_only": 0.082,
+    "deletion_only": 0.131,
+    "neither": 0.094
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.025,
+    "inconclusive": 0.975,
+    "superiority": 0.001
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.004,
+    "inferiority": 0.022,
+    "inconclusive": 0.974,
+    "superiority": 0.0
+   }
+  },
+  "b=0.85 k=2 rules=120 delta=-0.05 rho=0.9": {
+   "feasible": true,
+   "theta": -0.287,
+   "realized_mean_estimate": -0.0485,
+   "joint_outcomes": {
+    "both": 0.742,
+    "mutation_only": 0.033,
+    "deletion_only": 0.081,
+    "neither": 0.144
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.025,
+    "inferiority": 0.015,
+    "inconclusive": 0.96,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.038,
+    "inferiority": 0.018,
+    "inconclusive": 0.944,
+    "superiority": 0.0
+   }
+  },
+  "b=0.85 k=2 rules=120 delta=+0.00 rho=0.0": {
+   "feasible": true,
+   "theta": 0.068,
+   "realized_mean_estimate": 0.0003,
+   "joint_outcomes": {
+    "both": 0.69,
+    "mutation_only": 0.133,
+    "deletion_only": 0.134,
+    "neither": 0.043
+   },
+   "rule_weighted": {
+    "benefit": 0.001,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.999,
+    "superiority": 0.028
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.001,
+    "inferiority": 0.001,
+    "inconclusive": 0.998,
+    "superiority": 0.029
+   }
+  },
+  "b=0.85 k=2 rules=120 delta=+0.00 rho=0.5": {
+   "feasible": true,
+   "theta": 0.068,
+   "realized_mean_estimate": 0.0002,
+   "joint_outcomes": {
+    "both": 0.728,
+    "mutation_only": 0.097,
+    "deletion_only": 0.096,
+    "neither": 0.079
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.001,
+    "inferiority": 0.001,
+    "inconclusive": 0.998,
+    "superiority": 0.02
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.015,
+    "inferiority": 0.0,
+    "inconclusive": 0.985,
+    "superiority": 0.025
+   }
+  },
+  "b=0.85 k=2 rules=120 delta=+0.00 rho=0.9": {
+   "feasible": true,
+   "theta": 0.068,
+   "realized_mean_estimate": -0.0012,
+   "joint_outcomes": {
+    "both": 0.777,
+    "mutation_only": 0.048,
+    "deletion_only": 0.049,
+    "neither": 0.126
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.23,
+    "inferiority": 0.0,
+    "inconclusive": 0.77,
+    "superiority": 0.026
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.377,
+    "inferiority": 0.0,
+    "inconclusive": 0.623,
+    "superiority": 0.034
+   }
+  },
+  "b=0.85 k=2 rules=120 delta=+0.05 rho=0.0": {
+   "feasible": true,
+   "theta": 0.507,
+   "realized_mean_estimate": 0.0488,
+   "joint_outcomes": {
+    "both": 0.73,
+    "mutation_only": 0.144,
+    "deletion_only": 0.095,
+    "neither": 0.031
+   },
+   "rule_weighted": {
+    "benefit": 0.024,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.976,
+    "superiority": 0.295
+   },
+   "residue_weighted": {
+    "benefit": 0.023,
+    "equivalence": 0.002,
+    "inferiority": 0.0,
+    "inconclusive": 0.975,
+    "superiority": 0.368
+   }
+  },
+  "b=0.85 k=2 rules=120 delta=+0.05 rho=0.5": {
+   "feasible": true,
+   "theta": 0.507,
+   "realized_mean_estimate": 0.0528,
+   "joint_outcomes": {
+    "both": 0.76,
+    "mutation_only": 0.115,
+    "deletion_only": 0.063,
+    "neither": 0.062
+   },
+   "rule_weighted": {
+    "benefit": 0.021,
+    "equivalence": 0.003,
+    "inferiority": 0.0,
+    "inconclusive": 0.976,
+    "superiority": 0.403
+   },
+   "residue_weighted": {
+    "benefit": 0.024,
+    "equivalence": 0.006,
+    "inferiority": 0.0,
+    "inconclusive": 0.97,
+    "superiority": 0.504
+   }
+  },
+  "b=0.85 k=2 rules=120 delta=+0.05 rho=0.9": {
+   "feasible": true,
+   "theta": 0.507,
+   "realized_mean_estimate": 0.0499,
+   "joint_outcomes": {
+    "both": 0.802,
+    "mutation_only": 0.073,
+    "deletion_only": 0.023,
+    "neither": 0.102
+   },
+   "rule_weighted": {
+    "benefit": 0.014,
+    "equivalence": 0.034,
+    "inferiority": 0.0,
+    "inconclusive": 0.952,
+    "superiority": 0.61
+   },
+   "residue_weighted": {
+    "benefit": 0.018,
+    "equivalence": 0.036,
+    "inferiority": 0.0,
+    "inconclusive": 0.946,
+    "superiority": 0.739
+   }
+  },
+  "b=0.85 k=2 rules=120 delta=+0.10 rho=0.0": {
+   "feasible": true,
+   "theta": 1.117,
+   "realized_mean_estimate": 0.0998,
+   "joint_outcomes": {
+    "both": 0.769,
+    "mutation_only": 0.156,
+    "deletion_only": 0.056,
+    "neither": 0.02
+   },
+   "rule_weighted": {
+    "benefit": 0.333,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.667,
+    "superiority": 0.868
+   },
+   "residue_weighted": {
+    "benefit": 0.41,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.59,
+    "superiority": 0.936
+   }
+  },
+  "b=0.85 k=2 rules=120 delta=+0.10 rho=0.5": {
+   "feasible": true,
+   "theta": 1.117,
+   "realized_mean_estimate": 0.0987,
+   "joint_outcomes": {
+    "both": 0.791,
+    "mutation_only": 0.133,
+    "deletion_only": 0.034,
+    "neither": 0.042
+   },
+   "rule_weighted": {
+    "benefit": 0.37,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.63,
+    "superiority": 0.942
+   },
+   "residue_weighted": {
+    "benefit": 0.461,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.539,
+    "superiority": 0.978
+   }
+  },
+  "b=0.85 k=2 rules=120 delta=+0.10 rho=0.9": {
+   "feasible": true,
+   "theta": 1.117,
+   "realized_mean_estimate": 0.1,
+   "joint_outcomes": {
+    "both": 0.817,
+    "mutation_only": 0.107,
+    "deletion_only": 0.007,
+    "neither": 0.069
+   },
+   "rule_weighted": {
+    "benefit": 0.543,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.457,
+    "superiority": 0.997
+   },
+   "residue_weighted": {
+    "benefit": 0.689,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.311,
+    "superiority": 1.0
+   }
+  },
+  "b=0.85 k=2 rules=120 delta=+0.15 rho=0.0": {
+   "feasible": true,
+   "theta": 2.295,
+   "realized_mean_estimate": 0.1493,
+   "joint_outcomes": {
+    "both": 0.806,
+    "mutation_only": 0.168,
+    "deletion_only": 0.019,
+    "neither": 0.007
+   },
+   "rule_weighted": {
+    "benefit": 0.929,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.071,
+    "superiority": 0.999
+   },
+   "residue_weighted": {
+    "benefit": 0.969,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.031,
+    "superiority": 1.0
+   }
+  },
+  "b=0.85 k=2 rules=120 delta=+0.15 rho=0.5": {
+   "feasible": true,
+   "theta": 2.295,
+   "realized_mean_estimate": 0.1498,
+   "joint_outcomes": {
+    "both": 0.815,
+    "mutation_only": 0.159,
+    "deletion_only": 0.009,
+    "neither": 0.017
+   },
+   "rule_weighted": {
+    "benefit": 0.973,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.027,
+    "superiority": 1.0
+   },
+   "residue_weighted": {
+    "benefit": 0.994,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.006,
+    "superiority": 1.0
+   }
+  },
+  "b=0.85 k=2 rules=120 delta=+0.15 rho=0.9": {
+   "feasible": true,
+   "theta": 2.295,
+   "realized_mean_estimate": 0.1487,
+   "joint_outcomes": {
+    "both": 0.824,
+    "mutation_only": 0.15,
+    "deletion_only": 0.0,
+    "neither": 0.026
+   },
+   "rule_weighted": {
+    "benefit": 0.987,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.013,
+    "superiority": 1.0
+   },
+   "residue_weighted": {
+    "benefit": 0.998,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.002,
+    "superiority": 1.0
+   }
+  },
+  "b=0.85 k=6 rules=50 delta=-0.10 rho=0.0": {
+   "feasible": true,
+   "theta": -0.595,
+   "realized_mean_estimate": -0.1005,
+   "joint_outcomes": {
+    "both": 0.614,
+    "mutation_only": 0.111,
+    "deletion_only": 0.211,
+    "neither": 0.064
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.24,
+    "inconclusive": 0.76,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.297,
+    "inconclusive": 0.703,
+    "superiority": 0.0
+   }
+  },
+  "b=0.85 k=6 rules=50 delta=-0.10 rho=0.5": {
+   "feasible": true,
+   "theta": -0.595,
+   "realized_mean_estimate": -0.0993,
+   "joint_outcomes": {
+    "both": 0.657,
+    "mutation_only": 0.069,
+    "deletion_only": 0.168,
+    "neither": 0.106
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.314,
+    "inconclusive": 0.686,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.333,
+    "inconclusive": 0.667,
+    "superiority": 0.0
+   }
+  },
+  "b=0.85 k=6 rules=50 delta=-0.10 rho=0.9": {
+   "feasible": true,
+   "theta": -0.595,
+   "realized_mean_estimate": -0.1008,
+   "joint_outcomes": {
+    "both": 0.703,
+    "mutation_only": 0.02,
+    "deletion_only": 0.121,
+    "neither": 0.156
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.481,
+    "inconclusive": 0.519,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.524,
+    "inconclusive": 0.476,
+    "superiority": 0.0
+   }
+  },
+  "b=0.85 k=6 rules=50 delta=-0.05 rho=0.0": {
+   "feasible": true,
+   "theta": -0.287,
+   "realized_mean_estimate": -0.0503,
+   "joint_outcomes": {
+    "both": 0.652,
+    "mutation_only": 0.122,
+    "deletion_only": 0.172,
+    "neither": 0.054
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.001,
+    "inferiority": 0.021,
+    "inconclusive": 0.978,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.019,
+    "inconclusive": 0.981,
+    "superiority": 0.0
+   }
+  },
+  "b=0.85 k=6 rules=50 delta=-0.05 rho=0.5": {
+   "feasible": true,
+   "theta": -0.287,
+   "realized_mean_estimate": -0.0508,
+   "joint_outcomes": {
+    "both": 0.692,
+    "mutation_only": 0.081,
+    "deletion_only": 0.133,
+    "neither": 0.094
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.026,
+    "inconclusive": 0.974,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.004,
+    "inferiority": 0.027,
+    "inconclusive": 0.969,
+    "superiority": 0.0
+   }
+  },
+  "b=0.85 k=6 rules=50 delta=-0.05 rho=0.9": {
+   "feasible": true,
+   "theta": -0.287,
+   "realized_mean_estimate": -0.0501,
+   "joint_outcomes": {
+    "both": 0.743,
+    "mutation_only": 0.032,
+    "deletion_only": 0.082,
+    "neither": 0.144
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.031,
+    "inferiority": 0.016,
+    "inconclusive": 0.953,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.029,
+    "inferiority": 0.016,
+    "inconclusive": 0.955,
+    "superiority": 0.0
+   }
+  },
+  "b=0.85 k=6 rules=50 delta=+0.00 rho=0.0": {
+   "feasible": true,
+   "theta": 0.068,
+   "realized_mean_estimate": -0.0006,
+   "joint_outcomes": {
+    "both": 0.691,
+    "mutation_only": 0.133,
+    "deletion_only": 0.133,
+    "neither": 0.043
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.002,
+    "inferiority": 0.001,
+    "inconclusive": 0.997,
+    "superiority": 0.021
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.009,
+    "inferiority": 0.0,
+    "inconclusive": 0.991,
+    "superiority": 0.025
+   }
+  },
+  "b=0.85 k=6 rules=50 delta=+0.00 rho=0.5": {
+   "feasible": true,
+   "theta": 0.068,
+   "realized_mean_estimate": 0.0008,
+   "joint_outcomes": {
+    "both": 0.728,
+    "mutation_only": 0.097,
+    "deletion_only": 0.095,
+    "neither": 0.079
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.025,
+    "inferiority": 0.0,
+    "inconclusive": 0.975,
+    "superiority": 0.026
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.043,
+    "inferiority": 0.0,
+    "inconclusive": 0.957,
+    "superiority": 0.028
+   }
+  },
+  "b=0.85 k=6 rules=50 delta=+0.00 rho=0.9": {
+   "feasible": true,
+   "theta": 0.068,
+   "realized_mean_estimate": -0.0,
+   "joint_outcomes": {
+    "both": 0.775,
+    "mutation_only": 0.049,
+    "deletion_only": 0.049,
+    "neither": 0.127
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.271,
+    "inferiority": 0.0,
+    "inconclusive": 0.729,
+    "superiority": 0.025
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.333,
+    "inferiority": 0.0,
+    "inconclusive": 0.667,
+    "superiority": 0.027
+   }
+  },
+  "b=0.85 k=6 rules=50 delta=+0.05 rho=0.0": {
+   "feasible": true,
+   "theta": 0.507,
+   "realized_mean_estimate": 0.051,
+   "joint_outcomes": {
+    "both": 0.731,
+    "mutation_only": 0.144,
+    "deletion_only": 0.093,
+    "neither": 0.032
+   },
+   "rule_weighted": {
+    "benefit": 0.027,
+    "equivalence": 0.002,
+    "inferiority": 0.0,
+    "inconclusive": 0.971,
+    "superiority": 0.328
+   },
+   "residue_weighted": {
+    "benefit": 0.03,
+    "equivalence": 0.006,
+    "inferiority": 0.0,
+    "inconclusive": 0.964,
+    "superiority": 0.39
+   }
+  },
+  "b=0.85 k=6 rules=50 delta=+0.05 rho=0.5": {
+   "feasible": true,
+   "theta": 0.507,
+   "realized_mean_estimate": 0.0495,
+   "joint_outcomes": {
+    "both": 0.761,
+    "mutation_only": 0.113,
+    "deletion_only": 0.063,
+    "neither": 0.063
+   },
+   "rule_weighted": {
+    "benefit": 0.015,
+    "equivalence": 0.004,
+    "inferiority": 0.0,
+    "inconclusive": 0.981,
+    "superiority": 0.423
+   },
+   "residue_weighted": {
+    "benefit": 0.018,
+    "equivalence": 0.012,
+    "inferiority": 0.0,
+    "inconclusive": 0.97,
+    "superiority": 0.478
+   }
+  },
+  "b=0.85 k=6 rules=50 delta=+0.05 rho=0.9": {
+   "feasible": true,
+   "theta": 0.507,
+   "realized_mean_estimate": 0.0485,
+   "joint_outcomes": {
+    "both": 0.802,
+    "mutation_only": 0.072,
+    "deletion_only": 0.023,
+    "neither": 0.103
+   },
+   "rule_weighted": {
+    "benefit": 0.018,
+    "equivalence": 0.033,
+    "inferiority": 0.0,
+    "inconclusive": 0.949,
+    "superiority": 0.645
+   },
+   "residue_weighted": {
+    "benefit": 0.02,
+    "equivalence": 0.028,
+    "inferiority": 0.0,
+    "inconclusive": 0.952,
+    "superiority": 0.69
+   }
+  },
+  "b=0.85 k=6 rules=50 delta=+0.10 rho=0.0": {
+   "feasible": true,
+   "theta": 1.117,
+   "realized_mean_estimate": 0.0991,
+   "joint_outcomes": {
+    "both": 0.769,
+    "mutation_only": 0.156,
+    "deletion_only": 0.056,
+    "neither": 0.02
+   },
+   "rule_weighted": {
+    "benefit": 0.365,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.635,
+    "superiority": 0.897
+   },
+   "residue_weighted": {
+    "benefit": 0.432,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.568,
+    "superiority": 0.953
+   }
+  },
+  "b=0.85 k=6 rules=50 delta=+0.10 rho=0.5": {
+   "feasible": true,
+   "theta": 1.117,
+   "realized_mean_estimate": 0.0994,
+   "joint_outcomes": {
+    "both": 0.789,
+    "mutation_only": 0.134,
+    "deletion_only": 0.035,
+    "neither": 0.042
+   },
+   "rule_weighted": {
+    "benefit": 0.451,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.549,
+    "superiority": 0.952
+   },
+   "residue_weighted": {
+    "benefit": 0.498,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.502,
+    "superiority": 0.985
+   }
+  },
+  "b=0.85 k=6 rules=50 delta=+0.10 rho=0.9": {
+   "feasible": true,
+   "theta": 1.117,
+   "realized_mean_estimate": 0.0992,
+   "joint_outcomes": {
+    "both": 0.819,
+    "mutation_only": 0.106,
+    "deletion_only": 0.007,
+    "neither": 0.069
+   },
+   "rule_weighted": {
+    "benefit": 0.591,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.409,
+    "superiority": 0.996
+   },
+   "residue_weighted": {
+    "benefit": 0.657,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.343,
+    "superiority": 0.999
+   }
+  },
+  "b=0.85 k=6 rules=50 delta=+0.15 rho=0.0": {
+   "feasible": true,
+   "theta": 2.295,
+   "realized_mean_estimate": 0.1495,
+   "joint_outcomes": {
+    "both": 0.806,
+    "mutation_only": 0.168,
+    "deletion_only": 0.019,
+    "neither": 0.007
+   },
+   "rule_weighted": {
+    "benefit": 0.958,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.042,
+    "superiority": 0.999
+   },
+   "residue_weighted": {
+    "benefit": 0.97,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.03,
+    "superiority": 1.0
+   }
+  },
+  "b=0.85 k=6 rules=50 delta=+0.15 rho=0.5": {
+   "feasible": true,
+   "theta": 2.295,
+   "realized_mean_estimate": 0.1489,
+   "joint_outcomes": {
+    "both": 0.816,
+    "mutation_only": 0.158,
+    "deletion_only": 0.009,
+    "neither": 0.017
+   },
+   "rule_weighted": {
+    "benefit": 0.981,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.019,
+    "superiority": 1.0
+   },
+   "residue_weighted": {
+    "benefit": 0.993,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.007,
+    "superiority": 1.0
+   }
+  },
+  "b=0.85 k=6 rules=50 delta=+0.15 rho=0.9": {
+   "feasible": true,
+   "theta": 2.295,
+   "realized_mean_estimate": 0.1504,
+   "joint_outcomes": {
+    "both": 0.823,
+    "mutation_only": 0.151,
+    "deletion_only": 0.0,
+    "neither": 0.026
+   },
+   "rule_weighted": {
+    "benefit": 0.995,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.005,
+    "superiority": 1.0
+   },
+   "residue_weighted": {
+    "benefit": 0.999,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.001,
+    "superiority": 1.0
+   }
+  },
+  "b=0.85 k=6 rules=80 delta=-0.10 rho=0.0": {
+   "feasible": true,
+   "theta": -0.595,
+   "realized_mean_estimate": -0.0994,
+   "joint_outcomes": {
+    "both": 0.612,
+    "mutation_only": 0.113,
+    "deletion_only": 0.212,
+    "neither": 0.064
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.363,
+    "inconclusive": 0.637,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.419,
+    "inconclusive": 0.581,
+    "superiority": 0.0
+   }
+  },
+  "b=0.85 k=6 rules=80 delta=-0.10 rho=0.5": {
+   "feasible": true,
+   "theta": -0.595,
+   "realized_mean_estimate": -0.0999,
+   "joint_outcomes": {
+    "both": 0.654,
+    "mutation_only": 0.07,
+    "deletion_only": 0.17,
+    "neither": 0.107
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.464,
+    "inconclusive": 0.536,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.535,
+    "inconclusive": 0.465,
+    "superiority": 0.0
+   }
+  },
+  "b=0.85 k=6 rules=80 delta=-0.10 rho=0.9": {
+   "feasible": true,
+   "theta": -0.595,
+   "realized_mean_estimate": -0.1,
+   "joint_outcomes": {
+    "both": 0.703,
+    "mutation_only": 0.02,
+    "deletion_only": 0.12,
+    "neither": 0.156
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.666,
+    "inconclusive": 0.334,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.719,
+    "inconclusive": 0.281,
+    "superiority": 0.0
+   }
+  },
+  "b=0.85 k=6 rules=80 delta=-0.05 rho=0.0": {
+   "feasible": true,
+   "theta": -0.287,
+   "realized_mean_estimate": -0.05,
+   "joint_outcomes": {
+    "both": 0.652,
+    "mutation_only": 0.122,
+    "deletion_only": 0.172,
+    "neither": 0.053
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.004,
+    "inferiority": 0.031,
+    "inconclusive": 0.965,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.016,
+    "inferiority": 0.03,
+    "inconclusive": 0.954,
+    "superiority": 0.0
+   }
+  },
+  "b=0.85 k=6 rules=80 delta=-0.05 rho=0.5": {
+   "feasible": true,
+   "theta": -0.287,
+   "realized_mean_estimate": -0.0494,
+   "joint_outcomes": {
+    "both": 0.692,
+    "mutation_only": 0.082,
+    "deletion_only": 0.131,
+    "neither": 0.095
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.014,
+    "inferiority": 0.019,
+    "inconclusive": 0.967,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.023,
+    "inferiority": 0.027,
+    "inconclusive": 0.95,
+    "superiority": 0.0
+   }
+  },
+  "b=0.85 k=6 rules=80 delta=-0.05 rho=0.9": {
+   "feasible": true,
+   "theta": -0.287,
+   "realized_mean_estimate": -0.0491,
+   "joint_outcomes": {
+    "both": 0.743,
+    "mutation_only": 0.032,
+    "deletion_only": 0.082,
+    "neither": 0.144
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.035,
+    "inferiority": 0.017,
+    "inconclusive": 0.948,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.036,
+    "inferiority": 0.017,
+    "inconclusive": 0.947,
+    "superiority": 0.0
+   }
+  },
+  "b=0.85 k=6 rules=80 delta=+0.00 rho=0.0": {
+   "feasible": true,
+   "theta": 0.068,
+   "realized_mean_estimate": -0.0002,
+   "joint_outcomes": {
+    "both": 0.69,
+    "mutation_only": 0.133,
+    "deletion_only": 0.133,
+    "neither": 0.043
+   },
+   "rule_weighted": {
+    "benefit": 0.001,
+    "equivalence": 0.032,
+    "inferiority": 0.001,
+    "inconclusive": 0.966,
+    "superiority": 0.027
+   },
+   "residue_weighted": {
+    "benefit": 0.001,
+    "equivalence": 0.087,
+    "inferiority": 0.0,
+    "inconclusive": 0.912,
+    "superiority": 0.023
+   }
+  },
+  "b=0.85 k=6 rules=80 delta=+0.00 rho=0.5": {
+   "feasible": true,
+   "theta": 0.068,
+   "realized_mean_estimate": -0.0003,
+   "joint_outcomes": {
+    "both": 0.728,
+    "mutation_only": 0.096,
+    "deletion_only": 0.096,
+    "neither": 0.08
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.172,
+    "inferiority": 0.0,
+    "inconclusive": 0.828,
+    "superiority": 0.037
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.272,
+    "inferiority": 0.0,
+    "inconclusive": 0.728,
+    "superiority": 0.029
+   }
+  },
+  "b=0.85 k=6 rules=80 delta=+0.00 rho=0.9": {
+   "feasible": true,
+   "theta": 0.068,
+   "realized_mean_estimate": 0.0007,
+   "joint_outcomes": {
+    "both": 0.775,
+    "mutation_only": 0.049,
+    "deletion_only": 0.049,
+    "neither": 0.127
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.616,
+    "inferiority": 0.0,
+    "inconclusive": 0.384,
+    "superiority": 0.013
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.735,
+    "inferiority": 0.0,
+    "inconclusive": 0.265,
+    "superiority": 0.027
+   }
+  },
+  "b=0.85 k=6 rules=80 delta=+0.05 rho=0.0": {
+   "feasible": true,
+   "theta": 0.507,
+   "realized_mean_estimate": 0.0508,
+   "joint_outcomes": {
+    "both": 0.73,
+    "mutation_only": 0.145,
+    "deletion_only": 0.094,
+    "neither": 0.031
+   },
+   "rule_weighted": {
+    "benefit": 0.024,
+    "equivalence": 0.008,
+    "inferiority": 0.0,
+    "inconclusive": 0.968,
+    "superiority": 0.52
+   },
+   "residue_weighted": {
+    "benefit": 0.023,
+    "equivalence": 0.022,
+    "inferiority": 0.0,
+    "inconclusive": 0.955,
+    "superiority": 0.586
+   }
+  },
+  "b=0.85 k=6 rules=80 delta=+0.05 rho=0.5": {
+   "feasible": true,
+   "theta": 0.507,
+   "realized_mean_estimate": 0.0499,
+   "joint_outcomes": {
+    "both": 0.76,
+    "mutation_only": 0.114,
+    "deletion_only": 0.064,
+    "neither": 0.063
+   },
+   "rule_weighted": {
+    "benefit": 0.023,
+    "equivalence": 0.024,
+    "inferiority": 0.0,
+    "inconclusive": 0.953,
+    "superiority": 0.614
+   },
+   "residue_weighted": {
+    "benefit": 0.023,
+    "equivalence": 0.025,
+    "inferiority": 0.0,
+    "inconclusive": 0.952,
+    "superiority": 0.688
+   }
+  },
+  "b=0.85 k=6 rules=80 delta=+0.05 rho=0.9": {
+   "feasible": true,
+   "theta": 0.507,
+   "realized_mean_estimate": 0.0497,
+   "joint_outcomes": {
+    "both": 0.8,
+    "mutation_only": 0.073,
+    "deletion_only": 0.023,
+    "neither": 0.103
+   },
+   "rule_weighted": {
+    "benefit": 0.02,
+    "equivalence": 0.034,
+    "inferiority": 0.0,
+    "inconclusive": 0.946,
+    "superiority": 0.856
+   },
+   "residue_weighted": {
+    "benefit": 0.023,
+    "equivalence": 0.031,
+    "inferiority": 0.0,
+    "inconclusive": 0.946,
+    "superiority": 0.899
+   }
+  },
+  "b=0.85 k=6 rules=80 delta=+0.10 rho=0.0": {
+   "feasible": true,
+   "theta": 1.117,
+   "realized_mean_estimate": 0.0973,
+   "joint_outcomes": {
+    "both": 0.769,
+    "mutation_only": 0.155,
+    "deletion_only": 0.057,
+    "neither": 0.019
+   },
+   "rule_weighted": {
+    "benefit": 0.496,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.504,
+    "superiority": 0.975
+   },
+   "residue_weighted": {
+    "benefit": 0.595,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.405,
+    "superiority": 0.994
+   }
+  },
+  "b=0.85 k=6 rules=80 delta=+0.10 rho=0.5": {
+   "feasible": true,
+   "theta": 1.117,
+   "realized_mean_estimate": 0.1007,
+   "joint_outcomes": {
+    "both": 0.79,
+    "mutation_only": 0.134,
+    "deletion_only": 0.033,
+    "neither": 0.043
+   },
+   "rule_weighted": {
+    "benefit": 0.679,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.321,
+    "superiority": 0.996
+   },
+   "residue_weighted": {
+    "benefit": 0.744,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.256,
+    "superiority": 1.0
+   }
+  },
+  "b=0.85 k=6 rules=80 delta=+0.10 rho=0.9": {
+   "feasible": true,
+   "theta": 1.117,
+   "realized_mean_estimate": 0.1005,
+   "joint_outcomes": {
+    "both": 0.817,
+    "mutation_only": 0.107,
+    "deletion_only": 0.007,
+    "neither": 0.07
+   },
+   "rule_weighted": {
+    "benefit": 0.848,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.152,
+    "superiority": 1.0
+   },
+   "residue_weighted": {
+    "benefit": 0.901,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.099,
+    "superiority": 1.0
+   }
+  },
+  "b=0.85 k=6 rules=80 delta=+0.15 rho=0.0": {
+   "feasible": true,
+   "theta": 2.295,
+   "realized_mean_estimate": 0.149,
+   "joint_outcomes": {
+    "both": 0.805,
+    "mutation_only": 0.169,
+    "deletion_only": 0.019,
+    "neither": 0.007
+   },
+   "rule_weighted": {
+    "benefit": 0.993,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.007,
+    "superiority": 1.0
+   },
+   "residue_weighted": {
+    "benefit": 0.999,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.001,
+    "superiority": 1.0
+   }
+  },
+  "b=0.85 k=6 rules=80 delta=+0.15 rho=0.5": {
+   "feasible": true,
+   "theta": 2.295,
+   "realized_mean_estimate": 0.1498,
+   "joint_outcomes": {
+    "both": 0.815,
+    "mutation_only": 0.159,
+    "deletion_only": 0.009,
+    "neither": 0.017
+   },
+   "rule_weighted": {
+    "benefit": 1.0,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.0,
+    "superiority": 1.0
+   },
+   "residue_weighted": {
+    "benefit": 1.0,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.0,
+    "superiority": 1.0
+   }
+  },
+  "b=0.85 k=6 rules=80 delta=+0.15 rho=0.9": {
+   "feasible": true,
+   "theta": 2.295,
+   "realized_mean_estimate": 0.1508,
+   "joint_outcomes": {
+    "both": 0.823,
+    "mutation_only": 0.151,
+    "deletion_only": 0.0,
+    "neither": 0.026
+   },
+   "rule_weighted": {
+    "benefit": 1.0,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.0,
+    "superiority": 1.0
+   },
+   "residue_weighted": {
+    "benefit": 1.0,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.0,
+    "superiority": 1.0
+   }
+  },
+  "b=0.85 k=6 rules=120 delta=-0.10 rho=0.0": {
+   "feasible": true,
+   "theta": -0.595,
+   "realized_mean_estimate": -0.1007,
+   "joint_outcomes": {
+    "both": 0.611,
+    "mutation_only": 0.112,
+    "deletion_only": 0.213,
+    "neither": 0.064
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.527,
+    "inconclusive": 0.473,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.001,
+    "inferiority": 0.593,
+    "inconclusive": 0.406,
+    "superiority": 0.0
+   }
+  },
+  "b=0.85 k=6 rules=120 delta=-0.10 rho=0.5": {
+   "feasible": true,
+   "theta": -0.595,
+   "realized_mean_estimate": -0.1013,
+   "joint_outcomes": {
+    "both": 0.654,
+    "mutation_only": 0.069,
+    "deletion_only": 0.17,
+    "neither": 0.107
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.677,
+    "inconclusive": 0.323,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.732,
+    "inconclusive": 0.268,
+    "superiority": 0.0
+   }
+  },
+  "b=0.85 k=6 rules=120 delta=-0.10 rho=0.9": {
+   "feasible": true,
+   "theta": -0.595,
+   "realized_mean_estimate": -0.101,
+   "joint_outcomes": {
+    "both": 0.703,
+    "mutation_only": 0.02,
+    "deletion_only": 0.121,
+    "neither": 0.155
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.862,
+    "inconclusive": 0.138,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.897,
+    "inconclusive": 0.103,
+    "superiority": 0.0
+   }
+  },
+  "b=0.85 k=6 rules=120 delta=-0.05 rho=0.0": {
+   "feasible": true,
+   "theta": -0.287,
+   "realized_mean_estimate": -0.0501,
+   "joint_outcomes": {
+    "both": 0.652,
+    "mutation_only": 0.122,
+    "deletion_only": 0.172,
+    "neither": 0.054
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.018,
+    "inferiority": 0.015,
+    "inconclusive": 0.967,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.03,
+    "inferiority": 0.019,
+    "inconclusive": 0.951,
+    "superiority": 0.0
+   }
+  },
+  "b=0.85 k=6 rules=120 delta=-0.05 rho=0.5": {
+   "feasible": true,
+   "theta": -0.287,
+   "realized_mean_estimate": -0.0483,
+   "joint_outcomes": {
+    "both": 0.693,
+    "mutation_only": 0.082,
+    "deletion_only": 0.131,
+    "neither": 0.094
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.034,
+    "inferiority": 0.018,
+    "inconclusive": 0.948,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.034,
+    "inferiority": 0.02,
+    "inconclusive": 0.946,
+    "superiority": 0.0
+   }
+  },
+  "b=0.85 k=6 rules=120 delta=-0.05 rho=0.9": {
+   "feasible": true,
+   "theta": -0.287,
+   "realized_mean_estimate": -0.051,
+   "joint_outcomes": {
+    "both": 0.742,
+    "mutation_only": 0.032,
+    "deletion_only": 0.082,
+    "neither": 0.144
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.03,
+    "inferiority": 0.02,
+    "inconclusive": 0.95,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.025,
+    "inferiority": 0.025,
+    "inconclusive": 0.95,
+    "superiority": 0.0
+   }
+  },
+  "b=0.85 k=6 rules=120 delta=+0.00 rho=0.0": {
+   "feasible": true,
+   "theta": 0.068,
+   "realized_mean_estimate": 0.0007,
+   "joint_outcomes": {
+    "both": 0.691,
+    "mutation_only": 0.133,
+    "deletion_only": 0.133,
+    "neither": 0.043
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.237,
+    "inferiority": 0.0,
+    "inconclusive": 0.763,
+    "superiority": 0.023
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.384,
+    "inferiority": 0.0,
+    "inconclusive": 0.616,
+    "superiority": 0.033
+   }
+  },
+  "b=0.85 k=6 rules=120 delta=+0.00 rho=0.5": {
+   "feasible": true,
+   "theta": 0.068,
+   "realized_mean_estimate": 0.0007,
+   "joint_outcomes": {
+    "both": 0.728,
+    "mutation_only": 0.097,
+    "deletion_only": 0.096,
+    "neither": 0.079
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.477,
+    "inferiority": 0.0,
+    "inconclusive": 0.523,
+    "superiority": 0.025
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.608,
+    "inferiority": 0.0,
+    "inconclusive": 0.392,
+    "superiority": 0.024
+   }
+  },
+  "b=0.85 k=6 rules=120 delta=+0.00 rho=0.9": {
+   "feasible": true,
+   "theta": 0.068,
+   "realized_mean_estimate": 0.0,
+   "joint_outcomes": {
+    "both": 0.775,
+    "mutation_only": 0.049,
+    "deletion_only": 0.049,
+    "neither": 0.127
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.862,
+    "inferiority": 0.0,
+    "inconclusive": 0.138,
+    "superiority": 0.025
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.913,
+    "inferiority": 0.0,
+    "inconclusive": 0.087,
+    "superiority": 0.027
+   }
+  },
+  "b=0.85 k=6 rules=120 delta=+0.05 rho=0.0": {
+   "feasible": true,
+   "theta": 0.507,
+   "realized_mean_estimate": 0.0505,
+   "joint_outcomes": {
+    "both": 0.728,
+    "mutation_only": 0.145,
+    "deletion_only": 0.095,
+    "neither": 0.031
+   },
+   "rule_weighted": {
+    "benefit": 0.032,
+    "equivalence": 0.026,
+    "inferiority": 0.0,
+    "inconclusive": 0.942,
+    "superiority": 0.665
+   },
+   "residue_weighted": {
+    "benefit": 0.027,
+    "equivalence": 0.027,
+    "inferiority": 0.0,
+    "inconclusive": 0.946,
+    "superiority": 0.772
+   }
+  },
+  "b=0.85 k=6 rules=120 delta=+0.05 rho=0.5": {
+   "feasible": true,
+   "theta": 0.507,
+   "realized_mean_estimate": 0.0504,
+   "joint_outcomes": {
+    "both": 0.759,
+    "mutation_only": 0.114,
+    "deletion_only": 0.064,
+    "neither": 0.063
+   },
+   "rule_weighted": {
+    "benefit": 0.023,
+    "equivalence": 0.025,
+    "inferiority": 0.0,
+    "inconclusive": 0.952,
+    "superiority": 0.796
+   },
+   "residue_weighted": {
+    "benefit": 0.024,
+    "equivalence": 0.023,
+    "inferiority": 0.0,
+    "inconclusive": 0.953,
+    "superiority": 0.862
+   }
+  },
+  "b=0.85 k=6 rules=120 delta=+0.05 rho=0.9": {
+   "feasible": true,
+   "theta": 0.507,
+   "realized_mean_estimate": 0.0498,
+   "joint_outcomes": {
+    "both": 0.801,
+    "mutation_only": 0.073,
+    "deletion_only": 0.023,
+    "neither": 0.103
+   },
+   "rule_weighted": {
+    "benefit": 0.02,
+    "equivalence": 0.037,
+    "inferiority": 0.0,
+    "inconclusive": 0.943,
+    "superiority": 0.951
+   },
+   "residue_weighted": {
+    "benefit": 0.017,
+    "equivalence": 0.027,
+    "inferiority": 0.0,
+    "inconclusive": 0.956,
+    "superiority": 0.976
+   }
+  },
+  "b=0.85 k=6 rules=120 delta=+0.10 rho=0.0": {
+   "feasible": true,
+   "theta": 1.117,
+   "realized_mean_estimate": 0.0994,
+   "joint_outcomes": {
+    "both": 0.767,
+    "mutation_only": 0.156,
+    "deletion_only": 0.057,
+    "neither": 0.02
+   },
+   "rule_weighted": {
+    "benefit": 0.72,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.28,
+    "superiority": 1.0
+   },
+   "residue_weighted": {
+    "benefit": 0.793,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.207,
+    "superiority": 1.0
+   }
+  },
+  "b=0.85 k=6 rules=120 delta=+0.10 rho=0.5": {
+   "feasible": true,
+   "theta": 1.117,
+   "realized_mean_estimate": 0.1012,
+   "joint_outcomes": {
+    "both": 0.79,
+    "mutation_only": 0.134,
+    "deletion_only": 0.034,
+    "neither": 0.042
+   },
+   "rule_weighted": {
+    "benefit": 0.846,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.154,
+    "superiority": 0.999
+   },
+   "residue_weighted": {
+    "benefit": 0.901,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.099,
+    "superiority": 1.0
+   }
+  },
+  "b=0.85 k=6 rules=120 delta=+0.10 rho=0.9": {
+   "feasible": true,
+   "theta": 1.117,
+   "realized_mean_estimate": 0.1,
+   "joint_outcomes": {
+    "both": 0.818,
+    "mutation_only": 0.107,
+    "deletion_only": 0.007,
+    "neither": 0.069
+   },
+   "rule_weighted": {
+    "benefit": 0.956,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.044,
+    "superiority": 1.0
+   },
+   "residue_weighted": {
+    "benefit": 0.972,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.028,
+    "superiority": 1.0
+   }
+  },
+  "b=0.85 k=6 rules=120 delta=+0.15 rho=0.0": {
+   "feasible": true,
+   "theta": 2.295,
+   "realized_mean_estimate": 0.1502,
+   "joint_outcomes": {
+    "both": 0.805,
+    "mutation_only": 0.169,
+    "deletion_only": 0.019,
+    "neither": 0.007
+   },
+   "rule_weighted": {
+    "benefit": 1.0,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.0,
+    "superiority": 1.0
+   },
+   "residue_weighted": {
+    "benefit": 1.0,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.0,
+    "superiority": 1.0
+   }
+  },
+  "b=0.85 k=6 rules=120 delta=+0.15 rho=0.5": {
+   "feasible": true,
+   "theta": 2.295,
+   "realized_mean_estimate": 0.1496,
+   "joint_outcomes": {
+    "both": 0.816,
+    "mutation_only": 0.158,
+    "deletion_only": 0.009,
+    "neither": 0.018
+   },
+   "rule_weighted": {
+    "benefit": 1.0,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.0,
+    "superiority": 1.0
+   },
+   "residue_weighted": {
+    "benefit": 1.0,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.0,
+    "superiority": 1.0
+   }
+  },
+  "b=0.85 k=6 rules=120 delta=+0.15 rho=0.9": {
+   "feasible": true,
+   "theta": 2.295,
+   "realized_mean_estimate": 0.1505,
+   "joint_outcomes": {
+    "both": 0.824,
+    "mutation_only": 0.15,
+    "deletion_only": 0.0,
+    "neither": 0.026
+   },
+   "rule_weighted": {
+    "benefit": 1.0,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.0,
+    "superiority": 1.0
+   },
+   "residue_weighted": {
+    "benefit": 1.0,
+    "equivalence": 0.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.0,
+    "superiority": 1.0
+   }
+  },
+  "b=0.97 k=2 rules=50 delta=-0.10 rho=0.0": {
+   "feasible": true,
+   "theta": -1.364,
+   "realized_mean_estimate": -0.1001,
+   "joint_outcomes": {
+    "both": 0.831,
+    "mutation_only": 0.03,
+    "deletion_only": 0.131,
+    "neither": 0.008
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.176,
+    "inconclusive": 0.824,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.001,
+    "inferiority": 0.216,
+    "inconclusive": 0.783,
+    "superiority": 0.0
+   }
+  },
+  "b=0.97 k=2 rules=50 delta=-0.10 rho=0.5": {
+   "feasible": true,
+   "theta": -1.364,
+   "realized_mean_estimate": -0.1025,
+   "joint_outcomes": {
+    "both": 0.843,
+    "mutation_only": 0.017,
+    "deletion_only": 0.119,
+    "neither": 0.022
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.001,
+    "inferiority": 0.192,
+    "inconclusive": 0.807,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.258,
+    "inconclusive": 0.742,
+    "superiority": 0.0
+   }
+  },
+  "b=0.97 k=2 rules=50 delta=-0.10 rho=0.9": {
+   "feasible": true,
+   "theta": -1.364,
+   "realized_mean_estimate": -0.0997,
+   "joint_outcomes": {
+    "both": 0.858,
+    "mutation_only": 0.002,
+    "deletion_only": 0.103,
+    "neither": 0.038
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.005,
+    "inferiority": 0.187,
+    "inconclusive": 0.808,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.272,
+    "inconclusive": 0.728,
+    "superiority": 0.0
+   }
+  },
+  "b=0.97 k=2 rules=50 delta=-0.05 rho=0.0": {
+   "feasible": true,
+   "theta": -0.816,
+   "realized_mean_estimate": -0.0515,
+   "joint_outcomes": {
+    "both": 0.875,
+    "mutation_only": 0.033,
+    "deletion_only": 0.085,
+    "neither": 0.006
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.008,
+    "inferiority": 0.014,
+    "inconclusive": 0.978,
+    "superiority": 0.001
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.004,
+    "inferiority": 0.019,
+    "inconclusive": 0.977,
+    "superiority": 0.0
+   }
+  },
+  "b=0.97 k=2 rules=50 delta=-0.05 rho=0.5": {
+   "feasible": true,
+   "theta": -0.816,
+   "realized_mean_estimate": -0.0516,
+   "joint_outcomes": {
+    "both": 0.888,
+    "mutation_only": 0.022,
+    "deletion_only": 0.073,
+    "neither": 0.017
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.033,
+    "inferiority": 0.015,
+    "inconclusive": 0.952,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.025,
+    "inferiority": 0.02,
+    "inconclusive": 0.955,
+    "superiority": 0.0
+   }
+  },
+  "b=0.97 k=2 rules=50 delta=-0.05 rho=0.9": {
+   "feasible": true,
+   "theta": -0.816,
+   "realized_mean_estimate": -0.0498,
+   "joint_outcomes": {
+    "both": 0.904,
+    "mutation_only": 0.006,
+    "deletion_only": 0.057,
+    "neither": 0.033
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.083,
+    "inferiority": 0.002,
+    "inconclusive": 0.915,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.075,
+    "inferiority": 0.006,
+    "inconclusive": 0.919,
+    "superiority": 0.0
+   }
+  },
+  "b=0.97 k=2 rules=50 delta=+0.00 rho=0.0": {
+   "feasible": true,
+   "theta": 0.109,
+   "realized_mean_estimate": -0.0003,
+   "joint_outcomes": {
+    "both": 0.924,
+    "mutation_only": 0.036,
+    "deletion_only": 0.038,
+    "neither": 0.003
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.111,
+    "inferiority": 0.0,
+    "inconclusive": 0.889,
+    "superiority": 0.021
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.14,
+    "inferiority": 0.0,
+    "inconclusive": 0.86,
+    "superiority": 0.022
+   }
+  },
+  "b=0.97 k=2 rules=50 delta=+0.00 rho=0.5": {
+   "feasible": true,
+   "theta": 0.109,
+   "realized_mean_estimate": -0.0012,
+   "joint_outcomes": {
+    "both": 0.931,
+    "mutation_only": 0.029,
+    "deletion_only": 0.03,
+    "neither": 0.01
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.18,
+    "inferiority": 0.0,
+    "inconclusive": 0.82,
+    "superiority": 0.016
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.23,
+    "inferiority": 0.0,
+    "inconclusive": 0.77,
+    "superiority": 0.024
+   }
+  },
+  "b=0.97 k=2 rules=50 delta=+0.00 rho=0.9": {
+   "feasible": true,
+   "theta": 0.109,
+   "realized_mean_estimate": -0.0001,
+   "joint_outcomes": {
+    "both": 0.944,
+    "mutation_only": 0.015,
+    "deletion_only": 0.016,
+    "neither": 0.025
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.487,
+    "inferiority": 0.0,
+    "inconclusive": 0.513,
+    "superiority": 0.002
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.626,
+    "inferiority": 0.0,
+    "inconclusive": 0.374,
+    "superiority": 0.012
+   }
+  },
+  "b=0.97 k=2 rules=50 delta=+0.05 rho=0.0": {
+   "feasible": false
+  },
+  "b=0.97 k=2 rules=50 delta=+0.05 rho=0.5": {
+   "feasible": false
+  },
+  "b=0.97 k=2 rules=50 delta=+0.05 rho=0.9": {
+   "feasible": false
+  },
+  "b=0.97 k=2 rules=50 delta=+0.10 rho=0.0": {
+   "feasible": false
+  },
+  "b=0.97 k=2 rules=50 delta=+0.10 rho=0.5": {
+   "feasible": false
+  },
+  "b=0.97 k=2 rules=50 delta=+0.10 rho=0.9": {
+   "feasible": false
+  },
+  "b=0.97 k=2 rules=50 delta=+0.15 rho=0.0": {
+   "feasible": false
+  },
+  "b=0.97 k=2 rules=50 delta=+0.15 rho=0.5": {
+   "feasible": false
+  },
+  "b=0.97 k=2 rules=50 delta=+0.15 rho=0.9": {
+   "feasible": false
+  },
+  "b=0.97 k=2 rules=80 delta=-0.10 rho=0.0": {
+   "feasible": true,
+   "theta": -1.364,
+   "realized_mean_estimate": -0.0987,
+   "joint_outcomes": {
+    "both": 0.83,
+    "mutation_only": 0.031,
+    "deletion_only": 0.13,
+    "neither": 0.009
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.27,
+    "inconclusive": 0.73,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.305,
+    "inconclusive": 0.695,
+    "superiority": 0.0
+   }
+  },
+  "b=0.97 k=2 rules=80 delta=-0.10 rho=0.5": {
+   "feasible": true,
+   "theta": -1.364,
+   "realized_mean_estimate": -0.1001,
+   "joint_outcomes": {
+    "both": 0.841,
+    "mutation_only": 0.018,
+    "deletion_only": 0.118,
+    "neither": 0.022
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.001,
+    "inferiority": 0.306,
+    "inconclusive": 0.693,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.39,
+    "inconclusive": 0.61,
+    "superiority": 0.0
+   }
+  },
+  "b=0.97 k=2 rules=80 delta=-0.10 rho=0.9": {
+   "feasible": true,
+   "theta": -1.364,
+   "realized_mean_estimate": -0.099,
+   "joint_outcomes": {
+    "both": 0.859,
+    "mutation_only": 0.002,
+    "deletion_only": 0.102,
+    "neither": 0.037
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.001,
+    "inferiority": 0.371,
+    "inconclusive": 0.628,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.482,
+    "inconclusive": 0.518,
+    "superiority": 0.0
+   }
+  },
+  "b=0.97 k=2 rules=80 delta=-0.05 rho=0.0": {
+   "feasible": true,
+   "theta": -0.816,
+   "realized_mean_estimate": -0.0486,
+   "joint_outcomes": {
+    "both": 0.877,
+    "mutation_only": 0.034,
+    "deletion_only": 0.083,
+    "neither": 0.006
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.019,
+    "inferiority": 0.015,
+    "inconclusive": 0.966,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.023,
+    "inferiority": 0.018,
+    "inconclusive": 0.959,
+    "superiority": 0.0
+   }
+  },
+  "b=0.97 k=2 rules=80 delta=-0.05 rho=0.5": {
+   "feasible": true,
+   "theta": -0.816,
+   "realized_mean_estimate": -0.05,
+   "joint_outcomes": {
+    "both": 0.887,
+    "mutation_only": 0.023,
+    "deletion_only": 0.073,
+    "neither": 0.017
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.036,
+    "inferiority": 0.02,
+    "inconclusive": 0.944,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.041,
+    "inferiority": 0.021,
+    "inconclusive": 0.938,
+    "superiority": 0.0
+   }
+  },
+  "b=0.97 k=2 rules=80 delta=-0.05 rho=0.9": {
+   "feasible": true,
+   "theta": -0.816,
+   "realized_mean_estimate": -0.0507,
+   "joint_outcomes": {
+    "both": 0.905,
+    "mutation_only": 0.006,
+    "deletion_only": 0.056,
+    "neither": 0.033
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.085,
+    "inferiority": 0.007,
+    "inconclusive": 0.908,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.061,
+    "inferiority": 0.009,
+    "inconclusive": 0.93,
+    "superiority": 0.0
+   }
+  },
+  "b=0.97 k=2 rules=80 delta=+0.00 rho=0.0": {
+   "feasible": true,
+   "theta": 0.109,
+   "realized_mean_estimate": 0.0007,
+   "joint_outcomes": {
+    "both": 0.924,
+    "mutation_only": 0.037,
+    "deletion_only": 0.037,
+    "neither": 0.002
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.221,
+    "inferiority": 0.0,
+    "inconclusive": 0.779,
+    "superiority": 0.022
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.366,
+    "inferiority": 0.0,
+    "inconclusive": 0.634,
+    "superiority": 0.024
+   }
+  },
+  "b=0.97 k=2 rules=80 delta=+0.00 rho=0.5": {
+   "feasible": true,
+   "theta": 0.109,
+   "realized_mean_estimate": 0.0003,
+   "joint_outcomes": {
+    "both": 0.931,
+    "mutation_only": 0.03,
+    "deletion_only": 0.03,
+    "neither": 0.01
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.34,
+    "inferiority": 0.0,
+    "inconclusive": 0.66,
+    "superiority": 0.022
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.483,
+    "inferiority": 0.0,
+    "inconclusive": 0.517,
+    "superiority": 0.026
+   }
+  },
+  "b=0.97 k=2 rules=80 delta=+0.00 rho=0.9": {
+   "feasible": true,
+   "theta": 0.109,
+   "realized_mean_estimate": -0.0007,
+   "joint_outcomes": {
+    "both": 0.945,
+    "mutation_only": 0.015,
+    "deletion_only": 0.016,
+    "neither": 0.024
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.705,
+    "inferiority": 0.0,
+    "inconclusive": 0.295,
+    "superiority": 0.012
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.849,
+    "inferiority": 0.0,
+    "inconclusive": 0.151,
+    "superiority": 0.02
+   }
+  },
+  "b=0.97 k=2 rules=80 delta=+0.05 rho=0.0": {
+   "feasible": false
+  },
+  "b=0.97 k=2 rules=80 delta=+0.05 rho=0.5": {
+   "feasible": false
+  },
+  "b=0.97 k=2 rules=80 delta=+0.05 rho=0.9": {
+   "feasible": false
+  },
+  "b=0.97 k=2 rules=80 delta=+0.10 rho=0.0": {
+   "feasible": false
+  },
+  "b=0.97 k=2 rules=80 delta=+0.10 rho=0.5": {
+   "feasible": false
+  },
+  "b=0.97 k=2 rules=80 delta=+0.10 rho=0.9": {
+   "feasible": false
+  },
+  "b=0.97 k=2 rules=80 delta=+0.15 rho=0.0": {
+   "feasible": false
+  },
+  "b=0.97 k=2 rules=80 delta=+0.15 rho=0.5": {
+   "feasible": false
+  },
+  "b=0.97 k=2 rules=80 delta=+0.15 rho=0.9": {
+   "feasible": false
+  },
+  "b=0.97 k=2 rules=120 delta=-0.10 rho=0.0": {
+   "feasible": true,
+   "theta": -1.364,
+   "realized_mean_estimate": -0.1011,
+   "joint_outcomes": {
+    "both": 0.829,
+    "mutation_only": 0.031,
+    "deletion_only": 0.131,
+    "neither": 0.009
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.398,
+    "inconclusive": 0.602,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.488,
+    "inconclusive": 0.512,
+    "superiority": 0.0
+   }
+  },
+  "b=0.97 k=2 rules=120 delta=-0.10 rho=0.5": {
+   "feasible": true,
+   "theta": -1.364,
+   "realized_mean_estimate": -0.0987,
+   "joint_outcomes": {
+    "both": 0.843,
+    "mutation_only": 0.018,
+    "deletion_only": 0.117,
+    "neither": 0.022
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.001,
+    "inferiority": 0.457,
+    "inconclusive": 0.542,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.542,
+    "inconclusive": 0.458,
+    "superiority": 0.0
+   }
+  },
+  "b=0.97 k=2 rules=120 delta=-0.10 rho=0.9": {
+   "feasible": true,
+   "theta": -1.364,
+   "realized_mean_estimate": -0.0998,
+   "joint_outcomes": {
+    "both": 0.858,
+    "mutation_only": 0.003,
+    "deletion_only": 0.103,
+    "neither": 0.036
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.572,
+    "inconclusive": 0.428,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.697,
+    "inconclusive": 0.303,
+    "superiority": 0.0
+   }
+  },
+  "b=0.97 k=2 rules=120 delta=-0.05 rho=0.0": {
+   "feasible": true,
+   "theta": -0.816,
+   "realized_mean_estimate": -0.0502,
+   "joint_outcomes": {
+    "both": 0.876,
+    "mutation_only": 0.034,
+    "deletion_only": 0.084,
+    "neither": 0.006
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.02,
+    "inferiority": 0.015,
+    "inconclusive": 0.965,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.027,
+    "inferiority": 0.015,
+    "inconclusive": 0.958,
+    "superiority": 0.0
+   }
+  },
+  "b=0.97 k=2 rules=120 delta=-0.05 rho=0.5": {
+   "feasible": true,
+   "theta": -0.816,
+   "realized_mean_estimate": -0.0496,
+   "joint_outcomes": {
+    "both": 0.888,
+    "mutation_only": 0.023,
+    "deletion_only": 0.072,
+    "neither": 0.017
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.04,
+    "inferiority": 0.012,
+    "inconclusive": 0.948,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.041,
+    "inferiority": 0.017,
+    "inconclusive": 0.942,
+    "superiority": 0.0
+   }
+  },
+  "b=0.97 k=2 rules=120 delta=-0.05 rho=0.9": {
+   "feasible": true,
+   "theta": -0.816,
+   "realized_mean_estimate": -0.0507,
+   "joint_outcomes": {
+    "both": 0.904,
+    "mutation_only": 0.006,
+    "deletion_only": 0.057,
+    "neither": 0.033
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.042,
+    "inferiority": 0.011,
+    "inconclusive": 0.947,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.043,
+    "inferiority": 0.016,
+    "inconclusive": 0.941,
+    "superiority": 0.0
+   }
+  },
+  "b=0.97 k=2 rules=120 delta=+0.00 rho=0.0": {
+   "feasible": true,
+   "theta": 0.109,
+   "realized_mean_estimate": 0.0001,
+   "joint_outcomes": {
+    "both": 0.923,
+    "mutation_only": 0.037,
+    "deletion_only": 0.037,
+    "neither": 0.003
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.426,
+    "inferiority": 0.0,
+    "inconclusive": 0.574,
+    "superiority": 0.03
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.662,
+    "inferiority": 0.0,
+    "inconclusive": 0.338,
+    "superiority": 0.022
+   }
+  },
+  "b=0.97 k=2 rules=120 delta=+0.00 rho=0.5": {
+   "feasible": true,
+   "theta": 0.109,
+   "realized_mean_estimate": -0.0005,
+   "joint_outcomes": {
+    "both": 0.931,
+    "mutation_only": 0.029,
+    "deletion_only": 0.03,
+    "neither": 0.01
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.576,
+    "inferiority": 0.0,
+    "inconclusive": 0.424,
+    "superiority": 0.023
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.773,
+    "inferiority": 0.0,
+    "inconclusive": 0.227,
+    "superiority": 0.029
+   }
+  },
+  "b=0.97 k=2 rules=120 delta=+0.00 rho=0.9": {
+   "feasible": true,
+   "theta": 0.109,
+   "realized_mean_estimate": -0.0001,
+   "joint_outcomes": {
+    "both": 0.945,
+    "mutation_only": 0.015,
+    "deletion_only": 0.016,
+    "neither": 0.024
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.902,
+    "inferiority": 0.0,
+    "inconclusive": 0.098,
+    "superiority": 0.018
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.977,
+    "inferiority": 0.0,
+    "inconclusive": 0.023,
+    "superiority": 0.018
+   }
+  },
+  "b=0.97 k=2 rules=120 delta=+0.05 rho=0.0": {
+   "feasible": false
+  },
+  "b=0.97 k=2 rules=120 delta=+0.05 rho=0.5": {
+   "feasible": false
+  },
+  "b=0.97 k=2 rules=120 delta=+0.05 rho=0.9": {
+   "feasible": false
+  },
+  "b=0.97 k=2 rules=120 delta=+0.10 rho=0.0": {
+   "feasible": false
+  },
+  "b=0.97 k=2 rules=120 delta=+0.10 rho=0.5": {
+   "feasible": false
+  },
+  "b=0.97 k=2 rules=120 delta=+0.10 rho=0.9": {
+   "feasible": false
+  },
+  "b=0.97 k=2 rules=120 delta=+0.15 rho=0.0": {
+   "feasible": false
+  },
+  "b=0.97 k=2 rules=120 delta=+0.15 rho=0.5": {
+   "feasible": false
+  },
+  "b=0.97 k=2 rules=120 delta=+0.15 rho=0.9": {
+   "feasible": false
+  },
+  "b=0.97 k=6 rules=50 delta=-0.10 rho=0.0": {
+   "feasible": true,
+   "theta": -1.364,
+   "realized_mean_estimate": -0.0999,
+   "joint_outcomes": {
+    "both": 0.829,
+    "mutation_only": 0.031,
+    "deletion_only": 0.131,
+    "neither": 0.008
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.413,
+    "inconclusive": 0.587,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.468,
+    "inconclusive": 0.532,
+    "superiority": 0.0
+   }
+  },
+  "b=0.97 k=6 rules=50 delta=-0.10 rho=0.5": {
+   "feasible": true,
+   "theta": -1.364,
+   "realized_mean_estimate": -0.0985,
+   "joint_outcomes": {
+    "both": 0.844,
+    "mutation_only": 0.018,
+    "deletion_only": 0.116,
+    "neither": 0.021
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.478,
+    "inconclusive": 0.522,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.523,
+    "inconclusive": 0.477,
+    "superiority": 0.0
+   }
+  },
+  "b=0.97 k=6 rules=50 delta=-0.10 rho=0.9": {
+   "feasible": true,
+   "theta": -1.364,
+   "realized_mean_estimate": -0.0993,
+   "joint_outcomes": {
+    "both": 0.858,
+    "mutation_only": 0.002,
+    "deletion_only": 0.102,
+    "neither": 0.038
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.604,
+    "inconclusive": 0.396,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.654,
+    "inconclusive": 0.346,
+    "superiority": 0.0
+   }
+  },
+  "b=0.97 k=6 rules=50 delta=-0.05 rho=0.0": {
+   "feasible": true,
+   "theta": -0.816,
+   "realized_mean_estimate": -0.0495,
+   "joint_outcomes": {
+    "both": 0.877,
+    "mutation_only": 0.034,
+    "deletion_only": 0.083,
+    "neither": 0.006
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.035,
+    "inferiority": 0.017,
+    "inconclusive": 0.948,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.034,
+    "inferiority": 0.016,
+    "inconclusive": 0.95,
+    "superiority": 0.0
+   }
+  },
+  "b=0.97 k=6 rules=50 delta=-0.05 rho=0.5": {
+   "feasible": true,
+   "theta": -0.816,
+   "realized_mean_estimate": -0.0505,
+   "joint_outcomes": {
+    "both": 0.888,
+    "mutation_only": 0.022,
+    "deletion_only": 0.073,
+    "neither": 0.017
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.036,
+    "inferiority": 0.013,
+    "inconclusive": 0.951,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.044,
+    "inferiority": 0.015,
+    "inconclusive": 0.941,
+    "superiority": 0.0
+   }
+  },
+  "b=0.97 k=6 rules=50 delta=-0.05 rho=0.9": {
+   "feasible": true,
+   "theta": -0.816,
+   "realized_mean_estimate": -0.0508,
+   "joint_outcomes": {
+    "both": 0.904,
+    "mutation_only": 0.006,
+    "deletion_only": 0.056,
+    "neither": 0.034
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.056,
+    "inferiority": 0.011,
+    "inconclusive": 0.933,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.05,
+    "inferiority": 0.013,
+    "inconclusive": 0.937,
+    "superiority": 0.0
+   }
+  },
+  "b=0.97 k=6 rules=50 delta=+0.00 rho=0.0": {
+   "feasible": true,
+   "theta": 0.109,
+   "realized_mean_estimate": -0.0002,
+   "joint_outcomes": {
+    "both": 0.923,
+    "mutation_only": 0.037,
+    "deletion_only": 0.037,
+    "neither": 0.003
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.581,
+    "inferiority": 0.0,
+    "inconclusive": 0.419,
+    "superiority": 0.018
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.734,
+    "inferiority": 0.0,
+    "inconclusive": 0.266,
+    "superiority": 0.018
+   }
+  },
+  "b=0.97 k=6 rules=50 delta=+0.00 rho=0.5": {
+   "feasible": true,
+   "theta": 0.109,
+   "realized_mean_estimate": 0.0005,
+   "joint_outcomes": {
+    "both": 0.931,
+    "mutation_only": 0.03,
+    "deletion_only": 0.029,
+    "neither": 0.01
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.728,
+    "inferiority": 0.0,
+    "inconclusive": 0.272,
+    "superiority": 0.021
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.824,
+    "inferiority": 0.0,
+    "inconclusive": 0.176,
+    "superiority": 0.028
+   }
+  },
+  "b=0.97 k=6 rules=50 delta=+0.00 rho=0.9": {
+   "feasible": true,
+   "theta": 0.109,
+   "realized_mean_estimate": 0.0003,
+   "joint_outcomes": {
+    "both": 0.945,
+    "mutation_only": 0.016,
+    "deletion_only": 0.015,
+    "neither": 0.024
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.925,
+    "inferiority": 0.0,
+    "inconclusive": 0.075,
+    "superiority": 0.023
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.964,
+    "inferiority": 0.0,
+    "inconclusive": 0.036,
+    "superiority": 0.033
+   }
+  },
+  "b=0.97 k=6 rules=50 delta=+0.05 rho=0.0": {
+   "feasible": false
+  },
+  "b=0.97 k=6 rules=50 delta=+0.05 rho=0.5": {
+   "feasible": false
+  },
+  "b=0.97 k=6 rules=50 delta=+0.05 rho=0.9": {
+   "feasible": false
+  },
+  "b=0.97 k=6 rules=50 delta=+0.10 rho=0.0": {
+   "feasible": false
+  },
+  "b=0.97 k=6 rules=50 delta=+0.10 rho=0.5": {
+   "feasible": false
+  },
+  "b=0.97 k=6 rules=50 delta=+0.10 rho=0.9": {
+   "feasible": false
+  },
+  "b=0.97 k=6 rules=50 delta=+0.15 rho=0.0": {
+   "feasible": false
+  },
+  "b=0.97 k=6 rules=50 delta=+0.15 rho=0.5": {
+   "feasible": false
+  },
+  "b=0.97 k=6 rules=50 delta=+0.15 rho=0.9": {
+   "feasible": false
+  },
+  "b=0.97 k=6 rules=80 delta=-0.10 rho=0.0": {
+   "feasible": true,
+   "theta": -1.364,
+   "realized_mean_estimate": -0.0991,
+   "joint_outcomes": {
+    "both": 0.83,
+    "mutation_only": 0.031,
+    "deletion_only": 0.131,
+    "neither": 0.008
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.613,
+    "inconclusive": 0.387,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.693,
+    "inconclusive": 0.307,
+    "superiority": 0.0
+   }
+  },
+  "b=0.97 k=6 rules=80 delta=-0.10 rho=0.5": {
+   "feasible": true,
+   "theta": -1.364,
+   "realized_mean_estimate": -0.1004,
+   "joint_outcomes": {
+    "both": 0.843,
+    "mutation_only": 0.017,
+    "deletion_only": 0.118,
+    "neither": 0.021
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.745,
+    "inconclusive": 0.255,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.787,
+    "inconclusive": 0.213,
+    "superiority": 0.0
+   }
+  },
+  "b=0.97 k=6 rules=80 delta=-0.10 rho=0.9": {
+   "feasible": true,
+   "theta": -1.364,
+   "realized_mean_estimate": -0.0989,
+   "joint_outcomes": {
+    "both": 0.859,
+    "mutation_only": 0.003,
+    "deletion_only": 0.101,
+    "neither": 0.037
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.834,
+    "inconclusive": 0.166,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.875,
+    "inconclusive": 0.125,
+    "superiority": 0.0
+   }
+  },
+  "b=0.97 k=6 rules=80 delta=-0.05 rho=0.0": {
+   "feasible": true,
+   "theta": -0.816,
+   "realized_mean_estimate": -0.05,
+   "joint_outcomes": {
+    "both": 0.877,
+    "mutation_only": 0.034,
+    "deletion_only": 0.084,
+    "neither": 0.006
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.031,
+    "inferiority": 0.016,
+    "inconclusive": 0.953,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.035,
+    "inferiority": 0.011,
+    "inconclusive": 0.954,
+    "superiority": 0.0
+   }
+  },
+  "b=0.97 k=6 rules=80 delta=-0.05 rho=0.5": {
+   "feasible": true,
+   "theta": -0.816,
+   "realized_mean_estimate": -0.0499,
+   "joint_outcomes": {
+    "both": 0.888,
+    "mutation_only": 0.023,
+    "deletion_only": 0.073,
+    "neither": 0.017
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.036,
+    "inferiority": 0.015,
+    "inconclusive": 0.949,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.029,
+    "inferiority": 0.017,
+    "inconclusive": 0.954,
+    "superiority": 0.0
+   }
+  },
+  "b=0.97 k=6 rules=80 delta=-0.05 rho=0.9": {
+   "feasible": true,
+   "theta": -0.816,
+   "realized_mean_estimate": -0.0494,
+   "joint_outcomes": {
+    "both": 0.905,
+    "mutation_only": 0.006,
+    "deletion_only": 0.056,
+    "neither": 0.034
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.06,
+    "inferiority": 0.009,
+    "inconclusive": 0.931,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.051,
+    "inferiority": 0.013,
+    "inconclusive": 0.936,
+    "superiority": 0.0
+   }
+  },
+  "b=0.97 k=6 rules=80 delta=+0.00 rho=0.0": {
+   "feasible": true,
+   "theta": 0.109,
+   "realized_mean_estimate": 0.0004,
+   "joint_outcomes": {
+    "both": 0.924,
+    "mutation_only": 0.037,
+    "deletion_only": 0.037,
+    "neither": 0.003
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.872,
+    "inferiority": 0.0,
+    "inconclusive": 0.128,
+    "superiority": 0.021
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.947,
+    "inferiority": 0.0,
+    "inconclusive": 0.053,
+    "superiority": 0.019
+   }
+  },
+  "b=0.97 k=6 rules=80 delta=+0.00 rho=0.5": {
+   "feasible": true,
+   "theta": 0.109,
+   "realized_mean_estimate": 0.0003,
+   "joint_outcomes": {
+    "both": 0.93,
+    "mutation_only": 0.03,
+    "deletion_only": 0.03,
+    "neither": 0.01
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.908,
+    "inferiority": 0.0,
+    "inconclusive": 0.092,
+    "superiority": 0.027
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.976,
+    "inferiority": 0.0,
+    "inconclusive": 0.024,
+    "superiority": 0.023
+   }
+  },
+  "b=0.97 k=6 rules=80 delta=+0.00 rho=0.9": {
+   "feasible": true,
+   "theta": 0.109,
+   "realized_mean_estimate": 0.0001,
+   "joint_outcomes": {
+    "both": 0.945,
+    "mutation_only": 0.016,
+    "deletion_only": 0.016,
+    "neither": 0.024
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.988,
+    "inferiority": 0.0,
+    "inconclusive": 0.012,
+    "superiority": 0.025
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.998,
+    "inferiority": 0.0,
+    "inconclusive": 0.002,
+    "superiority": 0.021
+   }
+  },
+  "b=0.97 k=6 rules=80 delta=+0.05 rho=0.0": {
+   "feasible": false
+  },
+  "b=0.97 k=6 rules=80 delta=+0.05 rho=0.5": {
+   "feasible": false
+  },
+  "b=0.97 k=6 rules=80 delta=+0.05 rho=0.9": {
+   "feasible": false
+  },
+  "b=0.97 k=6 rules=80 delta=+0.10 rho=0.0": {
+   "feasible": false
+  },
+  "b=0.97 k=6 rules=80 delta=+0.10 rho=0.5": {
+   "feasible": false
+  },
+  "b=0.97 k=6 rules=80 delta=+0.10 rho=0.9": {
+   "feasible": false
+  },
+  "b=0.97 k=6 rules=80 delta=+0.15 rho=0.0": {
+   "feasible": false
+  },
+  "b=0.97 k=6 rules=80 delta=+0.15 rho=0.5": {
+   "feasible": false
+  },
+  "b=0.97 k=6 rules=80 delta=+0.15 rho=0.9": {
+   "feasible": false
+  },
+  "b=0.97 k=6 rules=120 delta=-0.10 rho=0.0": {
+   "feasible": true,
+   "theta": -1.364,
+   "realized_mean_estimate": -0.0995,
+   "joint_outcomes": {
+    "both": 0.83,
+    "mutation_only": 0.031,
+    "deletion_only": 0.13,
+    "neither": 0.008
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.822,
+    "inconclusive": 0.178,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.869,
+    "inconclusive": 0.131,
+    "superiority": 0.0
+   }
+  },
+  "b=0.97 k=6 rules=120 delta=-0.10 rho=0.5": {
+   "feasible": true,
+   "theta": -1.364,
+   "realized_mean_estimate": -0.0993,
+   "joint_outcomes": {
+    "both": 0.843,
+    "mutation_only": 0.018,
+    "deletion_only": 0.117,
+    "neither": 0.022
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.873,
+    "inconclusive": 0.127,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.914,
+    "inconclusive": 0.086,
+    "superiority": 0.0
+   }
+  },
+  "b=0.97 k=6 rules=120 delta=-0.10 rho=0.9": {
+   "feasible": true,
+   "theta": -1.364,
+   "realized_mean_estimate": -0.0994,
+   "joint_outcomes": {
+    "both": 0.859,
+    "mutation_only": 0.002,
+    "deletion_only": 0.102,
+    "neither": 0.037
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.961,
+    "inconclusive": 0.039,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.0,
+    "inferiority": 0.968,
+    "inconclusive": 0.032,
+    "superiority": 0.0
+   }
+  },
+  "b=0.97 k=6 rules=120 delta=-0.05 rho=0.0": {
+   "feasible": true,
+   "theta": -0.816,
+   "realized_mean_estimate": -0.0496,
+   "joint_outcomes": {
+    "both": 0.877,
+    "mutation_only": 0.034,
+    "deletion_only": 0.083,
+    "neither": 0.006
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.038,
+    "inferiority": 0.015,
+    "inconclusive": 0.947,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.035,
+    "inferiority": 0.018,
+    "inconclusive": 0.947,
+    "superiority": 0.0
+   }
+  },
+  "b=0.97 k=6 rules=120 delta=-0.05 rho=0.5": {
+   "feasible": true,
+   "theta": -0.816,
+   "realized_mean_estimate": -0.0508,
+   "joint_outcomes": {
+    "both": 0.887,
+    "mutation_only": 0.023,
+    "deletion_only": 0.073,
+    "neither": 0.017
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.031,
+    "inferiority": 0.014,
+    "inconclusive": 0.955,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.028,
+    "inferiority": 0.014,
+    "inconclusive": 0.958,
+    "superiority": 0.0
+   }
+  },
+  "b=0.97 k=6 rules=120 delta=-0.05 rho=0.9": {
+   "feasible": true,
+   "theta": -0.816,
+   "realized_mean_estimate": -0.0503,
+   "joint_outcomes": {
+    "both": 0.905,
+    "mutation_only": 0.006,
+    "deletion_only": 0.056,
+    "neither": 0.034
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.042,
+    "inferiority": 0.006,
+    "inconclusive": 0.952,
+    "superiority": 0.0
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.04,
+    "inferiority": 0.008,
+    "inconclusive": 0.952,
+    "superiority": 0.0
+   }
+  },
+  "b=0.97 k=6 rules=120 delta=+0.00 rho=0.0": {
+   "feasible": true,
+   "theta": 0.109,
+   "realized_mean_estimate": 0.0001,
+   "joint_outcomes": {
+    "both": 0.924,
+    "mutation_only": 0.037,
+    "deletion_only": 0.037,
+    "neither": 0.003
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.965,
+    "inferiority": 0.0,
+    "inconclusive": 0.035,
+    "superiority": 0.032
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.99,
+    "inferiority": 0.0,
+    "inconclusive": 0.01,
+    "superiority": 0.033
+   }
+  },
+  "b=0.97 k=6 rules=120 delta=+0.00 rho=0.5": {
+   "feasible": true,
+   "theta": 0.109,
+   "realized_mean_estimate": 0.0002,
+   "joint_outcomes": {
+    "both": 0.931,
+    "mutation_only": 0.029,
+    "deletion_only": 0.029,
+    "neither": 0.01
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.987,
+    "inferiority": 0.0,
+    "inconclusive": 0.013,
+    "superiority": 0.032
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 0.998,
+    "inferiority": 0.0,
+    "inconclusive": 0.002,
+    "superiority": 0.028
+   }
+  },
+  "b=0.97 k=6 rules=120 delta=+0.00 rho=0.9": {
+   "feasible": true,
+   "theta": 0.109,
+   "realized_mean_estimate": 0.0001,
+   "joint_outcomes": {
+    "both": 0.945,
+    "mutation_only": 0.015,
+    "deletion_only": 0.015,
+    "neither": 0.024
+   },
+   "rule_weighted": {
+    "benefit": 0.0,
+    "equivalence": 1.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.0,
+    "superiority": 0.017
+   },
+   "residue_weighted": {
+    "benefit": 0.0,
+    "equivalence": 1.0,
+    "inferiority": 0.0,
+    "inconclusive": 0.0,
+    "superiority": 0.02
+   }
+  },
+  "b=0.97 k=6 rules=120 delta=+0.05 rho=0.0": {
+   "feasible": false
+  },
+  "b=0.97 k=6 rules=120 delta=+0.05 rho=0.5": {
+   "feasible": false
+  },
+  "b=0.97 k=6 rules=120 delta=+0.05 rho=0.9": {
+   "feasible": false
+  },
+  "b=0.97 k=6 rules=120 delta=+0.10 rho=0.0": {
+   "feasible": false
+  },
+  "b=0.97 k=6 rules=120 delta=+0.10 rho=0.5": {
+   "feasible": false
+  },
+  "b=0.97 k=6 rules=120 delta=+0.10 rho=0.9": {
+   "feasible": false
+  },
+  "b=0.97 k=6 rules=120 delta=+0.15 rho=0.0": {
+   "feasible": false
+  },
+  "b=0.97 k=6 rules=120 delta=+0.15 rho=0.5": {
+   "feasible": false
+  },
+  "b=0.97 k=6 rules=120 delta=+0.15 rho=0.9": {
+   "feasible": false
+  }
+ }
+}

@@ -1,0 +1,16 @@
+\begin{table}[t]
+\centering\small\setlength{\tabcolsep}{4pt}
+\caption{Cost of choosing one probe per rule: candidate episodes are the strategy's conditions times eligible probes times 3 samples. Extra residues are found beyond random selection (33 harmful residues).}\label{tab:cost}
+\begin{tabular}{lrrrr}
+\toprule
+Strategy & Found & Candidate episodes & Extra vs random & Episodes per extra \\
+\midrule
+rule absent & 98\% & 270 & 8.5 & 32 \\
+catastrophic operators & 92\% & 540 & 6.8 & 79 \\
+all mutants & 89\% & 2{,}646 & 5.8 & 453 \\
+LLM mutants & 85\% & 810 & 4.3 & 187 \\
+decay operators & 83\% & 1{,}296 & 3.8 & 339 \\
+random & 72\% & 0 & 0.0 & n/a \\
+\bottomrule
+\end{tabular}
+\end{table}

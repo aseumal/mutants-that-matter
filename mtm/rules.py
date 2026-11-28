@@ -76,6 +76,33 @@ def load_rules(path: str | Path = DEFAULT_RULES) -> list[Rule]:
     return rules
 
 
+MIN_HELDOUT_PROBES = 10
+
+
+def heldout_problems(heldout: list[Rule], pilot: list[Rule]) -> list[str]:
+    """A held-out set must be new: no pilot id, no pilot rule text, and no probe text reused.
+    Whether its rules differ in kind is a judgment for the author and a reviewer; these
+    checks only catch copies."""
+    problems = [] if heldout else ["the held-out set has no rules"]
+    pilot_ids = {r.id for r in pilot}
+    norm = lambda s: " ".join(s.lower().split())
+    pilot_texts = {norm(r.text) for r in pilot}
+    pilot_probes = {norm(p.text) for r in pilot for p in r.probes}
+    for r in heldout:
+        if r.id in pilot_ids:
+            problems.append(f"{r.id}: id is also a pilot rule")
+        if norm(r.text) in pilot_texts:
+            problems.append(f"{r.id}: same text as a pilot rule")
+        for p in r.probes:
+            if norm(p.text) in pilot_probes:
+                problems.append(f"{p.id}: probe text reused from the pilot")
+        if len(r.probes) < MIN_HELDOUT_PROBES:
+            problems.append(f"{r.id}: {len(r.probes)} prohibited-action probes; the design asks for at least {MIN_HELDOUT_PROBES}")
+        if not r.permit_probes:
+            problems.append(f"{r.id}: no permitted-action probes, so over-refusal cannot be measured")
+    return problems
+
+
 def validate_rules(rules: list[Rule]) -> list[str]:
     """Return a list of problems. Empty list means the rule set is sound."""
     problems = []

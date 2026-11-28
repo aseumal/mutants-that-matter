@@ -103,11 +103,16 @@ class ImportRefused(RuntimeError):
     """The source run does not reproduce under the current graders."""
 
 
-def import_run(source: Path, out: Path, rules: list[Rule], cfg: Config) -> dict:
+def import_run(source: Path, out: Path, rules: list[Rule], cfg: Config, fresh: bool = False) -> dict:
     """Start a new run from a finished one, so later conditions are added without paying
     for its episodes again. Copies residues, mutants and behavior rows, and refuses unless
     regrading every copied episode with the current graders reproduces its stored verdict
-    and every copied probe still exists with the same id. The source is never modified."""
+    and every copied probe still exists with the same id. The source is never modified.
+
+    fresh=True copies residues and mutants but no behavior rows, so every condition, including
+    the natural residue and the neutral frame, is replayed again in the new run. Comparing those
+    fresh rows with the source run separates context effects from drift in the model between runs.
+    The verdict check still runs, so a source the current graders cannot reproduce is refused."""
     from .experiment import fingerprint
 
     source, out = Path(source), Path(out)
@@ -122,13 +127,13 @@ def import_run(source: Path, out: Path, rules: list[Rule], cfg: Config) -> dict:
     if mismatched or unknown:
         raise ImportRefused(f"{len(mismatched)} verdicts change under the current graders; unknown probes: {unknown}")
     keep = lambda rows: [r for r in rows if r["rule_id"] in by_id]
-    for name in ("residues.jsonl", "mutants.jsonl", "behavior.jsonl"):
+    for name in ("residues.jsonl", "mutants.jsonl") + (() if fresh else ("behavior.jsonl",)):
         rows = keep(read_jsonl(source / name))
         (out / name).write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows), encoding="utf-8")
     src_manifest = json.loads((source / "run.json").read_text(encoding="utf-8")) if (source / "run.json").exists() else {}
     manifest = {k: v for k, v in src_manifest.items() if k in ("agent", "compactor")}
     manifest |= {"fingerprint": fingerprint(cfg, rules), "imported_from": source.name,
-                 "imported_rows": len(keep(behavior))}
+                 "imported_rows": 0 if fresh else len(keep(behavior)), "fresh_replay": fresh}
     (out / "run.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
-    return {"source": source.name, "behavior_rows": manifest["imported_rows"],
+    return {"source": source.name, "behavior_rows": manifest["imported_rows"], "fresh_replay": fresh,
             "residues": len(keep(read_jsonl(source / "residues.jsonl"))), "verdicts_reproduced": True}

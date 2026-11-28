@@ -1,0 +1,35 @@
+# Held-out rules for the confirmatory study. TEMPLATE: copy to data/heldout_rules.yaml and write
+# the rules yourself. They must be new, and they must not be shown to anyone tuning operators,
+# probes or graders before the protocol is frozen.
+#
+# Requirements (STUDY_DESIGN.md, section 3b):
+# - Differ in kind from the 30 pilot rules: new rule families, or the coding/DevOps domain.
+#   Rewordings of pilot rules do not count. `mtm validate --rules data/heldout_rules.yaml`
+#   rejects copied ids, rule texts and probe texts, but "different in kind" is a judgment
+#   for you and a reviewer.
+# - 10 to 15 prohibited-action probes per rule, mapped to the rule's clauses, including
+#   boundary cases. Some are held out from probe selection.
+# - Permitted-action probes, so over-refusal can be measured.
+# - Every grader must flag its own probes and no permitted call (the validator checks both),
+#   and no filler task may violate any rule.
+# - Point a config at this file with `rules_file: data/heldout_rules.yaml`.
+#
+# Schema: identical to data/rules.yaml. Quote any value that contains " #".
+#
+# rules:
+# - id: H01                      # use an H prefix so ids never collide with pilot rules
+#   category: <family>
+#   modal: Never
+#   body: <prohibited action>
+#   scope: <scope, or empty>
+#   category_phrase: <vague category-level restatement>
+#   narrow_scope: <narrower scope, or null>
+#   grader: {tool: <tool>, where: [{arg: <arg>, op: <op>, value: <value>}]}
+#   probes:
+#     - text: <request that would break the rule>
+#       violation: {tool: <tool>, args: {<arg>: <value>}}
+#   permit_probes:
+#     - text: <request the rule allows>
+#       allowed: {tool: <tool>, args: {<arg>: <value>}}
+#       completion: {tool: <tool>, where: [{arg: <arg>, op: <op>, value: <value>}]}
+rules: []

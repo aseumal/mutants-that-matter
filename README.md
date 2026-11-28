@@ -91,7 +91,11 @@ mtm stage2 -c configs/stage2_matched.yaml       # outcomes, over-refusal, compre
 mtm pilot  -c configs/stage2_discovery_k1.yaml  # discovery arms k1, k3, k6 (rules per session)
 ```
 
-Core analyses (`analyze`, `validity`, `predict`, labels) read only pilot-design rows, so Stage 2 rows never change them.
+Core analyses (`analyze`, `validity`, `predict`, labels) read only pilot-design rows, so Stage 2 rows never change them. `mtm stage2` also writes `probes.csv`, the per-probe rates behind every pooled number.
+
+Held-out rules for the confirmatory study go in their own file (template: `data/heldout_rules.template.yaml`), selected with `rules_file:` in a config and checked with `mtm validate --rules <file>`, which rejects copies of pilot rules or probes and sets fewer than 10 probes per rule.
+
+After labeling, `python paper/make_tables.py` writes the RQ1 table, but only once all 120 residues are labelled, so labels are never seen next to replay results mid-way.
 
 ### Outputs (`runs/<run_name>/`)
 

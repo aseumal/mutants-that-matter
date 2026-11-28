@@ -1,0 +1,203 @@
+{
+  "residues": 120,
+  "violation_inducing": 33,
+  "keep_rule_words": {
+    "residues": 81,
+    "violation_inducing": 6
+  },
+  "mutant_to_mutant": {
+    "mutants": 324,
+    "killed": 109,
+    "auroc": 0.771,
+    "auroc_ci": [
+      0.714,
+      0.83
+    ]
+  },
+  "models": {
+    "keyword recall (1 - recall)": {
+      "auroc": 0.89,
+      "auroc_ci": [
+        0.82,
+        0.947
+      ],
+      "auprc": 0.662,
+      "auprc_ci": [
+        0.476,
+        0.826
+      ],
+      "auroc_keep_rule_words": 0.819,
+      "minus_keyword_ci": null
+    },
+    "summary length only": {
+      "auroc": 0.652,
+      "auroc_ci": [
+        0.531,
+        0.763
+      ],
+      "auprc": 0.379,
+      "auprc_ci": [
+        0.236,
+        0.581
+      ],
+      "auroc_keep_rule_words": 0.464,
+      "minus_keyword_ci": [
+        -0.338,
+        -0.141
+      ]
+    },
+    "keyword recall only": {
+      "auroc": 0.833,
+      "auroc_ci": [
+        0.744,
+        0.912
+      ],
+      "auprc": 0.528,
+      "auprc_ci": [
+        0.371,
+        0.73
+      ],
+      "auroc_keep_rule_words": 0.776,
+      "minus_keyword_ci": [
+        -0.095,
+        -0.026
+      ]
+    },
+    "keyword + length": {
+      "auroc": 0.864,
+      "auroc_ci": [
+        0.767,
+        0.94
+      ],
+      "auprc": 0.656,
+      "auprc_ci": [
+        0.465,
+        0.852
+      ],
+      "auroc_keep_rule_words": 0.702,
+      "minus_keyword_ci": [
+        -0.067,
+        0.007
+      ]
+    },
+    "rule embedding only": {
+      "auroc": 0.556,
+      "auroc_ci": [
+        0.408,
+        0.701
+      ],
+      "auprc": 0.308,
+      "auprc_ci": [
+        0.214,
+        0.435
+      ],
+      "auroc_keep_rule_words": 0.487,
+      "minus_keyword_ci": [
+        -0.5,
+        -0.169
+      ]
+    },
+    "closest sentence only": {
+      "auroc": 0.913,
+      "auroc_ci": [
+        0.86,
+        0.961
+      ],
+      "auprc": 0.728,
+      "auprc_ci": [
+        0.599,
+        0.898
+      ],
+      "auroc_keep_rule_words": 0.936,
+      "minus_keyword_ci": [
+        -0.036,
+        0.094
+      ]
+    },
+    "whole summary only": {
+      "auroc": 0.871,
+      "auroc_ci": [
+        0.802,
+        0.931
+      ],
+      "auprc": 0.68,
+      "auprc_ci": [
+        0.534,
+        0.835
+      ],
+      "auroc_keep_rule_words": 0.916,
+      "minus_keyword_ci": [
+        -0.096,
+        0.068
+      ]
+    },
+    "two cosines only": {
+      "auroc": 0.934,
+      "auroc_ci": [
+        0.879,
+        0.978
+      ],
+      "auprc": 0.771,
+      "auprc_ci": [
+        0.603,
+        0.935
+      ],
+      "auroc_keep_rule_words": 0.956,
+      "minus_keyword_ci": [
+        -0.008,
+        0.11
+      ]
+    },
+    "full RQ4 features (reference)": {
+      "auroc": 0.949,
+      "auroc_ci": [
+        0.911,
+        0.98
+      ],
+      "auprc": 0.865,
+      "auprc_ci": [
+        0.756,
+        0.952
+      ],
+      "auroc_keep_rule_words": 0.971,
+      "minus_keyword_ci": [
+        0.01,
+        0.12
+      ]
+    },
+    "deletion + intact training": {
+      "auroc": 0.91,
+      "auroc_ci": [
+        0.863,
+        0.955
+      ],
+      "auprc": 0.779,
+      "auprc_ci": [
+        0.643,
+        0.888
+      ],
+      "auroc_keep_rule_words": 0.916,
+      "minus_keyword_ci": [
+        -0.032,
+        0.084
+      ]
+    },
+    "full features, leave one category out": {
+      "auroc": 0.922,
+      "auroc_ci": [
+        0.868,
+        0.967
+      ],
+      "auprc": 0.79,
+      "auprc_ci": [
+        0.655,
+        0.911
+      ],
+      "auroc_keep_rule_words": 0.949,
+      "minus_keyword_ci": [
+        -0.025,
+        0.098
+      ]
+    }
+  }
+}

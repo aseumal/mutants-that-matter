@@ -27,19 +27,22 @@ import argparse
 import json
 import os
 import sys
+from pathlib import Path
 
 from .analysis import AGREEMENT_COLUMNS, analyze, export_labels, kappa_from_files, label_summary, write_report
 from .experiment import (Config, PartialTrajectory, RunMismatch, check_manifest, estimate, fingerprint,
                          select_rules, stage_compact, stage_mutate, stage_replay)
 from .grading import violates
 from .llm import client_from_env, load_dotenv
-from .rules import load_rules, validate_rules
+from .rules import DEFAULT_RULES, heldout_problems, load_rules, validate_rules
 from .session import load_filler
 
 
-def _validate() -> int:
-    rules = load_rules()
+def _validate(rules_file: str | None = None) -> int:
+    rules = load_rules(rules_file or DEFAULT_RULES)
     problems = validate_rules(rules)
+    if rules_file and Path(rules_file).resolve() != DEFAULT_RULES:
+        problems += heldout_problems(rules, load_rules(DEFAULT_RULES))
     filler = load_filler()
     for t in filler:
         for r in rules:
@@ -69,13 +72,15 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--runs-dir", default="runs")
     ap.add_argument("--source", default=None, help="run to revise, for continue-capped")
     ap.add_argument("--original", default="labels_a.csv", help="blank label sheet, for label-check")
+    ap.add_argument("--rules", default=None, help="rules file to validate (default data/rules.yaml)")
+    ap.add_argument("--fresh", action="store_true", help="import-run: copy residues and mutants only, replay everything")
     args = ap.parse_args(argv)
 
     if args.mock:
         os.environ["MTM_MOCK"] = "1"
 
     if args.command == "validate":
-        return _validate()
+        return _validate(args.rules)
     if args.command == "label-tool":
         from .labeltool import build_tool
 
@@ -102,7 +107,9 @@ def main(argv: list[str] | None = None) -> int:
     cfg = Config.load(args.config)
     if os.environ.get("MTM_MOCK") == "1":
         cfg.run_name += "-mock"  # mock rows must never sit where a real run would resume them
-    rules = select_rules(load_rules(), cfg)
+    rules_path = cfg.rules_file or DEFAULT_RULES
+    all_rules = load_rules(rules_path)
+    rules = select_rules(all_rules, cfg)
     if args.command == "plan":
         from pathlib import Path
 
@@ -117,7 +124,7 @@ def main(argv: list[str] | None = None) -> int:
         if not args.source:
             ap.error("import-run needs --source <run name>")
         try:
-            print(json.dumps(import_run(out.parent / args.source, out, rules, cfg), indent=2))
+            print(json.dumps(import_run(out.parent / args.source, out, rules, cfg, fresh=args.fresh), indent=2))
         except ImportRefused as exc:
             print(f"ERROR: {exc}", file=sys.stderr)
             return 2
@@ -151,23 +158,36 @@ def main(argv: list[str] | None = None) -> int:
         print(f"ERROR: {exc}", file=sys.stderr)
         return 2
     if "mtm.llm_anthropic" in sys.modules:
-        print(f"[usage] {sys.modules['mtm.llm_anthropic'].USAGE}")
+        usage = dict(sys.modules["mtm.llm_anthropic"].USAGE)
+        print(f"[usage] {usage}")
+        if usage.get("calls"):   # measured usage, kept so later cost estimates need no guessing
+            import datetime as _dt
+            from .experiment import append_jsonl
+            append_jsonl(out / "usage.jsonl", {"command": args.command, "config": args.config,
+                                               "at": _dt.datetime.now().isoformat(timespec="seconds"), **usage})
     if args.command in ("analyze", "pilot", "continue-capped"):
         result = analyze(out, cfg.fail_threshold)
         path = write_report(result, out)
         print(json.dumps(result["summary"], indent=2))
         print(f"[analyze] report: {path}")
     if args.command == "export-labels":
-        path = export_labels(out, {r.id: r for r in load_rules()}, args.output or str(out / "labels.csv"))
+        path = export_labels(out, {r.id: r for r in all_rules}, args.output or str(out / "labels.csv"))
         print(f"[export-labels] wrote {path}")
     if args.command == "label-summary":
         if len(args.files) != 1:
             ap.error("label-summary needs one label CSV file")
         print(json.dumps(label_summary(args.files[0], out, cfg.fail_threshold), indent=2))
     if args.command == "stage2":
-        from .stage2 import analyze_stage2, write_stage2_report
+        from .stage2 import analyze_stage2, write_probe_table, write_stage2_report
 
-        path = write_stage2_report(analyze_stage2(out, cfg.fail_threshold), out)
+        path = write_stage2_report(analyze_stage2(out, cfg.fail_threshold, rules_path), out)
+        print(f"[stage2] per-probe rates: {write_probe_table(out, cfg.fail_threshold)}")
+        from .experiment import account
+        acc = account(cfg, rules, out)
+        (out / "accounting.json").write_text(json.dumps(acc, indent=2) + "\n", encoding="utf-8")
+        print("[stage2] accounting:", json.dumps({k: v for k, v in acc.items() if k != "unavailable"}, indent=1))
+        if acc["unavailable"]:
+            print("[stage2] planned conditions not generated, with reasons:", json.dumps(acc["unavailable"], indent=1))
         print(path.read_text(encoding="utf-8"))
     if args.command == "validity":
         from .validity import analyze_validity, write_validity_report
@@ -177,7 +197,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "predict":
         from .predict import default_encoder, evaluate, load_examples, write_predict_report
 
-        residues, mutants = load_examples(out, {r.id: r for r in load_rules()}, cfg.fail_threshold)
+        residues, mutants = load_examples(out, {r.id: r for r in all_rules}, cfg.fail_threshold)
         result = evaluate(residues, mutants, default_encoder(), cfg.seed)
         path = write_predict_report(result, out)
         print(path.read_text(encoding="utf-8"))

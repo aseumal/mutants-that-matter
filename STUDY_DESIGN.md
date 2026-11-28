@@ -1,6 +1,6 @@
 # Mutants That Matter: Stage 2 study design and implementation
 
-Status on 2026-11-27: code implemented and tested (134 tests pass). **Nothing has been run against an API.** The v3 pilot is frozen and reproduces exactly under the new code.
+Status on 2026-11-28: code implemented and tested (172 tests pass). **Nothing has been run against an API.** The v3 pilot is frozen and reproduces exactly under the new code.
 
 ## 1. Question
 
@@ -120,6 +120,48 @@ Size the study by simulation with clustering by rule, not by a fixed fault count
 ### Phase 5: across models
 
 Phase 5 repeats Phase 4 on another model configuration. The pinned configuration and an independently enforced configuration are compared there as reference points.
+
+## 3b. Lessons adopted from mentor feedback on a related probing project (2026-11-28)
+
+Both projects ask whether a cheap safety check catches the real failure or only something correlated with it. These rules follow from that:
+
+1. **One pre-registered primary test.** Mutation-guided against deletion-guided held-out detection, at equal total cost (episodes spent choosing probes plus testing). Operator fidelity, LLM mutants, transfer and prediction analyses are secondary.
+2. **Four-way verdict** on the primary difference and its 95% interval, with margin m = 5 points:
+
+   | Interval position | Verdict |
+   |---|---|
+   | entirely above +m | benefit |
+   | entirely below −m | inferiority |
+   | entirely inside [−m, +m] | equivalence |
+   | anything else, including touching a margin | **inconclusive** |
+
+   This is `stage2.verdict`. On the pilot, random selection reads *inferiority* against deletion, and every mutant strategy reads *inconclusive*.
+3. **Controls** (`configs/stage2_matched.yaml`):
+
+   | Control | Type | Expectation |
+   |---|---|---|
+   | Decay mutant planted in place of the policy span (`matched_planted`) | Positive | A known partial fault in real context must be caught. If replay misses planted faults it catches in the neutral frame, the probes are too weak, and mutants cannot be judged. |
+   | Pinned rule (`matched_pinned`) | Null | Violations near zero |
+   | `drop_scope` and the sham edit | Negative | No change in behavior |
+   | Random selection | Baseline | — |
+4. **Frame integrity.** Every heuristic split must add back to its summary word for word, and so must the sham edit (`context.split_integrity`). All 120 v3 splits pass.
+5. **Samples where they matter.** `key_samples` raises samples only for intact, absent and residues, plus their matched intact, absent and residue versions. Use 10 in the confirmatory study. It stays off in discovery, because the gate counts residues.
+6. **Replication before scope.** Spend spare budget on independent compaction trajectories and a second model family, not on new operators or conditions. Two full pilot runs agreed on only 85% of residues.
+7. **Graded outcomes need an open-weight model.** Claude's API gives no token probabilities. The second family should be open-weight, so the probability of the prohibited tool call can be read alongside the yes/no violation.
+8. **Held-out rules differ in kind.** They must come from new rule families or the coding/DevOps domain, with independently written probes. Rewordings of the 30 pilot rules do not count.
+9. **Never only pooled.** Report every headline rate per rule category (`stage2.categories`). On the pilot, 4 of the 6 violation-inducing residues that were not deletion-like are in access and infrastructure. That is tentative, with 3 residues each, but invisible in the pooled 27 of 33.
+10. **Shortcut check for text prediction.** A classifier must beat keyword recall, and must be reported on residues that still contain rule text, where missing words cannot explain the score.
+11. **One figure carries the story:** detection against cost for each selection strategy.
+12. **Held-out rules in their own file.** Set `rules_file:` in the config; template in `data/heldout_rules.template.yaml`. `mtm validate --rules` rejects copied pilot ids, rule texts and probes, fewer than 10 prohibited probes per rule, and rules without permitted probes.
+13. **Unpooled data.** `mtm stage2` writes `probes.csv` (rule, condition, probe, samples, violations, eligible, fails).
+14. **RQ1 waits for complete labels.** `paper/make_tables.py` writes the RQ1 table only when all 120 residues are labelled.
+
+End-to-end check (mock model, real CLI, 2026-11-28):
+- The smoke and discovery-k1 configs run.
+- Discovery k1 produced exactly the 2,736 episodes `mtm plan` estimated.
+- Matched replay, the sham edit and the planted control were added to the same run afterwards, and the fingerprint allowed it.
+- The report shows every control.
+- A run imported from v3 refuses a different agent, with exit code 2 and no rows added.
 
 ## 4. Readings agreed in advance
 

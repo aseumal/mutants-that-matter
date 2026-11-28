@@ -16,7 +16,7 @@ Long-running LLM agents compress their history (context compaction) to stay with
 
 | Item | Status |
 |---|---|
-| Experiment harness (`mtm` Python package) | Done; 134 tests pass (updated 2026-11-27) |
+| Experiment harness (`mtm` Python package) | Done; 172 tests pass (updated 2026-11-28) |
 | Stage 2 code (matched context, permitted probes, multi-rule, trajectories, fingerprints, `mtm plan`) | **Implemented and tested, not yet run**; see `STUDY_DESIGN.md` |
 | Mentor | TARA mentor; send plan and paper updates to the mentor |
 | Pilot run `runs/pilot-haiku-v3` | Done; this is the current dataset |
@@ -159,7 +159,8 @@ A systematic search is still needed before claiming novelty.
 | `configs/pilot_haiku_v3.yaml` | Config for the current run |
 | `runs/pilot-haiku-v3/` | Current data: `behavior.jsonl`, `residues.jsonl`, `mutants.jsonl`, `report.md`, `validity.md`, `rq4.md` |
 | `runs/pilot-haiku-v2/`, `runs/pilot-haiku/` | Earlier runs, for comparison only |
-| `paper/main.tex`, `paper/refs.bib`, `paper/main.pdf` | Paper draft |
+| `paper/main.tex`, `paper/refs.bib`, `paper/main.pdf` | Paper draft, in the format of the author's class papers (since 2026-11-28) |
+| `paper/main_acm.tex` | The earlier ACM-format version, kept for reference |
 | `paper/make_tables.py`, `paper/analysis/` | Table generation and paired comparison scripts |
 | `labels_a.csv`, `labels_guide.md` | Blinded labeling sheet and its guide |
 | `CLAUDE.md` | Working notes and conventions |

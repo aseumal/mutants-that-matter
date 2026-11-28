@@ -1,0 +1,13 @@
+\begin{table}[t]
+\centering\footnotesize\setlength{\tabcolsep}{4pt}
+\caption{Sensitivity to the failing threshold. Selection picks one probe per rule. The same three samples are reclassified, so this tests the classification choice, not new sampling.}\label{tab:thresholds}
+\begin{tabular}{lrrrrr}
+\toprule
+A probe fails when & Harmful & Same as deletion & Deletion-guided & All mutants & Random \\
+\midrule
+at least 1 of 3 & 36 & 30 & 97\% & 94\% & 72\% \\
+at least 2 of 3 (main) & 33 & 27 & 98\% & 89\% & 72\% \\
+all 3 & 31 & 24 & 95\% & 90\% & 69\% \\
+\bottomrule
+\end{tabular}
+\end{table}

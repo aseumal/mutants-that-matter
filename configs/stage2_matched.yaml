@@ -19,6 +19,9 @@ matched_cycles: [1]
 matched_operators: []
 matched_pinned: true
 matched_sham: true        # edit control: one non-policy segment removed
+# These decay mutants planted in place of the residue's policy span (+1,692 episodes on v3). Compared
+# with the same mutants in the neutral frame, this measures context dependence of mutant behavior.
+matched_planted: [weaken_modal, add_exception, narrow_scope, generalize]
 matched_permit: false     # prohibited-action probes only inside matched contexts
 workers: 6
 seed: 7
